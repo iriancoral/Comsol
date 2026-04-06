@@ -1,0 +1,99 @@
+% ============================================================
+\chapter{Model Validation}
+\label{ch:validation}
+% ============================================================
+
+
+% ------------------------------------------------------------
+\section{Mesh Convergence Study}
+\label{sec:mesh-convergence}
+% ------------------------------------------------------------
+
+A mesh convergence study was performed to ensure that the results are independent of the mesh resolution. The transient defrost simulation (Sim~3) was run with two mesh settings: Extra~coarse and Fine. \Cref{tab:mesh-convergence} compares the results for representative configurations.
+
+\begin{table}[H]
+    \centering
+    \caption{Mesh convergence results for the transient defrost study (Pd--Ag alloy, $V_\text{in} = \SI{12}{\volt}$).}
+    \label{tab:mesh-convergence}
+    \begin{tabular}{@{}llcc@{}}
+        \toprule
+        & & \textbf{Extra coarse mesh} & \textbf{Fine mesh} \\
+        & & & (189,192 elements) \\
+        \midrule
+        \multirow{2}{*}{$n_\text{traces} = 14$} & Defrost time  & 42\,min & 41\,min \\
+                                                  & $T_\text{min}$ (steady) & 283.38\,K & 283.38\,K \\
+        \midrule
+        \multirow{2}{*}{$n_\text{traces} = 20$} & Defrost time  & 12\,min & 12\,min \\
+                                                  & $T_\text{min}$ (steady) & 288.24\,K & 288.24\,K \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\parbox{0.48\textwidth}{\centering\vspace{2.5cm}\textit{TODO: Extra coarse mesh}\vspace{2.5cm}}}
+    \hfill
+    \fbox{\parbox{0.48\textwidth}{\centering\vspace{2.5cm}\textit{TODO: Fine mesh (189,192 elements)}\vspace{2.5cm}}}
+    \caption{Comparison of mesh densities used in the convergence study. (a)~Extra coarse mesh. (b)~Fine mesh (189,192 domain elements).}
+    \label{fig:mesh-comparison}
+\end{figure}
+
+For the Pd--Ag alloy configurations, the stationary temperature results are virtually identical between the two mesh levels, and the transient defrost times agree within 1~minute. This confirms that the Fine mesh provides converged results.
+
+However, the mesh refinement did reveal an important difference for the Nichrome~V material near the dew point boundary:
+\begin{itemize}
+    \item \textbf{Nichrome~V, 18~traces, \SI{12}{\volt}:} The coarse mesh predicted a defrost time of 48~minutes, while the fine mesh shows that the steady-state $T_\text{min}$ is only \SI{283.09}{\kelvin} --- \emph{below} the dew point. The window never fully defrosts.
+    \item \textbf{Nichrome~V, 16~traces, \SI{14.5}{\volt}:} The coarse mesh predicted ``Never'', while the fine mesh gives 59~minutes ($T_\text{min} = \SI{283.152}{\kelvin}$, barely above the dew point).
+\end{itemize}
+
+These borderline cases highlight the importance of sufficient mesh resolution when results are near a threshold.
+
+
+% ------------------------------------------------------------
+\section{Comparison to Literature}
+\label{sec:literature-validation}
+% ------------------------------------------------------------
+
+The model physics and boundary condition values are validated against published experimental and numerical studies.
+
+\subsection{Heat Transfer Coefficients}
+
+The convection coefficients used in this model ($h_\text{ext} = \SI{15}{\watt\per\metre\squared\per\kelvin}$, $h_\text{int} = \SI{7}{\watt\per\metre\squared\per\kelvin}$) are compared with experimental measurements by Ho\.{z}ejowska et al.\ \cite{hozejowska2019}, who reported measured $h$~values for automotive glass under various driving conditions. Their results support the order of magnitude used in this study, with exterior values in the range \SIrange{10}{25}{\watt\per\metre\squared\per\kelvin} depending on vehicle speed.
+
+\subsection{Coupled FEM Modelling}
+
+R\"uhl et al.\ \cite{ruhl2016} performed coupled finite element simulations of electrically heated glass panes with resistive lines, validated against infrared thermography and thermocouple measurements. Their modelling approach --- coupling electric currents with heat transfer via Joule heating in a 2D representation --- is directly analogous to the physics setup used in this work.
+
+\subsection{Heat Flux Partitioning}
+
+Koshlak et al.\ \cite{koshlak2024} measured that 83--85\% of the heat generated in electrically heated automotive glass is directed inward (toward the cabin side), which is consistent with the asymmetric convection coefficients used in this model ($h_\text{int} < h_\text{ext}$, meaning less heat loss to the interior).
+
+% TODO: If you have any analytical validation (e.g., 1D steady-state estimate), add it here.
+% For example, a 1D energy balance across the glass thickness to estimate T_surface.
+
+
+% ------------------------------------------------------------
+\section{Sensitivity Analysis}
+\label{sec:sensitivity}
+% ------------------------------------------------------------
+
+The parametric sweeps performed in Sim~2 and Sim~2b serve as a de facto sensitivity analysis, showing how the minimum surface temperature responds to changes in the three main design variables.
+
+\begin{table}[H]
+    \centering
+    \caption{Sensitivity of minimum surface temperature to design parameters (Pd--Ag alloy, baseline: 14~traces, \SI{12}{\volt}).}
+    \label{tab:sensitivity}
+    \begin{tabular}{@{}lcc@{}}
+        \toprule
+        \textbf{Parameter change} & $\Delta T_\text{min}$ \textbf{(K)} & \textbf{Sensitivity} \\
+        \midrule
+        $n_\text{traces}$: 14 $\to$ 16 (+2 traces) & +1.40 & \SI{0.70}{\kelvin}/trace \\
+        $V_\text{in}$: 12 $\to$ \SI{14.5}{\volt} (+\SI{2.5}{\volt}) & +1.16 & \SI{0.46}{\kelvin\per\volt} \\
+        Material: Pd--Ag $\to$ Nichrome~V & $-1.49$ & --- \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The results confirm that \textbf{the number of traces is the most influential parameter}, followed by applied voltage. The choice of trace material has a strong effect through its conductivity: higher conductivity produces more Joule heating per unit length of trace.
+
+The external heat transfer coefficient $h_\text{ext}$ is also a sensitive parameter (as noted in the literature \cite{hozejowska2019}), since it directly controls the rate of heat loss from the glass. However, this was not systematically swept in the current study and is recommended as future work.

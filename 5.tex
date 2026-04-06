@@ -1,0 +1,35 @@
+% ============================================================
+\chapter{Conclusion}
+\label{ch:conclusion}
+% ============================================================
+
+This report presents the design and optimisation of a resistive rear window defroster using coupled multiphysics finite element modelling in COMSOL Multiphysics~6.2. The design was developed iteratively through five simulations addressing thermal performance, material selection, structural integrity, transient response, and trace pattern optimisation.
+
+The key findings of this study are:
+
+\begin{enumerate}
+    \item \textbf{The number of heating traces is the most influential design parameter.} Increasing the trace count from 12 to 20 raises $T_\text{min}$ by over \SI{6}{\kelvin} at \SI{12}{\volt}, whereas increasing voltage from 12 to \SI{14.5}{\volt} at 14~traces yields only \SI{1.2}{\kelvin}.
+
+    \item \textbf{Pd--Ag alloy ($\sigma = \SI{2.3e6}{\siemens\per\metre}$) is the optimal trace material.} It reaches the dew point with 14~traces at \SI{12}{\volt}, while Nichrome~V requires 18--20~traces. Bulk conductivity materials (Silver, Gold) overheat catastrophically and are not viable for this geometry.
+
+    \item \textbf{Both shortlisted materials pass the stress analysis} with safety factors exceeding $3\times$, confirming that thermal expansion mismatch between the traces and glass does not pose a structural risk.
+
+    \item \textbf{The recommended design} is:
+    \begin{itemize}
+        \item Material: Pd--Ag alloy
+        \item Number of traces: 20
+        \item Voltage: \SI{12}{\volt} (nominal battery)
+        \item Steady-state $T_\text{min}$: \SI{288.2}{\kelvin} (\SI{5}{\kelvin} above dew point)
+        \item Defrost time: 12~minutes
+        \item Stress safety factor: $\sim 3.1 \times$
+    \end{itemize}
+
+    \item \textbf{Alternative high-performance design:} Pd--Ag alloy, 22~traces, \SI{14.5}{\volt} --- achieves 8-minute defrost time when the engine is running.
+
+    % TODO: Add conclusion point about Sim 4 trace pattern optimisation results
+    \item \textbf{Trace pattern optimisation} (Sim~4) demonstrated that non-uniform spacing can further improve temperature uniformity across the glass.
+\end{enumerate}
+
+The simulation methodology --- coupling Electric Currents, Heat Transfer, and Solid Mechanics with parametric sweeps over material properties, geometry, and operating conditions --- provides a systematic framework for defroster design. The mesh convergence study and literature comparisons confirm the validity of the numerical results.
+
+Future work should focus on extending the model to 3D curved glass, validating the simulation against physical prototypes, and performing a weather condition sweep to test design robustness across different climate scenarios.

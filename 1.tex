@@ -1,0 +1,215 @@
+% ============================================================
+\chapter{Model Definition}
+\label{ch:model-definition}
+% ============================================================
+
+In this project, the design and optimisation of a resistive rear window defroster for an automotive application is investigated using finite element multiphysics modelling in COMSOL Multiphysics 6.2. The defroster must raise the entire glass surface temperature above the dew point to eliminate condensation and frost, while remaining within safe thermal and mechanical stress limits.
+
+% ------------------------------------------------------------
+\section{Problem Description}
+\label{sec:problem-description}
+% ------------------------------------------------------------
+
+Rear window defrosters operate by passing electric current through thin conductive traces deposited on the inner surface of the glass. Joule heating in the traces conducts into the glass, raising its temperature above the dew point. The key design challenge is to achieve sufficiently uniform heating across the entire window using the minimum number of traces at a voltage compatible with a standard \SI{12}{\volt} automotive electrical system.
+
+The design must satisfy three main criteria:
+\begin{enumerate}
+    \item \textbf{Thermal:} The minimum surface temperature of the glass must exceed the dew point temperature ($T_\text{dew} = \SI{283.15}{\kelvin}$, i.e.\ \SI{10}{\degreeCelsius}).
+    \item \textbf{Structural:} Thermal stresses from differential expansion between the trace material and glass must remain below material yield strengths.
+    \item \textbf{Transient:} The window must defrost within a reasonable time (target: $\leq \SI{15}{\minute}$).
+\end{enumerate}
+
+
+% ------------------------------------------------------------
+\section{Geometry}
+\label{sec:geometry}
+% ------------------------------------------------------------
+
+The model is a two-dimensional representation of a flat rear window. The geometry consists of three components:
+
+\begin{itemize}
+    \item A rectangular glass pane of dimensions $L_\text{glass} \times H_\text{glass}$ = \SI{1.5}{\metre} $\times$ \SI{0.8}{\metre}
+    \item Horizontal conductive heating traces spanning the full width of the glass, created using a linear array
+    \item Two vertical bus bars (left and right edges) connecting all traces to the power supply
+\end{itemize}
+
+The number of traces ($n_\text{traces}$) is a key design variable, swept from 8 to 22 in the parametric studies. The traces are uniformly spaced across the glass height. \Cref{fig:geometry} shows the COMSOL geometry for the baseline configuration.
+
+\begin{figure}[H]
+    \centering
+    \fbox{\parbox{0.85\textwidth}{\centering\vspace{3cm}\textit{TODO: Export from COMSOL --- Geometry view showing glass (grey), traces (orange), bus bars}\vspace{3cm}}}
+    \caption{Two-dimensional geometry of the rear window defroster model showing the glass pane, horizontal heating traces, and vertical bus bars. Configuration shown: $n_\text{traces} = 12$.}
+    \label{fig:geometry}
+\end{figure}
+
+The geometric parameters used in COMSOL are listed in \Cref{tab:geom-params}.
+
+\begin{table}[H]
+    \centering
+    \caption{Geometric parameters of the rear window defroster model.}
+    \label{tab:geom-params}
+    \begin{tabular}{@{}llll@{}}
+        \toprule
+        \textbf{Parameter} & \textbf{Symbol} & \textbf{Value} & \textbf{Description} \\
+        \midrule
+        Glass length   & $L_\text{glass}$ & \SI{1.5}{\metre}   & Width of the window \\
+        Glass height   & $H_\text{glass}$ & \SI{0.8}{\metre}   & Height of the window \\
+        Glass thickness & $t_\text{glass}$ & \SI{5}{\milli\metre} & Out-of-plane thickness \\
+        Trace width    & $w_\text{trace}$ & \SI{1.7}{\milli\metre} & Width of each heating trace \\
+        Trace thickness & $t_\text{trace}$ & \SI{0.11}{\milli\metre} & Thickness of each trace \\
+        Number of traces & $n_\text{traces}$ & 8--22 (swept) & Design variable \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Since the model is two-dimensional with out-of-plane thickness, an effective 2D electrical conductivity is used for the traces:
+\begin{equation}
+    \sigma_\text{eff} = \sigma_\text{trace} \cdot \frac{t_\text{trace}}{t_\text{glass}}
+    \label{eq:sigma-eff}
+\end{equation}
+This accounts for the fact that the thin conductive traces occupy only a fraction of the out-of-plane glass thickness.
+
+
+% ------------------------------------------------------------
+\section{Materials}
+\label{sec:materials}
+% ------------------------------------------------------------
+
+\subsection{Glass}
+
+The window glass is modelled as tempered soda-lime glass using COMSOL's built-in material library. The key properties are listed in \Cref{tab:glass-props}.
+
+\begin{table}[H]
+    \centering
+    \caption{Material properties of tempered soda-lime glass.}
+    \label{tab:glass-props}
+    \begin{tabular}{@{}lll@{}}
+        \toprule
+        \textbf{Property} & \textbf{Value} & \textbf{Source} \\
+        \midrule
+        Thermal conductivity ($k$) & \SI{1.4}{\watt\per\metre\per\kelvin} & COMSOL library \\
+        Density ($\rho$) & \SI{2500}{\kilo\gram\per\metre\cubed} & COMSOL library \\
+        Heat capacity ($C_p$) & \SI{750}{\joule\per\kilo\gram\per\kelvin} & COMSOL library \\
+        Fracture strength & \SI{120}{\mega\pascal} & Literature \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{Trace Materials}
+
+Four candidate trace materials were evaluated, with properties sourced from the CES EduPack database \cite{edupack}. The full property set is given in \Cref{tab:trace-materials}.
+
+\begin{table}[H]
+    \centering
+    \caption{Trace material properties from CES EduPack \cite{edupack}. $\sigma$: electrical conductivity, $\alpha$: coefficient of thermal expansion, $E$: Young's modulus, $\nu$: Poisson's ratio.}
+    \label{tab:trace-materials}
+    \begin{tabular}{@{}lccccc@{}}
+        \toprule
+        \textbf{Material} & $\boldsymbol{\sigma}$ \textbf{(\si{\siemens\per\metre})} & $\boldsymbol{\alpha}$ \textbf{(\si{\per\kelvin})} & $\boldsymbol{E}$ \textbf{(\si{\giga\pascal})} & $\boldsymbol{\nu}$ & \textbf{Yield (\si{\mega\pascal})} \\
+        \midrule
+        Pd--Ag alloy        & $2.3 \times 10^6$  & $15 \times 10^{-6}$  & 102.5  & 0.38 & 410 \\
+        Silver (comm.\ purity) & $5.75 \times 10^7$ & $19.7 \times 10^{-6}$ & 71     & 0.39 & 190 \\
+        Gold (soft annealed)   & $4.2 \times 10^7$  & $14 \times 10^{-6}$  & 78.5   & 0.42 & 20  \\
+        Nichrome~V             & $9.3 \times 10^5$  & $13 \times 10^{-6}$  & 212.5  & 0.29 & 365 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+% ------------------------------------------------------------
+\section{Boundary Conditions}
+\label{sec:boundary-conditions}
+% ------------------------------------------------------------
+
+The boundary conditions represent a cold winter morning scenario where the exterior of the glass is exposed to ambient air and the interior faces the vehicle cabin. The values are listed in \Cref{tab:bcs}.
+
+\begin{table}[H]
+    \centering
+    \caption{Boundary conditions and environmental parameters.}
+    \label{tab:bcs}
+    \begin{tabular}{@{}llll@{}}
+        \toprule
+        \textbf{Parameter} & \textbf{Symbol} & \textbf{Value} & \textbf{Description} \\
+        \midrule
+        Ambient temperature     & $T_\text{amb}$   & \SI{275.15}{\kelvin} (\SI{2}{\degreeCelsius})  & Exterior air \\
+        Cabin temperature       & $T_\text{cabin}$ & \SI{293.15}{\kelvin} (\SI{20}{\degreeCelsius}) & Interior cabin air \\
+        Initial temperature     & $T_\text{init}$  & \SI{278.15}{\kelvin} (\SI{5}{\degreeCelsius})  & Frosted window (transient) \\
+        Dew point temperature   & $T_\text{dew}$   & \SI{283.15}{\kelvin} (\SI{10}{\degreeCelsius}) & Target minimum temperature \\
+        External heat transfer coeff. & $h_\text{ext}$  & \SI{15}{\watt\per\metre\squared\per\kelvin}   & Exterior convection \\
+        Internal heat transfer coeff. & $h_\text{int}$  & \SI{7}{\watt\per\metre\squared\per\kelvin}    & Interior convection \\
+        Applied voltage         & $V_\text{in}$    & 10--\SI{14.5}{\volt} (swept) & Automotive 12V system range \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{Electrical Boundary Conditions}
+
+An electric potential $V_\text{in}$ is applied on the left bus bar, and ground ($V = 0$) on the right bus bar. The electric current physics is defined only on the trace and bus bar domains (not the glass, which is electrically insulating).
+
+\subsection{Thermal Boundary Conditions}
+
+Since the model is 2D with out-of-plane thickness, heat losses to the exterior and interior are modelled using a volumetric heat source that accounts for convection on both sides of the glass:
+
+\begin{equation}
+    Q_\text{conv} = \frac{h_\text{ext}(T_\text{amb} - T) + h_\text{int}(T_\text{cabin} - T)}{t_\text{glass}}
+    \label{eq:heat-source}
+\end{equation}
+
+This expression replaces the out-of-plane heat flux boundary condition, which caused spatial frame conflicts in COMSOL 6.2 when coupled with solid mechanics.
+
+\subsection{Mechanical Boundary Conditions}
+
+For the stress analysis (Sim~2c), fixed constraints are applied on the left and right outer edges of the glass, representing the car body frame holding the window. This is a conservative simplification; in reality, a rubber seal provides some compliance.
+
+
+% ------------------------------------------------------------
+\section{Physics Coupling and Governing Equations}
+\label{sec:governing-equations}
+% ------------------------------------------------------------
+
+The model involves three coupled physics: Electric Currents, Heat Transfer in Solids, and Solid Mechanics. Their coupling is illustrated in \Cref{fig:coupling-diagram}.
+
+\begin{figure}[H]
+    \centering
+    \fbox{\parbox{0.6\textwidth}{\centering\vspace{2.5cm}\textit{TODO: Create flow diagram --- EC $\to$ Joule Heating $\to$ HT $\to$ Thermal Expansion $\to$ SM}\vspace{2.5cm}}}
+    \caption{Physics coupling in the multiphysics model. Joule heating from Electric Currents drives Heat Transfer, which in turn drives thermal expansion in Solid Mechanics.}
+    \label{fig:coupling-diagram}
+\end{figure}
+
+\subsection{Electric Currents}
+
+The electric field in the conductive traces is governed by current conservation:
+\begin{equation}
+    \nabla \cdot \mathbf{J} = 0
+    \label{eq:current-conservation}
+\end{equation}
+where $\mathbf{J} = \sigma_\text{eff} \mathbf{E}$ is the current density and $\mathbf{E} = -\nabla V$ is the electric field.
+
+\subsection{Heat Transfer in Solids}
+
+The heat equation in the glass domain is:
+\begin{equation}
+    \rho C_p \frac{\partial T}{\partial t} = \nabla \cdot (k \nabla T) + Q_e + Q_\text{conv}
+    \label{eq:heat-equation}
+\end{equation}
+where $Q_e = \mathbf{J} \cdot \mathbf{E}$ is the resistive (Joule) heating from the Electromagnetic Heating multiphysics coupling, and $Q_\text{conv}$ is the convective heat source from \Cref{eq:heat-source}.
+
+For stationary studies, the left-hand side is zero and the equation reduces to:
+\begin{equation}
+    \nabla \cdot (k \nabla T) + Q_e + Q_\text{conv} = 0
+    \label{eq:heat-stationary}
+\end{equation}
+
+\subsection{Solid Mechanics}
+
+The mechanical equilibrium is described by:
+\begin{equation}
+    \nabla \cdot \mathbf{S} + \mathbf{F}_v = 0
+    \label{eq:solid-mechanics}
+\end{equation}
+where $\mathbf{S}$ is the Cauchy stress tensor. Thermal expansion introduces an initial strain:
+\begin{equation}
+    \boldsymbol{\varepsilon}_\text{th} = \alpha (T - T_\text{ref}) \mathbf{I}
+    \label{eq:thermal-expansion}
+\end{equation}
+with reference temperature $T_\text{ref} = T_\text{amb} = \SI{275.15}{\kelvin}$.

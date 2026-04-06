@@ -1,0 +1,298 @@
+% ============================================================
+\chapter{Model Implementation in COMSOL}
+\label{ch:implementation}
+% ============================================================
+
+The design was developed iteratively through five simulations of increasing complexity. Each simulation builds on the previous one, progressively refining the design from a baseline model to a fully optimised transient solution. \Cref{tab:sim-overview} summarises all simulations.
+
+\begin{table}[H]
+    \centering
+    \caption{Overview of simulations performed.}
+    \label{tab:sim-overview}
+    \begin{tabular}{@{}llll@{}}
+        \toprule
+        \textbf{Simulation} & \textbf{Study Type} & \textbf{Sweep Parameters} & \textbf{Objective} \\
+        \midrule
+        Sim~1  & Stationary     & None (baseline)              & Verify model physics \\
+        Sim~2  & Stationary     & $V_\text{in}$, $n_\text{traces}$ & Identify viable operating range \\
+        Sim~2b & Stationary     & Material, $n_\text{traces}$, $V_\text{in}$ & Material optimisation \\
+        Sim~2c & Stationary (sequential) & Material, $n_\text{traces}$ & Stress analysis \\
+        Sim~3  & Time dependent & Material, $n_\text{traces}$, $V_\text{in}$ & Defrost time \\
+        Sim~4  & Stationary     & Trace pattern/spacing & Trace layout optimisation \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+% ------------------------------------------------------------
+\section{Simulation 1 --- Baseline Stationary Model}
+\label{sec:sim1}
+% ------------------------------------------------------------
+
+The first simulation establishes the baseline model with the default configuration: 12 traces of silver paste ($\sigma = \SI{2e6}{\siemens\per\metre}$) at $V_\text{in} = \SI{12}{\volt}$. A stationary study couples Electric Currents and Heat Transfer via Electromagnetic Heating.
+
+The purpose of Sim~1 is to verify that:
+\begin{itemize}
+    \item The voltage gradient across the traces is correct (12\,V at the left bus bar, 0\,V at the right)
+    \item The temperature distribution is physically realistic (in the range 270--320\,K)
+    \item The cold spots are located at the expected positions (top and bottom edges farthest from traces)
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\parbox{0.48\textwidth}{\centering\vspace{2.5cm}\textit{TODO: Sim1 --- voltage distribution}\vspace{2.5cm}}}
+    \hfill
+    \fbox{\parbox{0.48\textwidth}{\centering\vspace{2.5cm}\textit{TODO: Sim1 --- temperature distribution}\vspace{2.5cm}}}
+    \caption{Sim~1 baseline results at $V_\text{in} = \SI{12}{\volt}$, $n_\text{traces} = 12$, silver paste. (a)~Electric potential distribution on the traces and bus bars. (b)~Temperature distribution across the glass surface.}
+    \label{fig:sim1-results}
+\end{figure}
+
+The baseline results show a surface-average temperature of \SI{297.13}{\kelvin} (above the dew point) but a surface-minimum temperature of \SI{282.12}{\kelvin} (below the dew point). The cold spots are at the top and bottom edges of the glass where trace coverage does not extend. This motivates the parametric sweeps in the following simulations.
+
+
+% ------------------------------------------------------------
+\section{Simulation 2 --- Voltage and Trace Count Sweeps}
+\label{sec:sim2}
+% ------------------------------------------------------------
+
+Sim~2 investigates the sensitivity of the minimum glass temperature to the applied voltage and number of traces, independently and in combination.
+
+\subsection{Voltage Sweep}
+
+A parametric sweep of $V_\text{in}$ from \SI{8}{\volt} to \SI{16}{\volt} (9~values) is performed at $n_\text{traces} = 12$. Even at \SI{16}{\volt}, the minimum temperature (\SI{283.09}{\kelvin}) barely reaches the dew point, indicating that voltage alone cannot solve the problem with 12~traces.
+
+\subsection{Trace Count Sweep}
+
+A parametric sweep of $n_\text{traces}$ from 8 to 22 is performed at $V_\text{in} = \SI{12}{\volt}$. Results are shown in \Cref{fig:sim2-trace-sweep}.
+
+\begin{figure}[H]
+    \centering
+    \fbox{\parbox{0.7\textwidth}{\centering\vspace{3cm}\textit{TODO: Line plot --- $T_\text{min}$ vs $n_\text{traces}$ at $V_\text{in} = \SI{12}{\volt}$ with dew point line}\vspace{3cm}}}
+    \caption{Minimum glass surface temperature as a function of the number of traces at $V_\text{in} = \SI{12}{\volt}$. The horizontal dashed line indicates the dew point temperature (\SI{283.15}{\kelvin}).}
+    \label{fig:sim2-trace-sweep}
+\end{figure}
+
+\subsection{Combined Sweep}
+
+A full factorial sweep over $n_\text{traces} \in \{8, 10, 12, 14, 16, 18, 20, 22\}$ and $V_\text{in} \in \{8, 10, 12, 14, 16\}$\,V produces 35~stationary solutions. Results are shown in \Cref{tab:sim2-combined}.
+
+\begin{table}[H]
+    \centering
+    \caption{Minimum surface temperature $T_\text{min}$ (K) for the combined voltage--trace count sweep (silver paste, $\sigma = \SI{2e6}{\siemens\per\metre}$). Values $\geq \SI{283.15}{\kelvin}$ are shown in \textbf{bold}.}
+    \label{tab:sim2-combined}
+    \begin{tabular}{@{}l ccccc@{}}
+        \toprule
+        $n_\text{traces}$ & \SI{8}{\volt} & \SI{10}{\volt} & \SI{12}{\volt} & \SI{14}{\volt} & \SI{16}{\volt} \\
+        \midrule
+        8  & 280.86 & 280.85 & 280.84 & 280.83 & 280.81 \\
+        10 & 281.09 & 281.21 & 281.36 & 281.54 & 281.74 \\
+        12 & 281.43 & 281.74 & 282.12 & 282.57 & \textbf{283.09} \\
+        14 & 281.85 & 282.39 & \textbf{283.06} & \textbf{283.84} & \textbf{284.75} \\
+        16 & 282.38 & \textbf{283.23} & \textbf{284.27} & \textbf{285.49} & \textbf{286.91} \\
+        18 & \textbf{283.01} & \textbf{284.21} & \textbf{285.67} & \textbf{287.40} & \textbf{289.40} \\
+        20 & \textbf{283.72} & \textbf{285.33} & \textbf{287.28} & \textbf{289.60} & \textbf{292.27} \\
+        22 & \textbf{284.52} & \textbf{286.57} & \textbf{289.08} & \textbf{292.04} & \textbf{295.46} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The key conclusion is that \textbf{increasing the number of traces is more effective than increasing voltage}. The cheapest solution above the dew point is 16~traces at \SI{10}{\volt} (\SI{283.23}{\kelvin}).
+
+
+% ------------------------------------------------------------
+\section{Simulation 2b --- Material Optimisation}
+\label{sec:sim2b}
+% ------------------------------------------------------------
+
+Sim~2b extends the parametric sweep to include four candidate trace materials from the CES EduPack database \cite{edupack}. The sweep covers $4 \times 8 \times 4 = 128$ combinations (4~materials, 8~trace counts, 4~voltages).
+
+The voltages used reflect the realistic automotive range: \SI{10}{\volt} (battery low), \SI{12}{\volt} (nominal), \SI{13.5}{\volt} (engine running), and \SI{14.5}{\volt} (maximum alternator output).
+
+\subsection{Results}
+
+The minimum number of traces needed to reach the dew point for each material and voltage is shown in \Cref{tab:sim2b-min-traces}.
+
+\begin{table}[H]
+    \centering
+    \caption{Minimum number of traces to reach $T_\text{min} \geq \SI{283.15}{\kelvin}$ for each material and voltage.}
+    \label{tab:sim2b-min-traces}
+    \begin{tabular}{@{}lcccc@{}}
+        \toprule
+        \textbf{Material} & \SI{10}{\volt} & \SI{12}{\volt} & \SI{13.5}{\volt} & \SI{14.5}{\volt} \\
+        \midrule
+        Pd--Ag alloy  & 16 & 14 & 14 & 14 \\
+        Nichrome~V     & 22 & 18 & 18 & 16 \\
+        Silver (comm.\ purity) & \multicolumn{4}{c}{\emph{Overheats --- not viable}} \\
+        Gold (soft annealed)   & \multicolumn{4}{c}{\emph{Overheats --- not viable}} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The full temperature results for the two viable materials (Pd--Ag alloy and Nichrome~V) are shown in \Cref{tab:sim2b-pdag,tab:sim2b-nichrome}.
+
+\begin{table}[H]
+    \centering
+    \caption{$T_\text{min}$ (K) for Pd--Ag alloy ($\sigma = \SI{2.3e6}{\siemens\per\metre}$). Values $\geq \SI{283.15}{\kelvin}$ shown in \textbf{bold}.}
+    \label{tab:sim2b-pdag}
+    \begin{tabular}{@{}lcccc@{}}
+        \toprule
+        $n_\text{traces}$ & \SI{10}{\volt} & \SI{12}{\volt} & \SI{13.5}{\volt} & \SI{14.5}{\volt} \\
+        \midrule
+        8  & 280.85 & 280.83 & 280.82 & 280.82 \\
+        10 & 281.26 & 281.43 & 281.58 & 281.69 \\
+        12 & 281.87 & 282.31 & 282.69 & 282.97 \\
+        14 & 282.62 & \textbf{283.38} & \textbf{284.05} & \textbf{284.54} \\
+        16 & \textbf{283.59} & \textbf{284.78} & \textbf{285.81} & \textbf{286.57} \\
+        18 & \textbf{284.71} & \textbf{286.39} & \textbf{287.86} & \textbf{288.93} \\
+        20 & \textbf{286.00} & \textbf{288.24} & \textbf{290.20} & \textbf{291.63} \\
+        22 & \textbf{287.43} & \textbf{290.31} & \textbf{292.82} & \textbf{294.65} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{$T_\text{min}$ (K) for Nichrome~V ($\sigma = \SI{9.3e5}{\siemens\per\metre}$). Values $\geq \SI{283.15}{\kelvin}$ shown in \textbf{bold}.}
+    \label{tab:sim2b-nichrome}
+    \begin{tabular}{@{}lcccc@{}}
+        \toprule
+        $n_\text{traces}$ & \SI{10}{\volt} & \SI{12}{\volt} & \SI{13.5}{\volt} & \SI{14.5}{\volt} \\
+        \midrule
+        8  & 280.87 & 280.86 & 280.86 & 280.85 \\
+        10 & 281.03 & 281.10 & 281.16 & 281.21 \\
+        12 & 281.28 & 281.46 & 281.61 & 281.72 \\
+        14 & 281.58 & 281.89 & 282.16 & 282.36 \\
+        16 & 281.97 & 282.45 & 282.87 & \textbf{283.18} \\
+        18 & 282.43 & \textbf{283.11} & \textbf{283.70} & \textbf{284.13} \\
+        20 & 282.95 & \textbf{283.86} & \textbf{284.65} & \textbf{285.23} \\
+        22 & \textbf{283.53} & \textbf{284.69} & \textbf{285.71} & \textbf{286.45} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\parbox{0.75\textwidth}{\centering\vspace{3cm}\textit{TODO: Plot --- $T_\text{min}$ vs $n_\text{traces}$ for all 4 materials at $V_\text{in} = \SI{12}{\volt}$ with dew point line}\vspace{3cm}}}
+    \caption{Comparison of minimum surface temperature vs.\ number of traces for all four EduPack materials at $V_\text{in} = \SI{12}{\volt}$. Silver and Gold exceed safe temperatures at $n_\text{traces} \geq 10$ and are not viable.}
+    \label{fig:sim2b-material-comparison}
+\end{figure}
+
+\subsection{Key Findings}
+
+\begin{itemize}
+    \item \textbf{Silver (commercial purity) and Gold (soft annealed) are not viable} --- their bulk conductivity ($>10^7$\,S/m) is too high for the screen-printed geometry, causing extreme overheating (Silver reaches \SI{625}{\kelvin} at 22~traces, \SI{14.5}{\volt}).
+    \item \textbf{Pd--Ag alloy is the best EduPack material} --- it reaches the dew point at 14~traces (\SI{12}{\volt}+). Temperatures remain in a safe range.
+    \item \textbf{Nichrome~V is viable but requires more traces} (18--22 depending on voltage).
+\end{itemize}
+
+
+% ------------------------------------------------------------
+\section{Simulation 2c --- Stress Analysis}
+\label{sec:sim2c}
+% ------------------------------------------------------------
+
+Sim~2c evaluates the thermal stresses for the two shortlisted materials (Pd--Ag alloy and Nichrome~V). Solid Mechanics and Thermal Expansion are re-enabled, and a sequential solve is used:
+\begin{itemize}
+    \item \textbf{Step 1:} Electric Currents + Heat Transfer (stationary)
+    \item \textbf{Step 2:} Solid Mechanics with Thermal Expansion (stationary, using Step~1 temperatures)
+\end{itemize}
+
+This sequential approach avoids the spatial frame conflict (``dvol\_spatial undefined'') encountered when solving all physics simultaneously in COMSOL~6.2.
+
+\begin{table}[H]
+    \centering
+    \caption{Von Mises stress results at $V_\text{in} = \SI{12}{\volt}$.}
+    \label{tab:sim2c-stress}
+    \begin{tabular}{@{}lccccc@{}}
+        \toprule
+        \textbf{Material} & $n_\text{traces}$ & \textbf{Max stress (MPa)} & \textbf{Yield (MPa)} & \textbf{Safety factor} \\
+        \midrule
+        Pd--Ag alloy & 14 & 120.3 & 410 & 3.4$\times$ \\
+        Pd--Ag alloy & 18 & 134.5 & 410 & 3.0$\times$ \\
+        Nichrome~V   & 14 & 94.6  & 365 & 3.9$\times$ \\
+        Nichrome~V   & 18 & 102.9 & 365 & 3.5$\times$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\parbox{0.48\textwidth}{\centering\vspace{2.5cm}\textit{TODO: Sim2c --- von Mises stress, Pd--Ag, 14 traces}\vspace{2.5cm}}}
+    \hfill
+    \fbox{\parbox{0.48\textwidth}{\centering\vspace{2.5cm}\textit{TODO: Sim2c --- von Mises stress, Nichrome~V, 18 traces}\vspace{2.5cm}}}
+    \caption{Von Mises stress distribution at $V_\text{in} = \SI{12}{\volt}$. (a)~Pd--Ag alloy, $n_\text{traces} = 14$. (b)~Nichrome~V, $n_\text{traces} = 18$. Peak stresses concentrate at trace endpoints near the fixed edges.}
+    \label{fig:sim2c-stress}
+\end{figure}
+
+Both materials pass the stress constraint with safety factors $>3\times$. Peak stresses (\SI{\sim120}{\mega\pascal}) concentrate at trace endpoints near the fixed boundary --- a conservative artifact of the fully fixed edge condition. The glass bulk stress remains very low (\SIrange{2}{4}{\mega\pascal}), well below the \SI{120}{\mega\pascal} fracture strength of tempered glass.
+
+
+% ------------------------------------------------------------
+\section{Simulation 3 --- Transient Defrost Study}
+\label{sec:sim3}
+% ------------------------------------------------------------
+
+Sim~3 evaluates how long each configuration takes to defrost the window from the initial frosted condition ($T_\text{init} = \SI{278.15}{\kelvin}$) to the point where $T_\text{min} \geq T_\text{dew}$.
+
+A time-dependent study is used with output times from 0 to \SI{3600}{\second} in \SI{60}{\second} increments. The Electric Currents equation is set to stationary form (the electric field equilibrates in microseconds compared to the thermal time scale of minutes). Solid Mechanics is disabled for computational efficiency.
+
+The sweep covers: 2~materials $\times$ 5~trace counts (14, 16, 18, 20, 22) $\times$ 2~voltages (12, \SI{14.5}{\volt}) = 20~runs. The mesh was refined to Fine (189,192~domain elements) for accuracy.
+
+\begin{figure}[H]
+    \centering
+    \fbox{\parbox{0.75\textwidth}{\centering\vspace{3cm}\textit{TODO: Plot --- $T_\text{min}$ vs time for Pd--Ag at \SI{12}{\volt}, curves for $n = 14, 16, 18, 20, 22$ with dew point line}\vspace{3cm}}}
+    \caption{Transient evolution of minimum surface temperature for Pd--Ag alloy at $V_\text{in} = \SI{12}{\volt}$ for different numbers of traces. The horizontal dashed line indicates the dew point.}
+    \label{fig:sim3-transient}
+\end{figure}
+
+
+% ------------------------------------------------------------
+\section{Simulation 4 --- Trace Pattern Optimisation}
+\label{sec:sim4}
+% ------------------------------------------------------------
+
+% NOTE: This simulation was performed by [group member name] after Sim 3.
+% It investigates the optimal spatial distribution/pattern of traces across the glass surface.
+
+After establishing the optimal material (Pd--Ag alloy) and operating conditions in the previous simulations, Sim~4 investigates the effect of trace layout on the temperature uniformity across the glass surface. Rather than using uniformly spaced traces, this simulation explores non-uniform trace patterns to improve heating of the cold spots identified at the top and bottom edges of the glass.
+
+% TODO: Add details from group member's simulation. Possible content:
+% - What patterns were tested (e.g., closer spacing near edges, variable spacing)
+% - How the parametric sweep was set up
+% - Key results: T_min improvement, temperature uniformity metrics
+% - Comparison with the uniform spacing baseline
+
+\begin{figure}[H]
+    \centering
+    \fbox{\parbox{0.85\textwidth}{\centering\vspace{3cm}\textit{TODO: Sim4 --- comparison of trace patterns (uniform vs optimised)}\vspace{3cm}}}
+    \caption{Comparison of trace patterns investigated in Sim~4. (a)~Uniform spacing (baseline), (b)~Optimised pattern with closer trace spacing near the glass edges.}
+    \label{fig:sim4-patterns}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\parbox{0.7\textwidth}{\centering\vspace{3cm}\textit{TODO: Sim4 --- temperature distribution for optimised pattern}\vspace{3cm}}}
+    \caption{Temperature distribution for the optimised trace pattern, showing improved uniformity compared to the uniform baseline.}
+    \label{fig:sim4-temp-optimised}
+\end{figure}
+
+% TODO: Add results table comparing uniform vs optimised pattern metrics:
+% - T_min, T_max, T_avg, temperature range (T_max - T_min)
+% - Defrost time (if transient study was also done)
+% - Any other metrics your group member computed
+
+\begin{table}[H]
+    \centering
+    \caption{Comparison of uniform and optimised trace patterns (Pd--Ag alloy, 20 traces, \SI{12}{\volt}).}
+    \label{tab:sim4-comparison}
+    \begin{tabular}{@{}lcc@{}}
+        \toprule
+        \textbf{Metric} & \textbf{Uniform spacing} & \textbf{Optimised pattern} \\
+        \midrule
+        $T_\text{min}$ (K)           & 288.24 & --- \emph{TODO} \\
+        $T_\text{max}$ (K)           & ---    & --- \emph{TODO} \\
+        $\Delta T = T_\text{max} - T_\text{min}$ (K) & --- & --- \emph{TODO} \\
+        Defrost time (min)            & 12     & --- \emph{TODO} \\
+        \bottomrule
+    \end{tabular}
+\end{table}

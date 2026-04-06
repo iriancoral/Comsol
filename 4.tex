@@ -1,0 +1,166 @@
+% ============================================================
+\chapter{Results and Discussion}
+\label{ch:results}
+% ============================================================
+
+
+% ------------------------------------------------------------
+\section{Transient Defrost Performance}
+\label{sec:defrost-results}
+% ------------------------------------------------------------
+
+The transient defrost times for all tested configurations are presented in \Cref{tab:defrost-pdag,tab:defrost-nichrome}. These results are from the fine-mesh simulation (189,192~domain elements).
+
+\begin{table}[H]
+    \centering
+    \caption{Defrost time (minutes) for Pd--Ag alloy ($\sigma = \SI{2.3e6}{\siemens\per\metre}$). Defrost is defined as the time for $T_\text{min}$ to reach \SI{283.15}{\kelvin}.}
+    \label{tab:defrost-pdag}
+    \begin{tabular}{@{}lcc@{}}
+        \toprule
+        $n_\text{traces}$ & \SI{12}{\volt} & \SI{14.5}{\volt} \\
+        \midrule
+        14 & 41 & 22 \\
+        16 & 22 & 16 \\
+        18 & 16 & 12 \\
+        20 & \textbf{12} & 10 \\
+        22 & 10 & \textbf{8} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Defrost time (minutes) for Nichrome~V ($\sigma = \SI{9.3e5}{\siemens\per\metre}$). ``Never'' indicates that $T_\text{min}$ does not reach \SI{283.15}{\kelvin} within \SI{60}{\minute}.}
+    \label{tab:defrost-nichrome}
+    \begin{tabular}{@{}lcc@{}}
+        \toprule
+        $n_\text{traces}$ & \SI{12}{\volt} & \SI{14.5}{\volt} \\
+        \midrule
+        14 & Never & Never \\
+        16 & Never & 59 \\
+        18 & Never & 25 \\
+        20 & 28 & 18 \\
+        22 & 20 & 14 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\parbox{0.8\textwidth}{\centering\vspace{3cm}\textit{TODO: Bar chart --- defrost time comparison, Pd--Ag vs Nichrome~V at \SI{12}{\volt} and \SI{14.5}{\volt}}\vspace{3cm}}}
+    \caption{Defrost time comparison between Pd--Ag alloy and Nichrome~V at \SI{12}{\volt} and \SI{14.5}{\volt}. ``N'' indicates the configuration never reaches the dew point within \SI{60}{\minute}.}
+    \label{fig:defrost-comparison}
+\end{figure}
+
+Pd--Ag alloy consistently defrosts faster than Nichrome~V at the same trace count and voltage. Nichrome~V requires $\geq 20$~traces at \SI{12}{\volt} to defrost at all within 60~minutes, while Pd--Ag defrosts with as few as 14~traces (in 41~minutes).
+
+
+% ------------------------------------------------------------
+\section{Temperature Distribution}
+\label{sec:temp-distribution}
+% ------------------------------------------------------------
+
+\Cref{fig:temp-distribution-final} shows the steady-state temperature distribution for the recommended design (Pd--Ag alloy, 20~traces, \SI{12}{\volt}).
+
+\begin{figure}[H]
+    \centering
+    \fbox{\parbox{0.85\textwidth}{\centering\vspace{3cm}\textit{TODO: Steady-state temperature distribution --- Pd--Ag, 20 traces, \SI{12}{\volt}}\vspace{3cm}}}
+    \caption{Steady-state temperature distribution for the recommended design: Pd--Ag alloy, 20 traces, $V_\text{in} = \SI{12}{\volt}$. The minimum temperature (\SI{288.2}{\kelvin}) is well above the dew point (\SI{283.15}{\kelvin}).}
+    \label{fig:temp-distribution-final}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\parbox{0.85\textwidth}{\centering\vspace{3cm}\textit{TODO: Temperature distribution at $t = \SI{12}{\minute}$ (defrost moment) --- Pd--Ag, 20 traces, \SI{12}{\volt}}\vspace{3cm}}}
+    \caption{Temperature distribution at $t = \SI{12}{\minute}$ (moment of defrost) for Pd--Ag alloy, 20 traces, $V_\text{in} = \SI{12}{\volt}$.}
+    \label{fig:temp-at-defrost}
+\end{figure}
+
+
+% ------------------------------------------------------------
+\section{Effect of Trace Material Conductivity}
+\label{sec:material-discussion}
+% ------------------------------------------------------------
+
+A key finding of this study is the strong dependence of defroster performance on the trace electrical conductivity. The Joule heating power per unit length of trace scales as:
+\begin{equation}
+    P \propto \frac{V_\text{in}^2 \cdot \sigma_\text{eff}}{L_\text{trace}}
+    \label{eq:power-scaling}
+\end{equation}
+
+where $\sigma_\text{eff}$ is the effective 2D conductivity from \Cref{eq:sigma-eff}. This explains why:
+
+\begin{itemize}
+    \item Materials with very high conductivity (Silver: $5.75 \times 10^7$, Gold: $4.2 \times 10^7$\,S/m) generate excessive heating, reaching temperatures of 500--600\,K that would crack the glass.
+    \item Materials with very low conductivity (Carbon ink: $10^4$\,S/m) generate negligible heating and cannot defrost the window.
+    \item The optimal conductivity range for this geometry and voltage is $\sim 10^5$--$10^6$\,S/m, which corresponds to thick-film paste materials (Pd--Ag alloy, Nichrome~V).
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\parbox{0.7\textwidth}{\centering\vspace{3cm}\textit{TODO: Plot --- $T_\text{min}$ vs $\sigma_\text{trace}$ (log scale), $n_\text{traces} = 20$, \SI{12}{\volt}}\vspace{3cm}}}
+    \caption{Effect of trace electrical conductivity on steady-state $T_\text{min}$ ($n_\text{traces} = 20$, $V_\text{in} = \SI{12}{\volt}$). The optimal range is highlighted, with Carbon ink too cold and bulk Silver/Gold overheating.}
+    \label{fig:conductivity-effect}
+\end{figure}
+
+
+% ------------------------------------------------------------
+\section{Trace Pattern Optimisation}
+\label{sec:pattern-results}
+% ------------------------------------------------------------
+
+% TODO: Add results from group member's Sim 4 trace pattern optimisation.
+% This section should discuss:
+% 1. What patterns were tested
+% 2. Temperature uniformity improvement
+% 3. Whether defrost time was reduced
+% 4. Which pattern was selected as optimal
+
+The trace pattern optimisation performed in Sim~4 investigates non-uniform trace spacing to reduce the temperature variation across the glass surface. In the uniform-spacing baseline, cold spots appear at the top and bottom edges because these regions are farthest from any heating trace. By placing traces closer together near the edges and farther apart in the centre, the temperature distribution can be made more uniform.
+
+% TODO: Insert your group member's results here. Suggested figures/tables:
+% - Temperature contour plot for the optimised pattern
+% - Comparison table: uniform vs optimised (T_min, T_max, delta_T, defrost time)
+% - Line plot of temperature along a vertical cut through the glass centre
+
+
+% ------------------------------------------------------------
+\section{Discussion}
+\label{sec:discussion}
+% ------------------------------------------------------------
+
+\subsection{Strengths of the Design}
+
+\begin{itemize}
+    \item The recommended design (Pd--Ag alloy, 20~traces, \SI{12}{\volt}) meets all three design criteria: the steady-state $T_\text{min}$ (\SI{288.2}{\kelvin}) exceeds the dew point by \SI{5}{\kelvin}, the thermal stresses are within safe limits (safety factor $\sim 3.1 \times$), and the window defrosts within 12~minutes.
+
+    \item The design operates at nominal \SI{12}{\volt} battery voltage, meaning it works even with the engine off --- an important practical requirement.
+
+    \item The parametric approach (sweeping material, trace count, and voltage) provides a comprehensive design map that allows easy trade-off analysis for different requirements.
+\end{itemize}
+
+\subsection{Strengths of the Simulation}
+
+\begin{itemize}
+    \item The multiphysics coupling between Electric Currents, Heat Transfer, and Solid Mechanics captures the essential physics of the defroster operation.
+
+    \item The mesh convergence study confirms that results are mesh-independent for the recommended configurations.
+
+    \item The boundary conditions ($h_\text{ext}$, $h_\text{int}$) are supported by published experimental data \cite{hozejowska2019}.
+
+    \item The sequential solve strategy for the stress analysis overcomes the COMSOL~6.2 spatial frame limitation while still capturing the thermal stress state.
+\end{itemize}
+
+\subsection{Limitations and Future Work}
+
+\begin{itemize}
+    \item \textbf{2D approximation:} The model uses a flat 2D geometry. A real rear window is curved, which affects heat flux distribution and stress concentrations. A 3D simulation with curved glass would be more realistic.
+
+    \item \textbf{Fixed boundary conditions:} The fixed constraint at the glass edges overestimates the peak stress. Modelling the rubber seal as an elastic support would give more realistic stress values.
+
+    \item \textbf{Constant heat transfer coefficients:} In reality, $h_\text{ext}$ depends on vehicle speed (forced convection) and $h_\text{int}$ depends on cabin HVAC settings. A weather condition sweep varying $T_\text{amb}$, $T_\text{dew}$, and $h_\text{ext}$ across climate scenarios would test design robustness.
+
+    \item \textbf{Material property validation:} The EduPack values for Pd--Ag alloy are for bulk material. Screen-printed thick-film pastes may have different effective properties. Experimental validation with a physical prototype is recommended.
+
+    \item \textbf{Contact resistance:} The model does not account for electrical contact resistance between traces and bus bars, which may reduce the effective heating power.
+\end{itemize}
