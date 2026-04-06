@@ -37,7 +37,7 @@ The number of traces ($n_\text{traces}$) is a key design variable, swept from 8 
 
 \begin{figure}[H]
     \centering
-    \fbox{\parbox{0.85\textwidth}{\centering\vspace{3cm}\textit{TODO: Export from COMSOL --- Geometry view showing glass (grey), traces (orange), bus bars}\vspace{3cm}}}
+    \includegraphics[width=0.85\textwidth]{COMSOL — Geometry view showing glass (grey), traces (orange), bus.png}
     \caption{Two-dimensional geometry of the rear window defroster model showing the glass pane, horizontal heating traces, and vertical bus bars. Configuration shown: $n_\text{traces} = 12$.}
     \label{fig:geometry}
 \end{figure}
@@ -75,8 +75,6 @@ This accounts for the fact that the thin conductive traces occupy only a fractio
 \label{sec:materials}
 % ------------------------------------------------------------
 
-\subsection{Glass}
-
 The window glass is modelled as tempered soda-lime glass using COMSOL's built-in material library. The key properties are listed in \Cref{tab:glass-props}.
 
 \begin{table}[H]
@@ -94,8 +92,6 @@ The window glass is modelled as tempered soda-lime glass using COMSOL's built-in
         \bottomrule
     \end{tabular}
 \end{table}
-
-\subsection{Trace Materials}
 
 Four candidate trace materials were evaluated, with properties sourced from the CES EduPack database \cite{edupack}. The full property set is given in \Cref{tab:trace-materials}.
 
@@ -142,13 +138,9 @@ The boundary conditions represent a cold winter morning scenario where the exter
     \end{tabular}
 \end{table}
 
-\subsection{Electrical Boundary Conditions}
+\textbf{Electrical.} An electric potential $V_\text{in}$ is applied on the left bus bar, and ground ($V = 0$) on the right bus bar. The electric current physics is defined only on the trace and bus bar domains (not the glass, which is electrically insulating).
 
-An electric potential $V_\text{in}$ is applied on the left bus bar, and ground ($V = 0$) on the right bus bar. The electric current physics is defined only on the trace and bus bar domains (not the glass, which is electrically insulating).
-
-\subsection{Thermal Boundary Conditions}
-
-Since the model is 2D with out-of-plane thickness, heat losses to the exterior and interior are modelled using a volumetric heat source that accounts for convection on both sides of the glass:
+\textbf{Thermal.} Since the model is 2D with out-of-plane thickness, heat losses to the exterior and interior are modelled using a volumetric heat source that accounts for convection on both sides of the glass:
 
 \begin{equation}
     Q_\text{conv} = \frac{h_\text{ext}(T_\text{amb} - T) + h_\text{int}(T_\text{cabin} - T)}{t_\text{glass}}
@@ -157,9 +149,7 @@ Since the model is 2D with out-of-plane thickness, heat losses to the exterior a
 
 This expression replaces the out-of-plane heat flux boundary condition, which caused spatial frame conflicts in COMSOL 6.2 when coupled with solid mechanics.
 
-\subsection{Mechanical Boundary Conditions}
-
-For the stress analysis (Sim~2c), fixed constraints are applied on the left and right outer edges of the glass, representing the car body frame holding the window. This is a conservative simplification; in reality, a rubber seal provides some compliance.
+\textbf{Mechanical.} For the stress analysis (Sim~2c), fixed constraints are applied on the left and right outer edges of the glass, representing the car body frame holding the window. This is a conservative simplification; in reality, a rubber seal provides some compliance.
 
 
 % ------------------------------------------------------------
@@ -171,23 +161,19 @@ The model involves three coupled physics: Electric Currents, Heat Transfer in So
 
 \begin{figure}[H]
     \centering
-    \fbox{\parbox{0.6\textwidth}{\centering\vspace{2.5cm}\textit{TODO: Create flow diagram --- EC $\to$ Joule Heating $\to$ HT $\to$ Thermal Expansion $\to$ SM}\vspace{2.5cm}}}
+    \fbox{\parbox{0.6\textwidth}{\centering\vspace{2.5cm}\textit{TODO: Create flow diagram --- EC $\to$ Joule Heating $\to$ HT $\to$ Thermal Expansion $\to$ SM (draw manually)}\vspace{2.5cm}}}
     \caption{Physics coupling in the multiphysics model. Joule heating from Electric Currents drives Heat Transfer, which in turn drives thermal expansion in Solid Mechanics.}
     \label{fig:coupling-diagram}
 \end{figure}
 
-\subsection{Electric Currents}
-
-The electric field in the conductive traces is governed by current conservation:
+\textbf{Electric Currents.} The electric field in the conductive traces is governed by current conservation:
 \begin{equation}
     \nabla \cdot \mathbf{J} = 0
     \label{eq:current-conservation}
 \end{equation}
 where $\mathbf{J} = \sigma_\text{eff} \mathbf{E}$ is the current density and $\mathbf{E} = -\nabla V$ is the electric field.
 
-\subsection{Heat Transfer in Solids}
-
-The heat equation in the glass domain is:
+\textbf{Heat Transfer in Solids.} The heat equation in the glass domain is:
 \begin{equation}
     \rho C_p \frac{\partial T}{\partial t} = \nabla \cdot (k \nabla T) + Q_e + Q_\text{conv}
     \label{eq:heat-equation}
@@ -200,9 +186,7 @@ For stationary studies, the left-hand side is zero and the equation reduces to:
     \label{eq:heat-stationary}
 \end{equation}
 
-\subsection{Solid Mechanics}
-
-The mechanical equilibrium is described by:
+\textbf{Solid Mechanics.} The mechanical equilibrium is described by:
 \begin{equation}
     \nabla \cdot \mathbf{S} + \mathbf{F}_v = 0
     \label{eq:solid-mechanics}

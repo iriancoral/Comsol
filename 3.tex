@@ -31,9 +31,9 @@ A mesh convergence study was performed to ensure that the results are independen
 
 \begin{figure}[H]
     \centering
-    \fbox{\parbox{0.48\textwidth}{\centering\vspace{2.5cm}\textit{TODO: Extra coarse mesh}\vspace{2.5cm}}}
+    \fbox{\parbox{0.48\textwidth}{\centering\vspace{2.5cm}\textit{TODO (Sebtain): Extra coarse mesh}\vspace{2.5cm}}}
     \hfill
-    \fbox{\parbox{0.48\textwidth}{\centering\vspace{2.5cm}\textit{TODO: Fine mesh (189,192 elements)}\vspace{2.5cm}}}
+    \fbox{\parbox{0.48\textwidth}{\centering\vspace{2.5cm}\textit{TODO (Sebtain): Fine mesh (189,192 elements)}\vspace{2.5cm}}}
     \caption{Comparison of mesh densities used in the convergence study. (a)~Extra coarse mesh. (b)~Fine mesh (189,192 domain elements).}
     \label{fig:mesh-comparison}
 \end{figure}
@@ -56,20 +56,73 @@ These borderline cases highlight the importance of sufficient mesh resolution wh
 
 The model physics and boundary condition values are validated against published experimental and numerical studies.
 
-\subsection{Heat Transfer Coefficients}
-
 The convection coefficients used in this model ($h_\text{ext} = \SI{15}{\watt\per\metre\squared\per\kelvin}$, $h_\text{int} = \SI{7}{\watt\per\metre\squared\per\kelvin}$) are compared with experimental measurements by Ho\.{z}ejowska et al.\ \cite{hozejowska2019}, who reported measured $h$~values for automotive glass under various driving conditions. Their results support the order of magnitude used in this study, with exterior values in the range \SIrange{10}{25}{\watt\per\metre\squared\per\kelvin} depending on vehicle speed.
-
-\subsection{Coupled FEM Modelling}
 
 R\"uhl et al.\ \cite{ruhl2016} performed coupled finite element simulations of electrically heated glass panes with resistive lines, validated against infrared thermography and thermocouple measurements. Their modelling approach --- coupling electric currents with heat transfer via Joule heating in a 2D representation --- is directly analogous to the physics setup used in this work.
 
-\subsection{Heat Flux Partitioning}
-
 Koshlak et al.\ \cite{koshlak2024} measured that 83--85\% of the heat generated in electrically heated automotive glass is directed inward (toward the cabin side), which is consistent with the asymmetric convection coefficients used in this model ($h_\text{int} < h_\text{ext}$, meaning less heat loss to the interior).
 
-% TODO: If you have any analytical validation (e.g., 1D steady-state estimate), add it here.
-% For example, a 1D energy balance across the glass thickness to estimate T_surface.
+% ------------------------------------------------------------
+\section{Back-of-Envelope Power and Temperature Estimate}
+\label{sec:back-of-envelope}
+% ------------------------------------------------------------
+
+An independent analytical estimate of the steady-state average temperature provides a direct check on the numerical results. The approach is to compute the total Joule heating power from the trace resistance and compare the resulting energy balance temperature with the COMSOL output.
+
+Each trace has electrical resistance:
+\begin{equation}
+    R_\text{trace} = \frac{L_\text{glass}}{\sigma_\text{trace} \cdot w_\text{trace} \cdot t_\text{trace}}
+    \label{eq:trace-resistance}
+\end{equation}
+For the Sim~1 baseline (silver paste, $\sigma = \SI{2e6}{\siemens\per\metre}$):
+\begin{equation}
+    R_\text{trace} = \frac{1.5}{2 \times 10^6 \times 1.7 \times 10^{-3} \times 0.11 \times 10^{-3}} = \SI{4.01}{\ohm}
+\end{equation}
+The power per trace is $P_\text{trace} = V_\text{in}^2 / R_\text{trace} = 144 / 4.01 = \SI{35.9}{\watt}$, and the total power for 12~traces is:
+\begin{equation}
+    P_\text{total} = 12 \times 35.9 = \SI{431}{\watt}
+\end{equation}
+
+Note that this physical power is correctly reproduced in the 2D COMSOL model through the $\sigma_\text{eff}$ correction (\Cref{eq:sigma-eff}): the effective resistance in the model is $R_\text{model} = L_\text{glass}/(\sigma_\text{eff} \cdot w_\text{trace} \cdot t_\text{glass}) = L_\text{glass}/(\sigma_\text{trace} \cdot w_\text{trace} \cdot t_\text{trace}) = R_\text{trace}$.
+
+At steady state, the total Joule heating must equal the convective losses from both sides of the glass:
+\begin{equation}
+    P_\text{total} = (h_\text{ext} + h_\text{int}) \cdot A_\text{glass} \cdot (T_\text{avg} - T_\text{weighted})
+    \label{eq:energy-balance}
+\end{equation}
+where $A_\text{glass} = L_\text{glass} \times H_\text{glass} = \SI{1.2}{\metre\squared}$ and the convection-weighted ambient temperature is:
+\begin{equation}
+    T_\text{weighted} = \frac{h_\text{ext} \cdot T_\text{amb} + h_\text{int} \cdot T_\text{cabin}}{h_\text{ext} + h_\text{int}} = \frac{15 \times 275.15 + 7 \times 293.15}{22} = \SI{280.9}{\kelvin}
+\end{equation}
+
+Solving for $T_\text{avg}$:
+\begin{equation}
+    T_\text{avg} = T_\text{weighted} + \frac{P_\text{total}}{(h_\text{ext} + h_\text{int}) \cdot A_\text{glass}} = 280.9 + \frac{431}{22 \times 1.2} = 280.9 + 16.3 = \SI{297.2}{\kelvin}
+\end{equation}
+
+The COMSOL surface-average temperature for Sim~1 (12~traces, silver paste, \SI{12}{\volt}) is $T_\text{avg} = \SI{297.13}{\kelvin}$. The back-of-envelope estimate gives \SI{297.2}{\kelvin} --- a deviation of only \SI{0.07}{\kelvin} ($<0.03\%$). This excellent agreement confirms that:
+\begin{itemize}
+    \item The $\sigma_\text{eff}$ correction correctly maps the 3D trace geometry to the 2D model
+    \item The Joule heating and convective boundary conditions are consistently implemented
+    \item The total energy balance of the model is accurate
+\end{itemize}
+
+\begin{table}[H]
+    \centering
+    \caption{Back-of-envelope validation of the average temperature for selected configurations.}
+    \label{tab:back-of-envelope}
+    \begin{tabular}{@{}llcccc@{}}
+        \toprule
+        \textbf{Material} & $n_\text{traces}$ & $P_\text{total}$ (W) & $T_\text{avg}^\text{analytical}$ (K) & $T_\text{avg}^\text{COMSOL}$ (K) & \textbf{Error} \\
+        \midrule
+        Silver paste & 12 & 431 & 297.2 & 297.13 & 0.03\% \\
+        Pd--Ag alloy & 14 & 578 & 302.8 & --- \emph{extract from COMSOL} & --- \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\textbf{STILL DO: EXTRACT $T_\text{avg}$ FROM COMSOL FOR Pd--Ag 14-TRACE AND 20-TRACE CONFIGURATIONS TO COMPLETE THE TABLE}
+
 
 
 % ------------------------------------------------------------

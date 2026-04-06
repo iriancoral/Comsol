@@ -18,7 +18,8 @@ The design was developed iteratively through five simulations of increasing comp
         Sim~2b & Stationary     & Material, $n_\text{traces}$, $V_\text{in}$ & Material optimisation \\
         Sim~2c & Stationary (sequential) & Material, $n_\text{traces}$ & Stress analysis \\
         Sim~3  & Time dependent & Material, $n_\text{traces}$, $V_\text{in}$ & Defrost time \\
-        Sim~4  & Stationary     & Trace pattern/spacing & Trace layout optimisation \\
+        Sim~4  & Time dependent & Zone layout ($n_\text{top}$, $n_\text{mid}$, $n_\text{bot}$) & Zoned trace spacing \\
+        Sim~5  & Time dependent & Chebyshev exponent $p$ & Non-uniform spacing optimisation \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -40,9 +41,9 @@ The purpose of Sim~1 is to verify that:
 
 \begin{figure}[H]
     \centering
-    \fbox{\parbox{0.48\textwidth}{\centering\vspace{2.5cm}\textit{TODO: Sim1 --- voltage distribution}\vspace{2.5cm}}}
+    \includegraphics[width=0.48\textwidth]{Sim1 —voltage distribution.png}
     \hfill
-    \fbox{\parbox{0.48\textwidth}{\centering\vspace{2.5cm}\textit{TODO: Sim1 --- temperature distribution}\vspace{2.5cm}}}
+    \includegraphics[width=0.48\textwidth]{Sim1 —temperature distribution.png}
     \caption{Sim~1 baseline results at $V_\text{in} = \SI{12}{\volt}$, $n_\text{traces} = 12$, silver paste. (a)~Electric potential distribution on the traces and bus bars. (b)~Temperature distribution across the glass surface.}
     \label{fig:sim1-results}
 \end{figure}
@@ -57,22 +58,16 @@ The baseline results show a surface-average temperature of \SI{297.13}{\kelvin} 
 
 Sim~2 investigates the sensitivity of the minimum glass temperature to the applied voltage and number of traces, independently and in combination.
 
-\subsection{Voltage Sweep}
-
 A parametric sweep of $V_\text{in}$ from \SI{8}{\volt} to \SI{16}{\volt} (9~values) is performed at $n_\text{traces} = 12$. Even at \SI{16}{\volt}, the minimum temperature (\SI{283.09}{\kelvin}) barely reaches the dew point, indicating that voltage alone cannot solve the problem with 12~traces.
-
-\subsection{Trace Count Sweep}
 
 A parametric sweep of $n_\text{traces}$ from 8 to 22 is performed at $V_\text{in} = \SI{12}{\volt}$. Results are shown in \Cref{fig:sim2-trace-sweep}.
 
 \begin{figure}[H]
     \centering
-    \fbox{\parbox{0.7\textwidth}{\centering\vspace{3cm}\textit{TODO: Line plot --- $T_\text{min}$ vs $n_\text{traces}$ at $V_\text{in} = \SI{12}{\volt}$ with dew point line}\vspace{3cm}}}
+    \includegraphics[width=0.7\textwidth]{Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png}
     \caption{Minimum glass surface temperature as a function of the number of traces at $V_\text{in} = \SI{12}{\volt}$. The horizontal dashed line indicates the dew point temperature (\SI{283.15}{\kelvin}).}
     \label{fig:sim2-trace-sweep}
 \end{figure}
-
-\subsection{Combined Sweep}
 
 A full factorial sweep over $n_\text{traces} \in \{8, 10, 12, 14, 16, 18, 20, 22\}$ and $V_\text{in} \in \{8, 10, 12, 14, 16\}$\,V produces 35~stationary solutions. Results are shown in \Cref{tab:sim2-combined}.
 
@@ -107,8 +102,6 @@ The key conclusion is that \textbf{increasing the number of traces is more effec
 Sim~2b extends the parametric sweep to include four candidate trace materials from the CES EduPack database \cite{edupack}. The sweep covers $4 \times 8 \times 4 = 128$ combinations (4~materials, 8~trace counts, 4~voltages).
 
 The voltages used reflect the realistic automotive range: \SI{10}{\volt} (battery low), \SI{12}{\volt} (nominal), \SI{13.5}{\volt} (engine running), and \SI{14.5}{\volt} (maximum alternator output).
-
-\subsection{Results}
 
 The minimum number of traces needed to reach the dew point for each material and voltage is shown in \Cref{tab:sim2b-min-traces}.
 
@@ -172,12 +165,10 @@ The full temperature results for the two viable materials (Pd--Ag alloy and Nich
 
 \begin{figure}[H]
     \centering
-    \fbox{\parbox{0.75\textwidth}{\centering\vspace{3cm}\textit{TODO: Plot --- $T_\text{min}$ vs $n_\text{traces}$ for all 4 materials at $V_\text{in} = \SI{12}{\volt}$ with dew point line}\vspace{3cm}}}
+    \fbox{\parbox{0.75\textwidth}{\centering\vspace{3cm}\textit{TODO (Sebtain): Plot --- $T_\text{min}$ vs $n_\text{traces}$ for all 4 materials at $V_\text{in} = \SI{12}{\volt}$ with dew point line}\vspace{3cm}}}
     \caption{Comparison of minimum surface temperature vs.\ number of traces for all four EduPack materials at $V_\text{in} = \SI{12}{\volt}$. Silver and Gold exceed safe temperatures at $n_\text{traces} \geq 10$ and are not viable.}
     \label{fig:sim2b-material-comparison}
 \end{figure}
-
-\subsection{Key Findings}
 
 \begin{itemize}
     \item \textbf{Silver (commercial purity) and Gold (soft annealed) are not viable} --- their bulk conductivity ($>10^7$\,S/m) is too high for the screen-printed geometry, causing extreme overheating (Silver reaches \SI{625}{\kelvin} at 22~traces, \SI{14.5}{\volt}).
@@ -217,9 +208,9 @@ This sequential approach avoids the spatial frame conflict (``dvol\_spatial unde
 
 \begin{figure}[H]
     \centering
-    \fbox{\parbox{0.48\textwidth}{\centering\vspace{2.5cm}\textit{TODO: Sim2c --- von Mises stress, Pd--Ag, 14 traces}\vspace{2.5cm}}}
+    \fbox{\parbox{0.48\textwidth}{\centering\vspace{2.5cm}\textit{TODO (Sebtain): Sim2c --- von Mises stress, Pd--Ag, 14 traces}\vspace{2.5cm}}}
     \hfill
-    \fbox{\parbox{0.48\textwidth}{\centering\vspace{2.5cm}\textit{TODO: Sim2c --- von Mises stress, Nichrome~V, 18 traces}\vspace{2.5cm}}}
+    \fbox{\parbox{0.48\textwidth}{\centering\vspace{2.5cm}\textit{TODO (Sebtain): Sim2c --- von Mises stress, Nichrome~V, 18 traces}\vspace{2.5cm}}}
     \caption{Von Mises stress distribution at $V_\text{in} = \SI{12}{\volt}$. (a)~Pd--Ag alloy, $n_\text{traces} = 14$. (b)~Nichrome~V, $n_\text{traces} = 18$. Peak stresses concentrate at trace endpoints near the fixed edges.}
     \label{fig:sim2c-stress}
 \end{figure}
@@ -240,7 +231,7 @@ The sweep covers: 2~materials $\times$ 5~trace counts (14, 16, 18, 20, 22) $\tim
 
 \begin{figure}[H]
     \centering
-    \fbox{\parbox{0.75\textwidth}{\centering\vspace{3cm}\textit{TODO: Plot --- $T_\text{min}$ vs time for Pd--Ag at \SI{12}{\volt}, curves for $n = 14, 16, 18, 20, 22$ with dew point line}\vspace{3cm}}}
+    \fbox{\parbox{0.75\textwidth}{\centering\vspace{3cm}\textit{TODO (Sebtain): Plot --- $T_\text{min}$ vs time for Pd--Ag at \SI{12}{\volt}, curves for $n = 14, 16, 18, 20, 22$ with dew point line}\vspace{3cm}}}
     \caption{Transient evolution of minimum surface temperature for Pd--Ag alloy at $V_\text{in} = \SI{12}{\volt}$ for different numbers of traces. The horizontal dashed line indicates the dew point.}
     \label{fig:sim3-transient}
 \end{figure}
@@ -251,48 +242,142 @@ The sweep covers: 2~materials $\times$ 5~trace counts (14, 16, 18, 20, 22) $\tim
 \label{sec:sim4}
 % ------------------------------------------------------------
 
-% NOTE: This simulation was performed by [group member name] after Sim 3.
-% It investigates the optimal spatial distribution/pattern of traces across the glass surface.
+After establishing the optimal material (Pd--Ag alloy) and operating conditions in the previous simulations, Sim~4 investigates the effect of trace layout on the temperature uniformity across the glass surface. The baseline simulations revealed that cold spots form at the top and bottom edges of the glass, farthest from any heating trace. A natural mitigation strategy is to concentrate more traces near these edges.
 
-After establishing the optimal material (Pd--Ag alloy) and operating conditions in the previous simulations, Sim~4 investigates the effect of trace layout on the temperature uniformity across the glass surface. Rather than using uniformly spaced traces, this simulation explores non-uniform trace patterns to improve heating of the cold spots identified at the top and bottom edges of the glass.
+The glass is divided into three horizontal zones with independent trace densities:
+\begin{itemize}
+    \item \textbf{Top zone:} $H_\text{top} = \SI{200}{\milli\metre}$, $n_\text{top} = 6$ traces
+    \item \textbf{Middle zone:} $H_\text{mid} = \SI{400}{\milli\metre}$, $n_\text{mid} = 8$ traces
+    \item \textbf{Bottom zone:} $H_\text{bot} = \SI{200}{\milli\metre}$, $n_\text{bot} = 6$ traces
+\end{itemize}
+This gives a total of 20~traces (same as the recommended uniform design) but with denser spacing in the edge zones. The edge gap is \SI{28.6}{\milli\metre} (vs.\ \SI{38.1}{\milli\metre} uniform), and the centre gap is \SI{44.4}{\milli\metre}.
 
-% TODO: Add details from group member's simulation. Possible content:
-% - What patterns were tested (e.g., closer spacing near edges, variable spacing)
-% - How the parametric sweep was set up
-% - Key results: T_min improvement, temperature uniformity metrics
-% - Comparison with the uniform spacing baseline
-
-\begin{figure}[H]
-    \centering
-    \fbox{\parbox{0.85\textwidth}{\centering\vspace{3cm}\textit{TODO: Sim4 --- comparison of trace patterns (uniform vs optimised)}\vspace{3cm}}}
-    \caption{Comparison of trace patterns investigated in Sim~4. (a)~Uniform spacing (baseline), (b)~Optimised pattern with closer trace spacing near the glass edges.}
-    \label{fig:sim4-patterns}
-\end{figure}
+Zone parameters were added to Global Definitions and each zone was created as a separate Rectangle + Array in the geometry, with spacing $H_\text{zone}/(n_\text{zone}+1)$. The old uniform-spacing geometry (Array~1 + Rectangle~2) was disabled.
 
 \begin{figure}[H]
     \centering
-    \fbox{\parbox{0.7\textwidth}{\centering\vspace{3cm}\textit{TODO: Sim4 --- temperature distribution for optimised pattern}\vspace{3cm}}}
-    \caption{Temperature distribution for the optimised trace pattern, showing improved uniformity compared to the uniform baseline.}
-    \label{fig:sim4-temp-optimised}
+    \includegraphics[width=0.48\textwidth]{Sim4 geometry zoned 6 - 8 - 6 layout.png}
+    \hfill
+    \includegraphics[width=0.48\textwidth]{Sim4 temperature distribution — zoned 6-8-6.png}
+    \caption{Zoned trace layout (Approach~A). (a)~Geometry with 6/8/6 distribution across top/middle/bottom zones. (b)~Steady-state temperature distribution showing reduced cold spots at the edges.}
+    \label{fig:sim4-zoned}
 \end{figure}
 
-% TODO: Add results table comparing uniform vs optimised pattern metrics:
-% - T_min, T_max, T_avg, temperature range (T_max - T_min)
-% - Defrost time (if transient study was also done)
-% - Any other metrics your group member computed
+The study was changed from stationary to time dependent with output range \texttt{range(0,60,3600)}, i.e.\ every \SI{60}{\second} for \SI{60}{\minute}. The Electric Currents equation form was set to Stationary (as in Sim~3) since the electric field equilibrates instantaneously compared to the thermal time scale. The initial temperature was set to $T_\text{init} = \SI{278.15}{\kelvin}$.
+
+The zoned approach was not pursued further because the continuous Chebyshev spacing (Sim~5) proved far more effective, as discussed in \Cref{sec:sim5}.
+
+
+% ============================================================
+\section{Simulation 5 --- Chebyshev Trace Spacing Optimisation}
+\label{sec:sim5}
+% ============================================================
+
+While the zoned approach (Sim~4) provides a discrete improvement, a mathematically elegant alternative is to use a continuous spacing function that naturally clusters traces near the edges. Chebyshev node spacing, derived from the roots of Chebyshev polynomials, is well known in numerical analysis for minimising interpolation error by placing points near interval boundaries. This property is analogous to the defroster design goal of concentrating heating where it is most needed.
+
+\subsection{Spacing Formula and Implementation}
+
+The vertical position $y_i$ of the $i$-th trace ($i = 1, \ldots, 20$) is given by:
+\begin{equation}
+    y_i = \frac{H_\text{glass}}{2} \left(1 - \text{sign}\!\left(\cos\frac{i\pi}{21}\right) \left|\cos\frac{i\pi}{21}\right|^p\right)
+    \label{eq:chebyshev}
+\end{equation}
+where $p$ is a clustering exponent that controls how aggressively the traces are pushed toward the edges:
+\begin{itemize}
+    \item $p < 1$: More uniform than standard Chebyshev (less edge clustering)
+    \item $p = 1$: Standard Chebyshev distribution
+    \item $p > 1$: More aggressive edge clustering
+\end{itemize}
+
+The $\text{sign}(\cdot)|\cdot|^p$ formulation preserves the symmetry of the cosine distribution for all values of $p$, including non-integer exponents.
+
+Twenty individual rectangles were created in the geometry, each with a unique $y$-position computed from \Cref{eq:chebyshev}. The exponent $p$ was defined as a global parameter, enabling a parametric sweep. All other model settings (material: Pd--Ag alloy, $\sigma_\text{eff}$ correction, time-dependent study, boundary conditions) were identical to Sim~4.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.48\textwidth]{Sim5 geometry — Chebyshev p = 0.7.png}
+    \hfill
+    \includegraphics[width=0.48\textwidth]{Sim5 geometry — Chebyshev p = 1.3.png}
+    \caption{Chebyshev trace spacing for (a)~$p = 0.7$ (near-uniform) and (b)~$p = 1.3$ (optimal). Edge gaps decrease significantly with increasing $p$ while centre gaps widen.}
+    \label{fig:sim5-geometry}
+\end{figure}
+
+\subsection{Results and Optimum}
+
+Three values of $p$ were tested first to establish the feasibility of the approach:
+
+\begin{itemize}
+    \item $p = 1.0$ (standard Chebyshev): \textbf{defrost in \SI{7}{\minute}}, steady-state $T_\text{min} = \SI{292.6}{\kelvin}$
+    \item $p = 0.85$: \textbf{never reaches dew point} --- steady-state $T_\text{min} = \SI{282.06}{\kelvin}$
+    \item $p = 0.7$: \textbf{never reaches dew point} --- steady-state $T_\text{min} = \SI{282.06}{\kelvin}$
+\end{itemize}
+
+The $p = 1.0$ result is dramatic: defrost time is reduced from \SI{12}{\minute} (uniform) to \SI{7}{\minute} --- a 42\% improvement with exactly the same number of traces, same material, and same voltage. However, reducing $p$ below 1.0 removes too much edge clustering and the cold spots return.
+
+To find the optimal exponent, a parametric sweep was performed over $p \in \{0.7, 0.8, 0.9, 0.95, 1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0, 3.0\}$. All runs use 20~traces of Pd--Ag alloy at $V_\text{in} = \SI{12}{\volt}$. The trace $y$-positions were expressed parametrically in terms of $p$, so COMSOL automatically updates the geometry for each sweep value.
+
+The results are presented in \Cref{tab:sim5-p-sweep} and plotted in \Cref{fig:sim5-p-sweep}.
 
 \begin{table}[H]
     \centering
-    \caption{Comparison of uniform and optimised trace patterns (Pd--Ag alloy, 20 traces, \SI{12}{\volt}).}
-    \label{tab:sim4-comparison}
-    \begin{tabular}{@{}lcc@{}}
+    \caption{Chebyshev exponent sweep results (Pd--Ag alloy, 20 traces, $V_\text{in} = \SI{12}{\volt}$). $T_\text{360s}$: minimum temperature at $t = \SI{6}{\minute}$.}
+    \label{tab:sim5-p-sweep}
+    \begin{tabular}{@{}cccc@{}}
         \toprule
-        \textbf{Metric} & \textbf{Uniform spacing} & \textbf{Optimised pattern} \\
+        $p$ & $T_\text{min}$ at $t = \SI{360}{\second}$ (K) & \textbf{Defrost time} & \textbf{Steady-state} $T_\text{min}$ (K) \\
         \midrule
-        $T_\text{min}$ (K)           & 288.24 & --- \emph{TODO} \\
-        $T_\text{max}$ (K)           & ---    & --- \emph{TODO} \\
-        $\Delta T = T_\text{max} - T_\text{min}$ (K) & --- & --- \emph{TODO} \\
-        Defrost time (min)            & 12     & --- \emph{TODO} \\
+        0.70 & 279.53 & Never        & 282.1 \\
+        0.80 & 279.72 & 23\,min      & 284.0 \\
+        0.90 & 280.44 & 12\,min      & 287.5 \\
+        1.00 & 282.23 & 8\,min       & 292.6 \\
+        1.10 & 282.97 & 7\,min       & 294.5 \\
+        1.20 & 283.16 & 6\,min       & 294.9 \\
+        \textbf{1.30} & \textbf{283.20} & \textbf{6\,min} & \textbf{295.0} \\
+        1.40 & 283.09 & 6\,min       & 294.8 \\
+        1.50 & 282.97 & 7\,min       & 294.5 \\
+        1.60 & 282.91 & 7\,min       & 294.4 \\
+        1.70 & 282.74 & 7\,min       & 293.9 \\
+        1.80 & 282.56 & 7\,min       & 293.4 \\
+        1.90 & 282.40 & 7\,min       & 293.1 \\
+        2.00 & 282.28 & 7\,min       & 292.8 \\
+        3.00 & 281.17 & 9\,min       & 289.9 \\
         \bottomrule
     \end{tabular}
 \end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.48\textwidth]{Plot of steady-state Tmin vs p, peak at p = 1.3.png}
+    \hfill
+    \includegraphics[width=0.48\textwidth]{Plot of defrost time vs p, minimum at p = 1.3.png}
+    \caption{Effect of the Chebyshev exponent $p$ on (a)~steady-state minimum temperature and (b)~defrost time. The optimum is $p = 1.3$, achieving the highest $T_\text{min}$ and fastest defrost.}
+    \label{fig:sim5-p-sweep}
+\end{figure}
+
+The optimum is clearly at $p = 1.3$: it achieves the highest minimum temperature at the 6-minute mark (\SI{283.20}{\kelvin}) and the highest steady-state $T_\text{min}$ (\SI{295.0}{\kelvin}). The physical interpretation is:
+
+\begin{itemize}
+    \item \textbf{$p < 1.0$:} Insufficient edge clustering. The edges remain cold, and the centre is over-heated with closely spaced traces --- reproducing the original problem.
+    \item \textbf{$p = 1.0$--$1.3$:} Increasing $p$ progressively moves more traces to the edges, heating the cold spots more effectively. The centre gap widens but the glass thermal conductivity is sufficient to bridge it.
+    \item \textbf{$p > 1.3$:} Over-clustering at edges. The centre becomes a cold spot because the traces are too far apart. At $p = 2.0$ the cosine-squared creates three clusters (two edges plus centre), and at $p = 3.0$ the clustering is too sharp for the window height.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.48\textwidth]{Temperature distribution at t = 360s.png}
+    \hfill
+    \includegraphics[width=0.48\textwidth]{Steady-state temperature distribution t = 3600.png}
+    \caption{Temperature distribution for Chebyshev spacing $p = 1.3$ (Pd--Ag alloy, 20 traces, \SI{12}{\volt}). (a)~At $t = \SI{6}{\minute}$ (defrost moment): $T_\text{min} = \SI{283.20}{\kelvin}$. (b)~Steady state: $T_\text{min} = \SI{295.0}{\kelvin}$.}
+    \label{fig:sim5-temp-distribution}
+\end{figure}
+
+\subsection{Practical Considerations}
+
+An important practical constraint for rear window trace patterns is driver visibility. Per the SAE~J216 standard, obscuration of the rear vision area should not exceed 5\% in the primary zone \cite{sayer1999}. For 20~traces with $w_\text{trace} = \SI{1.7}{\milli\metre}$:
+\begin{equation}
+    \text{Obscuration} = \frac{n_\text{traces} \times w_\text{trace}}{H_\text{glass}} = \frac{20 \times 1.7}{800} = 4.25\%
+    \label{eq:obscuration}
+\end{equation}
+This is well within the 5\% limit regardless of the spacing pattern, since the total trace area is unchanged. The Chebyshev spacing only redistributes the same number of traces, so visibility is not affected.
+
+Adding vertical traces between the horizontal ones was considered to create a grid pattern. However, analysis showed this would be ineffective: since all parallel horizontal traces are at the same voltage at any given $x$-position, vertical connectors between them would have zero potential difference ($\Delta V = 0$) and carry no current. Variable-width traces could create voltage differences enabling vertical current flow, but this adds significant manufacturing complexity without clear benefit over optimising the horizontal spacing alone.
