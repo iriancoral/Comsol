@@ -5,6 +5,12 @@
 \newblock {CES EduPack 2024 --- Materials Database}, 2024.
 \newblock Granta Design Limited, Cambridge, UK.
 
+\bibitem{trefethen2013approximation}
+Lloyd~N. Trefethen.
+\newblock {\em Approximation Theory and Approximation Practice}.
+\newblock Society for Industrial and Applied Mathematics (SIAM), Philadelphia,
+  PA, 2013.
+
 \bibitem{sayer1999}
 J.~R. Sayer, M.~L. Mefford, and R.~Q. Huang.
 \newblock The effect of rear window defroster lines on glare from following
@@ -12,6 +18,14 @@ J.~R. Sayer, M.~L. Mefford, and R.~Q. Huang.
 \newblock Technical Report UMTRI-99-12, University of Michigan Transportation
   Research Institute (UMTRI), 1999.
 \newblock SAE J216 rear window visibility standard.
+
+\bibitem{unece_r43}
+{United Nations Economic Commission for Europe}.
+\newblock Regulation no.\ 43 --- uniform provisions concerning the approval of
+  safety glazing materials and their installation on vehicles.
+\newblock Technical Report E/ECE/324/Rev.1/Add.42/Rev.4, UNECE, 2017.
+\newblock Revision 4, Annex 24, Section 4.2.2.1 --- light transmittance $\geq$
+  70\%.
 
 \bibitem{hozejowska2019}
 S.~Ho\.{z}ejowska and M.~Piasecka.

@@ -3,7 +3,12 @@
 \label{ch:implementation}
 % ============================================================
 
-The design was developed iteratively through five simulations of increasing complexity. Each simulation builds on the previous one, progressively refining the design from a baseline model to a fully optimised transient solution. \Cref{tab:sim-overview} summarises all simulations.
+The design was developed through five simulations each building on the previous one, 
+progressively refining the design from a 
+baseline model to a optimised solution. \Cref{tab:sim-overview} summarises 
+all simulations.
+
+
 
 \begin{table}[H]
     \centering
@@ -30,14 +35,21 @@ The design was developed iteratively through five simulations of increasing comp
 \label{sec:sim1}
 % ------------------------------------------------------------
 
-The first simulation establishes the baseline model with the default configuration: 12 traces of silver paste ($\sigma = \SI{2e6}{\siemens\per\metre}$) at $V_\text{in} = \SI{12}{\volt}$. A stationary study couples Electric Currents and Heat Transfer via Electromagnetic Heating.
+% The first simulation establishes the baseline model with the default configuration: 12 traces of silver paste ($\sigma = \SI{2e6}{\siemens\per\metre}$) at $V_\text{in} = \SI{12}{\volt}$. A stationary study couples Electric Currents and Heat Transfer via Electromagnetic Heating.
 
-The purpose of Sim~1 is to verify that:
-\begin{itemize}
-    \item The voltage gradient across the traces is correct (12\,V at the left bus bar, 0\,V at the right)
-    \item The temperature distribution is physically realistic (in the range 270--320\,K)
-    \item The cold spots are located at the expected positions (top and bottom edges farthest from traces)
-\end{itemize}
+% The purpose of Sim~1 is to verify that:
+% \begin{itemize}
+%     \item The voltage gradient across the traces is correct (12\,V at the left bus bar, 0\,V at the right)
+%     \item The temperature distribution is physically realistic (in the range 270--320\,K)
+%     \item The cold spots are located at the expected positions (top and bottom edges farthest from traces)
+% \end{itemize}
+
+
+The first simulation uses the default model setup: 12 silver-paste traces ($\sigma = \SI{2e6}{\siemens\per\metre}$) with an input voltage of $V_\text{in} = \SI{12}{\volt}$. A stationary study is used, combining Electric Currents and Heat Transfer through Electromagnetic Heating.
+
+Sim~1 is mainly used as a first check that the model behaves as expected and the firstly assumed amount of traces are somewhat realistic. The voltage should drop from $12 V$ at the left bus bar to $0 V$ at the right bus bar. The temperature should stay within a realistic range of about $270$ to $320K$, and the coldest regions should appear near the top and bottom edges, where there are no traces to enclose the space.
+Traces were not placed at the top and bottom edges of the glass, as placing traces there would trivially reduce cold spots since more traces equal more heat. The purpose of this study is to optimize the trace
+distribution pattern within a fixed heated region, showing that the performance can be increased significantly through pattern optimization. 
 
 \begin{figure}[H]
     \centering
@@ -48,7 +60,7 @@ The purpose of Sim~1 is to verify that:
     \label{fig:sim1-results}
 \end{figure}
 
-The baseline results show a surface-average temperature of \SI{297.13}{\kelvin} (above the dew point) but a surface-minimum temperature of \SI{282.12}{\kelvin} (below the dew point). The cold spots are at the top and bottom edges of the glass where trace coverage does not extend. This motivates the parametric sweeps in the following simulations.
+The baseline results show a surface-average temperature of \SI{297.13}{\kelvin} (above the dew point) but a surface-minimum temperature of \SI{282.12}{\kelvin} (below the dew point). The cold spots are at the top and bottom edges of the glass where trace coverage does not extend. These values are realistic and now it is possible to start looking at further optimization.
 
 
 % ------------------------------------------------------------
@@ -56,7 +68,12 @@ The baseline results show a surface-average temperature of \SI{297.13}{\kelvin} 
 \label{sec:sim2}
 % ------------------------------------------------------------
 
-Sim~2 investigates the sensitivity of the minimum glass temperature to the applied voltage and number of traces, independently and in combination.
+Sim~2b studies how temperature changes with input voltage  
+and the number of traces in order to first find the optimal number of traces. Important to state is that these first simulations are stationary studies, so they do not give any information about how long it takes to defrost the window, but they do give information about the minimum temperature that can be reached for each configuration.  
+
+Sim~2 then examines how the minimum glass  
+temperature depends on voltage and trace count,  
+both separately and in combination.
 
 A parametric sweep of $V_\text{in}$ from \SI{8}{\volt} to \SI{16}{\volt} (9~values) is performed at $n_\text{traces} = 12$. Even at \SI{16}{\volt}, the minimum temperature (\SI{283.09}{\kelvin}) barely reaches the dew point, indicating that voltage alone cannot solve the problem with 12~traces.
 
@@ -65,9 +82,11 @@ A parametric sweep of $n_\text{traces}$ from 8 to 22 is performed at $V_\text{in
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png}
-    \caption{Minimum glass surface temperature as a function of the number of traces at $V_\text{in} = \SI{12}{\volt}$. The horizontal dashed line indicates the dew point temperature (\SI{283.15}{\kelvin}).}
+    \caption{Minimum glass surface temperature as a function of the number of traces at $V_\text{in} = \SI{12}{\volt}$. The horizontal dashed line indicates the dew point temperature (\SI{283.15}{\kelvin}) that crosses the curve at point A indicating the amount of traces needed to heat up the window to dew temperature.}
     \label{fig:sim2-trace-sweep}
 \end{figure}
+
+\Cref{fig:sim2-trace-sweep} shows that the minimum glass temperature crosses the dew point at slightly more than 14~traces. To ensure a safe margin well above the dew temperature, $n_\text{traces} = 16$ is chosen as the baseline for the next simulations.
 
 A full factorial sweep over $n_\text{traces} \in \{8, 10, 12, 14, 16, 18, 20, 22\}$ and $V_\text{in} \in \{8, 10, 12, 14, 16\}$\,V produces 35~stationary solutions. Results are shown in \Cref{tab:sim2-combined}.
 
@@ -81,17 +100,17 @@ A full factorial sweep over $n_\text{traces} \in \{8, 10, 12, 14, 16, 18, 20, 22
         \midrule
         8  & 280.86 & 280.85 & 280.84 & 280.83 & 280.81 \\
         10 & 281.09 & 281.21 & 281.36 & 281.54 & 281.74 \\
-        12 & 281.43 & 281.74 & 282.12 & 282.57 & \textbf{283.09} \\
-        14 & 281.85 & 282.39 & \textbf{283.06} & \textbf{283.84} & \textbf{284.75} \\
+        12 & 281.43 & 281.74 & 282.12 & 282.57 & 283.09 \\
+        14 & 281.85 & 282.39 & 283.06 & \textbf{283.84} & \textbf{284.75} \\
         16 & 282.38 & \textbf{283.23} & \textbf{284.27} & \textbf{285.49} & \textbf{286.91} \\
-        18 & \textbf{283.01} & \textbf{284.21} & \textbf{285.67} & \textbf{287.40} & \textbf{289.40} \\
+        18 & 283.01 & \textbf{284.21} & \textbf{285.67} & \textbf{287.40} & \textbf{289.40} \\
         20 & \textbf{283.72} & \textbf{285.33} & \textbf{287.28} & \textbf{289.60} & \textbf{292.27} \\
         22 & \textbf{284.52} & \textbf{286.57} & \textbf{289.08} & \textbf{292.04} & \textbf{295.46} \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-The key conclusion is that \textbf{increasing the number of traces is more effective than increasing voltage}. The cheapest solution above the dew point is 16~traces at \SI{10}{\volt} (\SI{283.23}{\kelvin}).
+The minimum configuration in this sweep that remains above the dew point is 16 traces at 10~V, yielding a minimum surface temperature of 283.23~K. The results also show that the effect of increasing voltage becomes much stronger as the number of traces increases, indicating that the effects of voltage and trace count are coupled.
 
 
 % ------------------------------------------------------------
@@ -241,18 +260,31 @@ The sweep covers: 2~materials $\times$ 5~trace counts (14, 16, 18, 20, 22) $\tim
 \section{Simulation 4 --- Trace Pattern Optimisation}
 \label{sec:sim4}
 % ------------------------------------------------------------
+Now that the optimal material (Pd--Ag alloy) has been determined with its operating conditions, 
+it is possible to look at the optimal trace pattern which is the scope of this project. 
+The optimal trace pattern is one where after heating heats up the glass
+as uniformly as possible in the shortest time possible. Although an obvious way to improve 
+heating performance would be to increase both the number of traces and the applied voltage, 
+this lies outside the scope of the project, since the aim is to optimize the pattern 
+itself instead of overall input parameters
 
-After establishing the optimal material (Pd--Ag alloy) and operating conditions in the previous simulations, Sim~4 investigates the effect of trace layout on the temperature uniformity across the glass surface. The baseline simulations revealed that cold spots form at the top and bottom edges of the glass, farthest from any heating trace. A natural mitigation strategy is to concentrate more traces near these edges.
+Sim~4 investigates the effect of trace layout on the temperature uniformity 
+across the glass surface. The baseline simulations revealed that cold spots form at the top and 
+bottom edges of the glass, farthest from any heating trace. Therefore a logical first strategy would 
+be to increase the density of traces neaar the edges to improve the heating. 
 
-The glass is divided into three horizontal zones with independent trace densities:
+This has been done for the first simulation and the glass was divided into three horizontal 
+zones with independent trace densities \cref{fig:sim4-zoned}. Zone parameters were added to Global Definitions and each zone was created as a separate Rectangle + Array in the geometry, with spacing $H_\text{zone}/(n_\text{zone}+1)$.
+:
 \begin{itemize}
     \item \textbf{Top zone:} $H_\text{top} = \SI{200}{\milli\metre}$, $n_\text{top} = 6$ traces
     \item \textbf{Middle zone:} $H_\text{mid} = \SI{400}{\milli\metre}$, $n_\text{mid} = 8$ traces
     \item \textbf{Bottom zone:} $H_\text{bot} = \SI{200}{\milli\metre}$, $n_\text{bot} = 6$ traces
 \end{itemize}
-This gives a total of 20~traces (same as the recommended uniform design) but with denser spacing in the edge zones. The edge gap is \SI{28.6}{\milli\metre} (vs.\ \SI{38.1}{\milli\metre} uniform), and the centre gap is \SI{44.4}{\milli\metre}.
+% This keeps the same 20~traces but with denser 
+% spacing in the edge zones. The edge gap is \SI{28.6}{\milli\metre} 
+% (vs.\ \SI{38.1}{\milli\metre} uniform), and the centre gap is \SI{44.4}{\milli\metre}.
 
-Zone parameters were added to Global Definitions and each zone was created as a separate Rectangle + Array in the geometry, with spacing $H_\text{zone}/(n_\text{zone}+1)$. The old uniform-spacing geometry (Array~1 + Rectangle~2) was disabled.
 
 \begin{figure}[H]
     \centering
@@ -263,9 +295,12 @@ Zone parameters were added to Global Definitions and each zone was created as a 
     \label{fig:sim4-zoned}
 \end{figure}
 
-The study was changed from stationary to time dependent with output range \texttt{range(0,60,3600)}, i.e.\ every \SI{60}{\second} for \SI{60}{\minute}. The Electric Currents equation form was set to Stationary (as in Sim~3) since the electric field equilibrates instantaneously compared to the thermal time scale. The initial temperature was set to $T_\text{init} = \SI{278.15}{\kelvin}$.
-
-The zoned approach was not pursued further because the continuous Chebyshev spacing (Sim~5) proved far more effective, as discussed in \Cref{sec:sim5}.
+The study was changed from stationary to time dependent with output range \texttt{range(0,60,3600)}, 
+i.e.\ every \SI{60}{\second} for \SI{60}{\minute}, the 6/8/6 zoned configuration reached $T_\text{dew}$ (\SI{283.15}{\kelvin}) at $t = \SI{660}{\second} = \SI{11}{\minute}$. The Electric Currents equation was solved in stationary form
+(as in Sim~3), because the electric field reaches equilibrium much faster than the temperature changes.
+The initial temperature was set to $T_\text{init} = \SI{278.15}{\kelvin}$.
+The zoned approach was not analysed further because the continuous Chebyshev spacing (Sim~5) turned out 
+to be more effective, as discussed in \Cref{sec:sim5}. 
 
 
 % ============================================================
@@ -273,7 +308,12 @@ The zoned approach was not pursued further because the continuous Chebyshev spac
 \label{sec:sim5}
 % ============================================================
 
-While the zoned approach (Sim~4) provides a discrete improvement, a mathematically elegant alternative is to use a continuous spacing function that naturally clusters traces near the edges. Chebyshev node spacing, derived from the roots of Chebyshev polynomials, is well known in numerical analysis for minimising interpolation error by placing points near interval boundaries. This property is analogous to the defroster design goal of concentrating heating where it is most needed.
+While the zoned approach (Sim~4) shows improvement in the heating for the outer edges it is still not optimal and it is based 
+on personal intuition of the distribution for the traces with no real mathematical backing. A mathematical alternative for the trace spacing is to 
+use a continuous spacing function that clusters traces near the edges. Chebyshev node spacing, 
+derived from the roots of Chebyshev polynomials, is known in numerical analysis for minimising interpolation 
+error by placing points near interval boundaries. This property can be used for the window is design goal of 
+putting heating where it is most needed.
 
 \subsection{Spacing Formula and Implementation}
 
@@ -282,23 +322,27 @@ The vertical position $y_i$ of the $i$-th trace ($i = 1, \ldots, 20$) is given b
     y_i = \frac{H_\text{glass}}{2} \left(1 - \text{sign}\!\left(\cos\frac{i\pi}{21}\right) \left|\cos\frac{i\pi}{21}\right|^p\right)
     \label{eq:chebyshev}
 \end{equation}
-where $p$ is a clustering exponent that controls how aggressively the traces are pushed toward the edges:
-\begin{itemize}
-    \item $p < 1$: More uniform than standard Chebyshev (less edge clustering)
-    \item $p = 1$: Standard Chebyshev distribution
-    \item $p > 1$: More aggressive edge clustering
-\end{itemize}
 
-The $\text{sign}(\cdot)|\cdot|^p$ formulation preserves the symmetry of the cosine distribution for all values of $p$, including non-integer exponents.
+The inner cosine term $\cos\!\bigl(\frac{i\pi}{n_\text{traces}+1}\bigr)$ produces Chebyshev-type nodes between $-1$ and $+1$ 
+that are inherently denser near the extremes~\cite{trefethen2013approximation}. The outer factor 
+$\frac{H_\text{glass}}{2}(1-\cdot\,)$ maps these values onto the full glass height. The exponent $p$
+shapes the distribution: for $p>1$, the trace clustering increases at the centre of the glass and decreases at the edges,
+ for $p<1$, the centre gap widens and the traces at the edge increase and eventually leading to uniform spacing as $p\to 0$.
 
-Twenty individual rectangles were created in the geometry, each with a unique $y$-position computed from \Cref{eq:chebyshev}. The exponent $p$ was defined as a global parameter, enabling a parametric sweep. All other model settings (material: Pd--Ag alloy, $\sigma_\text{eff}$ correction, time-dependent study, boundary conditions) were identical to Sim~4.
+Because raising a negative number to a non-integer power is 
+impossible, the $\text{sign}(\cdot)|\cdot|^p$ formulation separates sign and magnitude, preserving symmetry for all real~$p$.
+
+In COMSOL, the traces were positioned at the $y_i$ computed from \Cref{eq:chebyshev}. The exponent $p$ was 
+defined as a global parameter so that it could be used in a parametric sweep and it became possible to 
+automatically regenerate the geometry and re-solve for each value of~$p$. All other model settings (material: Pd--Ag alloy, $\sigma_\text{eff}$ correction, time-dependent 
+study, boundary conditions) were kept identical to Sim~4.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.48\textwidth]{Sim5 geometry — Chebyshev p = 0.7.png}
     \hfill
     \includegraphics[width=0.48\textwidth]{Sim5 geometry — Chebyshev p = 1.3.png}
-    \caption{Chebyshev trace spacing for (a)~$p = 0.7$ (near-uniform) and (b)~$p = 1.3$ (optimal). Edge gaps decrease significantly with increasing $p$ while centre gaps widen.}
+    \caption{Chebyshev trace spacing for (a)~$p = 0.7$ (stronger edge clustering, wider centre gap) and (b)~$p = 1.3$ (optimal). Centre gaps decrease with increasing $p$ while edge gaps widen.}
     \label{fig:sim5-geometry}
 \end{figure}
 
@@ -312,11 +356,14 @@ Three values of $p$ were tested first to establish the feasibility of the approa
     \item $p = 0.7$: \textbf{never reaches dew point} --- steady-state $T_\text{min} = \SI{282.06}{\kelvin}$
 \end{itemize}
 
-The $p = 1.0$ result is dramatic: defrost time is reduced from \SI{12}{\minute} (uniform) to \SI{7}{\minute} --- a 42\% improvement with exactly the same number of traces, same material, and same voltage. However, reducing $p$ below 1.0 removes too much edge clustering and the cold spots return.
+Already for $p = 1.0$ an improvement can be noticed with a time reduction
+from \SI{12}{\minute} (uniform) to \SI{7}{\minute}, a 42\% improvement 
+with the same number of traces, same material, and same voltage. 
+However, reducing $p$ below 1.0 removes too much edge clustering 
+and the cold spots return.
 
-To find the optimal exponent, a parametric sweep was performed over $p \in \{0.7, 0.8, 0.9, 0.95, 1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0, 3.0\}$. All runs use 20~traces of Pd--Ag alloy at $V_\text{in} = \SI{12}{\volt}$. The trace $y$-positions were expressed parametrically in terms of $p$, so COMSOL automatically updates the geometry for each sweep value.
-
-The results are presented in \Cref{tab:sim5-p-sweep} and plotted in \Cref{fig:sim5-p-sweep}.
+To find the optimal exponent, a parametric sweep was performed for various 
+values for p, the results are presented in \Cref{tab:sim5-p-sweep} and plotted in \Cref{fig:sim5-p-sweep}.
 
 \begin{table}[H]
     \centering
@@ -354,13 +401,20 @@ The results are presented in \Cref{tab:sim5-p-sweep} and plotted in \Cref{fig:si
     \label{fig:sim5-p-sweep}
 \end{figure}
 
-The optimum is clearly at $p = 1.3$: it achieves the highest minimum temperature at the 6-minute mark (\SI{283.20}{\kelvin}) and the highest steady-state $T_\text{min}$ (\SI{295.0}{\kelvin}). The physical interpretation is:
-
-\begin{itemize}
-    \item \textbf{$p < 1.0$:} Insufficient edge clustering. The edges remain cold, and the centre is over-heated with closely spaced traces --- reproducing the original problem.
-    \item \textbf{$p = 1.0$--$1.3$:} Increasing $p$ progressively moves more traces to the edges, heating the cold spots more effectively. The centre gap widens but the glass thermal conductivity is sufficient to bridge it.
-    \item \textbf{$p > 1.3$:} Over-clustering at edges. The centre becomes a cold spot because the traces are too far apart. At $p = 2.0$ the cosine-squared creates three clusters (two edges plus centre), and at $p = 3.0$ the clustering is too sharp for the window height.
-\end{itemize}
+The optimum is clearly at $p = 1.3$, see \cref{fig:sim5-p-sweep}: it achieves the highest minimum 
+temperature at the 6-minute mark (\SI{283.20}{\kelvin}) and the 
+highest steady-state $T_\text{min}$ (\SI{295.0}{\kelvin}) as can be seen in 
+\cref{fig:sim5-temp-distribution}. 
+Since the Chebyshev function is a periodic function it is not said that 
+increasing or decreasing the p-value will lead to optimal behaviour. 
+The same pattern will repeat itself for higher values of p but the wavelength
+will increase and the clusters are not visible anymore for the 
+respective window height.
+% \begin{itemize}
+%     \item \textbf{$p < 1.0$:} Insufficient edge clustering. The edges remain cold, and the centre is over-heated with closely spaced traces --- reproducing the original problem.
+%     \item \textbf{$p = 1.0$--$1.3$:} Increasing $p$ progressively moves more traces to the edges, heating the cold spots more effectively. The centre gap widens but the glass thermal conductivity is sufficient to bridge it.
+%     \item \textbf{$p > 1.3$:} Over-clustering at edges. The centre becomes a cold spot because the traces are too far apart. At $p = 2.0$ the cosine-squared creates three clusters (two edges plus centre), and at $p = 3.0$ the clustering is too sharp for the window height.
+% \end{itemize}
 
 \begin{figure}[H]
     \centering
@@ -373,11 +427,27 @@ The optimum is clearly at $p = 1.3$: it achieves the highest minimum temperature
 
 \subsection{Practical Considerations}
 
-An important practical constraint for rear window trace patterns is driver visibility. Per the SAE~J216 standard, obscuration of the rear vision area should not exceed 5\% in the primary zone \cite{sayer1999}. For 20~traces with $w_\text{trace} = \SI{1.7}{\milli\metre}$:
+
+An important practical constraint for rear window trace patterns is driver visibility. Per the SAE~J216 standard, 
+obscuration of the rear vision area should not exceed 5\% in the primary zone \cite{sayer1999}. 
+For 20~traces with $w_\text{trace} = \SI{1.7}{\milli\metre}$:
 \begin{equation}
     \text{Obscuration} = \frac{n_\text{traces} \times w_\text{trace}}{H_\text{glass}} = \frac{20 \times 1.7}{800} = 4.25\%
     \label{eq:obscuration}
 \end{equation}
-This is well within the 5\% limit regardless of the spacing pattern, since the total trace area is unchanged. The Chebyshev spacing only redistributes the same number of traces, so visibility is not affected.
+This is well within the 5\% limit regardless of the spacing pattern, since the total trace area is unchanged. 
+The Chebyshev spacing only redistributes the same number of traces, so visibility is not affected. Additionally, 
+UNECE Regulation No.~43 requires a minimum light transmittance of 70\% for safety glazing in vehicles~\cite{unece_r43}, 
+which is easily satisfied given the low obscuration ratio.
 
-Adding vertical traces between the horizontal ones was considered to create a grid pattern. However, analysis showed this would be ineffective: since all parallel horizontal traces are at the same voltage at any given $x$-position, vertical connectors between them would have zero potential difference ($\Delta V = 0$) and carry no current. Variable-width traces could create voltage differences enabling vertical current flow, but this adds significant manufacturing complexity without clear benefit over optimising the horizontal spacing alone.
+
+\textcolor{red}{Check if this is necessary to add because it indicates something we didnt do out of laziness}
+
+As a further form of optimization it was considered to add vertical traced connecting the horizontal ones.
+
+Adding vertical traces between the horizontal ones was considered to create a grid pattern. 
+However, analysis showed this would be ineffective: since all parallel horizontal traces are at 
+the same voltage at any given $x$-position, vertical connectors between them would have zero 
+potential difference ($\Delta V = 0$) and carry no current. Variable-width traces could create 
+voltage differences enabling vertical current flow, but this adds significant manufacturing 
+complexity without clear benefit over optimising the horizontal spacing alone.

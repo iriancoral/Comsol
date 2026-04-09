@@ -8,6 +8,8 @@
 \section{Transient Defrost Performance}
 \label{sec:defrost-results}
 % ------------------------------------------------------------
+SEBTAIN PART 
+
 
 The transient defrost times for all tested configurations are presented in \Cref{tab:defrost-pdag,tab:defrost-nichrome}. These results are from the fine-mesh simulation (189,192~domain elements).
 
@@ -60,6 +62,9 @@ Pd--Ag alloy consistently defrosts faster than Nichrome~V at the same trace coun
 \label{sec:temp-distribution}
 % ------------------------------------------------------------
 
+CHECK AGAIN WRON PIC
+
+
 \Cref{fig:temp-distribution-final} shows the steady-state temperature distribution for the recommended design (Pd--Ag alloy, 20~traces, \SI{12}{\volt}).
 
 \begin{figure}[H]
@@ -81,6 +86,7 @@ Pd--Ag alloy consistently defrosts faster than Nichrome~V at the same trace coun
 \section{Effect of Trace Material Conductivity}
 \label{sec:material-discussion}
 % ------------------------------------------------------------
+SEBTAIN?
 
 A key finding of this study is the strong dependence of defroster performance on the trace electrical conductivity. The Joule heating power per unit length of trace scales as:
 \begin{equation}
@@ -124,8 +130,10 @@ The time-dependent simulation shows that this configuration defrosts in \SI{11}{
     \label{fig:sim4-results}
 \end{figure}
 
-The Chebyshev approach (\Cref{eq:chebyshev}) is far more effective. With the optimal exponent $p = 1.3$, the edge gaps shrink to $\sim\SI{3}{\milli\metre}$ while the widest centre gap reaches $\sim\SI{55}{\milli\metre}$. Despite this extreme non-uniformity, the glass conductivity bridges the centre gap and the overall $T_\text{min}$ increases substantially because the previously cold edges are now directly heated.
+The Chebyshev approach (\Cref{eq:chebyshev}) is far more effective. With the optimal exponent $p = 1.3$ 
+there is a better distribution of the traces on the rear window and so optimizing the heating. 
 
+THIS PICTURE IS ALREADY IN THE REPORT
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.48\textwidth]{Temperature distribution at t = 360s.png}
@@ -163,35 +171,11 @@ The Chebyshev $p = 1.3$ spacing halves the defrost time compared to uniform spac
 
 \subsection{Strengths}
 
-\begin{itemize}
-    \item With Chebyshev spacing ($p = 1.3$), the final design (Pd--Ag alloy, 20~traces, \SI{12}{\volt}) achieves a steady-state $T_\text{min}$ of \SI{295.0}{\kelvin} --- \SI{12}{\kelvin} above the dew point --- and defrosts in only \SI{6}{\minute}. With uniform spacing, the same configuration takes \SI{12}{\minute}. The improvement comes purely from trace placement, at zero additional cost.
-
-    \item The thermal stresses are within safe limits (safety factor $\sim 3.1 \times$) and the design operates at nominal \SI{12}{\volt} battery voltage, meaning it works even with the engine off.
-
-    \item The parametric approach (sweeping material, trace count, voltage, and spacing exponent) provides a comprehensive design map that allows easy trade-off analysis for different requirements.
-
-    \item The multiphysics coupling between Electric Currents, Heat Transfer, and Solid Mechanics captures the essential physics of the defroster operation.
-
-    \item The mesh convergence study confirms that results are mesh-independent for the recommended configurations.
-
-    \item The boundary conditions ($h_\text{ext}$, $h_\text{int}$) are supported by published experimental data \cite{hozejowska2019}.
-
-    \item The sequential solve strategy for the stress analysis overcomes the COMSOL~6.2 spatial frame limitation while still capturing the thermal stress state.
-\end{itemize}
+With Chebyshev spacing ($p = 1.3$), the final design (Pd--Ag alloy, 20~traces, \SI{12}{\volt}) achieves a steady-state $T_\text{min}$ of \SI{295.0}{\kelvin} --- \SI{12}{\kelvin} above the dew point --- and defrosts in only \SI{6}{\minute}, compared to \SI{12}{\minute} with uniform spacing. This improvement comes purely from trace placement, at zero additional cost. The thermal stresses remain within safe limits (safety factor $\sim 3.1 \times$) and the design operates at nominal \SI{12}{\volt} battery voltage, meaning it works even with the engine off. The parametric approach --- sweeping material, trace count, voltage, and spacing exponent --- provides a comprehensive design map that allows easy trade-off analysis for different requirements. The multiphysics coupling between Electric Currents, Heat Transfer, and Solid Mechanics captures the essential physics of the defroster operation, and the mesh convergence study confirms that results are mesh-independent for the recommended configurations. The boundary conditions ($h_\text{ext}$, $h_\text{int}$) are supported by published experimental data~\cite{hozejowska2019}, and the sequential solve strategy for the stress analysis overcomes the COMSOL~6.2 spatial frame limitation while still capturing the thermal stress state.
 
 \subsection{Limitations, Future Work, and Broader Implications}
 
-\begin{itemize}
-    \item \textbf{2D approximation:} The model uses a flat 2D geometry. A real rear window is curved, which affects heat flux distribution and stress concentrations. A 3D simulation with curved glass would be more realistic.
-
-    \item \textbf{Fixed boundary conditions:} The fixed constraint at the glass edges overestimates the peak stress. Modelling the rubber seal as an elastic support would give more realistic stress values.
-
-    \item \textbf{Constant heat transfer coefficients:} In reality, $h_\text{ext}$ depends on vehicle speed (forced convection) and $h_\text{int}$ depends on cabin HVAC settings. A weather condition sweep varying $T_\text{amb}$, $T_\text{dew}$, and $h_\text{ext}$ across climate scenarios would test design robustness.
-
-    \item \textbf{Material property validation:} The EduPack values for Pd--Ag alloy are for bulk material. Screen-printed thick-film pastes may have different effective properties. Experimental validation with a physical prototype is recommended.
-
-    \item \textbf{Contact resistance:} The model does not account for electrical contact resistance between traces and bus bars, which may reduce the effective heating power.
-\end{itemize}
+Several simplifications limit the fidelity of the current model. The 2D flat geometry does not capture the curvature of a real rear window, which affects heat flux distribution and stress concentrations; a 3D simulation would be more realistic. The fixed constraint at the glass edges overestimates the peak stress, and modelling the rubber seal as an elastic support would yield more accurate values. The heat transfer coefficients are held constant, whereas in reality $h_\text{ext}$ depends on vehicle speed (forced convection) and $h_\text{int}$ on cabin HVAC settings; a weather condition sweep varying $T_\text{amb}$, $T_\text{dew}$, and $h_\text{ext}$ across climate scenarios would test design robustness. Furthermore, the EduPack material properties for the Pd--Ag alloy correspond to bulk material, while screen-printed thick-film pastes may behave differently, making experimental validation with a physical prototype recommended. Finally, the model does not account for electrical contact resistance between traces and bus bars, which may reduce the effective heating power.
 
 The Chebyshev spacing result has broader implications beyond this specific defroster. The key insight is that \textbf{non-uniform spatial distribution of heat sources}, optimised using a single continuous parameter, can be as effective as changing materials or operating conditions. This principle applies to any distributed heating or cooling problem where temperature uniformity is the objective.
 
