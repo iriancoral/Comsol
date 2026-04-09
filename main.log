@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.8)  9 APR 2026 22:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.8)  9 APR 2026 23:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1425,16 +1425,16 @@ Package pdftex.def Info: images/Temperature distribution at t = 360s.png  used o
 <images/6-8-6 temperature distribution.png, id=341, 660.21657pt x 343.2825pt>
 File: images/6-8-6 temperature distribution.png Graphic file (type png)
 <use images/6-8-6 temperature distribution.png>
-Package pdftex.def Info: images/6-8-6 temperature distribution.png  used on input line 126.
+Package pdftex.def Info: images/6-8-6 temperature distribution.png  used on input line 130.
 (pdftex.def)             Requested size: 232.17242pt x 120.71637pt.
 File: images/Temperature distribution at t = 360s.png Graphic file (type png)
 <use images/Temperature distribution at t = 360s.png>
-Package pdftex.def Info: images/Temperature distribution at t = 360s.png  used on input line 139.
+Package pdftex.def Info: images/Temperature distribution at t = 360s.png  used on input line 143.
 (pdftex.def)             Requested size: 232.17242pt x 120.71637pt.
 <images/Plot of Tmin vs time for Chebyshev p values and zoned with dew point line.png, id=343, 566.8377pt x 351.4731pt>
 File: images/Plot of Tmin vs time for Chebyshev p values and zoned with dew point line.png Graphic file (type png)
 <use images/Plot of Tmin vs time for Chebyshev p values and zoned with dew point line.png>
-Package pdftex.def Info: images/Plot of Tmin vs time for Chebyshev p values and zoned with dew point line.png  used on input line 141.
+Package pdftex.def Info: images/Plot of Tmin vs time for Chebyshev p values and zoned with dew point line.png  used on input line 145.
 (pdftex.def)             Requested size: 232.17242pt x 143.9601pt.
  [19 <./images/6-8-6 temperature distribution.png (PNG copy)> <./images/Plot of Tmin vs time for Chebyshev p values and zoned with dew point line.png>]) (5.tex [20]
 Chapter 5.
@@ -1451,17 +1451,17 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 0D991E66FB8B92CB1D4E45B9404B1491;6267.
  ) 
 Here is how much of TeX's memory you used:
- 33484 strings out of 467871
- 682997 string characters out of 5418377
+ 33480 strings out of 467871
+ 682908 string characters out of 5418377
  1040952 words of memory out of 5000000
- 61688 multiletter control sequences out of 15000+600000
+ 61685 multiletter control sequences out of 15000+600000
  706031 words of font info for 100 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,14n,117p,1439b,1141s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,14n,117p,773b,1141s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Irian\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/google/roboto/RobotoSlab-Bold.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/google/roboto/RobotoSlab-Regular.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on main.pdf (24 pages, 2193389 bytes).
+Output written on main.pdf (24 pages, 2192525 bytes).
 PDF statistics:
- 485 PDF objects out of 1000 (max. 8388607)
- 125 named destinations out of 1000 (max. 500000)
+ 483 PDF objects out of 1000 (max. 8388607)
+ 124 named destinations out of 1000 (max. 500000)
  344 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -115,9 +115,13 @@ where $\sigma_\text{eff}$ is the effective 2D conductivity from \Cref{eq:sigma-e
 \label{sec:pattern-results}
 % ------------------------------------------------------------
 
-Two approaches to non-uniform trace spacing were investigated: a discrete zoned layout (Approach~A, Sim~4) and a continuous Chebyshev distribution (Approach~B, Sim~5). Both use 20~traces of Pd--Ag alloy at $V_\text{in} = \SI{12}{\volt}$ to allow direct comparison with the uniform baseline.
+Two approaches to non-uniform trace spacing were analyzed: a discrete zoned layout (Approach~A, Sim~4) and a 
+continuous Chebyshev distribution (Approach~B, Sim~5). Both use 20~traces of Pd--Ag alloy at $V_\text{in} = \SI{12}{\volt}$ 
+to make sure the simulations are directly comparable to the uniform baseline (Sim~3).
 
-The zoned configuration places 6~traces in the top \SI{200}{\milli\metre}, 8~traces in the middle \SI{400}{\milli\metre}, and 6~traces in the bottom \SI{200}{\milli\metre}. This reduces the edge gap from \SI{38.1}{\milli\metre} (uniform) to \SI{28.6}{\milli\metre} while widening the centre gap to \SI{44.4}{\milli\metre}.
+The zoned configuration places 6~traces in the top \SI{200}{\milli\metre}, 8~traces in the middle \SI{400}{\milli\metre} 
+and 6~traces in the bottom \SI{200}{\milli\metre}. This reduces the edge gap from \SI{38.1}{\milli\metre} (uniform) to \SI{28.6}{\milli\metre} 
+while widening the centre gap to \SI{44.4}{\milli\metre}.
 
 The time-dependent simulation shows that this configuration defrosts in \SI{11}{\minute} (vs.\ \SI{12}{\minute} for uniform) and reaches a steady-state $T_\text{min}$ of \SI{289.3}{\kelvin} (vs.\ \SI{288.2}{\kelvin}). The improvement is modest: \SI{1}{\minute} faster defrost and \SI{1.1}{\kelvin} higher $T_\text{min}$.
 
@@ -171,18 +175,67 @@ The Chebyshev $p = 1.3$ spacing halves the defrost time compared to uniform spac
 
 \subsection{Strengths}
 
-With Chebyshev spacing ($p = 1.3$), the final design (Pd--Ag alloy, 20~traces, \SI{12}{\volt}) achieves a steady-state $T_\text{min}$ of \SI{295.0}{\kelvin} --- \SI{12}{\kelvin} above the dew point --- and defrosts in only \SI{6}{\minute}, compared to \SI{12}{\minute} with uniform spacing. This improvement comes purely from trace placement, at zero additional cost. The thermal stresses remain within safe limits (safety factor $\sim 3.1 \times$) and the design operates at nominal \SI{12}{\volt} battery voltage, meaning it works even with the engine off. The parametric approach --- sweeping material, trace count, voltage, and spacing exponent --- provides a comprehensive design map that allows easy trade-off analysis for different requirements. The multiphysics coupling between Electric Currents, Heat Transfer, and Solid Mechanics captures the essential physics of the defroster operation, and the mesh convergence study confirms that results are mesh-independent for the recommended configurations. The boundary conditions ($h_\text{ext}$, $h_\text{int}$) are supported by published experimental data~\cite{hozejowska2019}, and the sequential solve strategy for the stress analysis overcomes the COMSOL~6.2 spatial frame limitation while still capturing the thermal stress state.
+With the use of Chebyshev spacin the final design is able to achie a steady-state 
+$T_\text{min}$ of \SI{295.0}{\kelvin}, \SI{12}{\kelvin} above the dew point and only in \SI{6}{\minute} compared 
+to \SI{12}{\minute} with uniform spacing. This improvement comes only from trace placement, at zero additional cost.
+The thermal stresses remain within \textcolor{red}{textsafe limits (safety factor $\sim 3.1 \times$) and the design operates at nominal} CHECK IF TRUE 
+\SI{12}{\volt} battery voltage, meaning it works even with the engine off.
+
+\textcolor{red}{The parametric approach --- sweeping material, 
+trace count, voltage, and spacing exponent --- provides a comprehensive design map that allows easy trade-off analysis 
+for different requirements. The multiphysics coupling between Electric Currents, Heat Transfer, and Solid Mechanics 
+captures the essential physics of the defroster operation, and the mesh convergence study confirms that results are 
+mesh-independent for the recommended configurations. The boundary conditions ($h_\text{ext}$, $h_\text{int}$) are 
+supported by published experimental data~\cite{hozejowska2019}, and the sequential solve strategy for the stress 
+analysis overcomes the COMSOL~6.2 spatial frame limitation while still capturing the thermal stress state. I DONT THINK THIS IS 
+NECESSARY}
 
 \subsection{Limitations, Future Work, and Broader Implications}
 
-Several simplifications limit the fidelity of the current model. The 2D flat geometry does not capture the curvature of a real rear window, which affects heat flux distribution and stress concentrations; a 3D simulation would be more realistic. The fixed constraint at the glass edges overestimates the peak stress, and modelling the rubber seal as an elastic support would yield more accurate values. The heat transfer coefficients are held constant, whereas in reality $h_\text{ext}$ depends on vehicle speed (forced convection) and $h_\text{int}$ on cabin HVAC settings; a weather condition sweep varying $T_\text{amb}$, $T_\text{dew}$, and $h_\text{ext}$ across climate scenarios would test design robustness. Furthermore, the EduPack material properties for the Pd--Ag alloy correspond to bulk material, while screen-printed thick-film pastes may behave differently, making experimental validation with a physical prototype recommended. Finally, the model does not account for electrical contact resistance between traces and bus bars, which may reduce the effective heating power.
+In order to complete the analyses approximations have been made that lower 
+the accuracy of the present analysis. 
+The use of 2D planar geometry is not accurate as it fails to consider 
+the actual curved shape of the rear 
+windshield, which influences the heat flux and stress distribution; a 3D 
+analysis would have been more realistic. The application of fixed boundary conditions 
+at the glass edges is an overestimation of the maximum stress levels as realistically they would
+be lower. Using elastic 
+springs instead of rigid supports to model the rubber gasket would produce more realistic 
+results, since a rear window is supported by an elastic seal and the car frame. Heat transfer 
+coefficients are kept fixed throughout the analysis, however, in reality, $h_\text{ext}$ 
+varies with vehicle speed due to convection, while $h_\text{int}$ depends on the 
+cabin airflow conditions set by the internal air conditioning system. Using
+variable climatic conditions and varying $T_\text{amb}$, $T_\text{dew}$, and $h_\text{ext}$ would 
+give more realistic results. 
+Furthermore, the material properties used were referenced from the EduPack database for bulk materials. 
+The thick-film paste used in screen printing may have different properties due to the manufacturing process and microstructure, 
+which could also affect the heating performance.
 
-The Chebyshev spacing result has broader implications beyond this specific defroster. The key insight is that \textbf{non-uniform spatial distribution of heat sources}, optimised using a single continuous parameter, can be as effective as changing materials or operating conditions. This principle applies to any distributed heating or cooling problem where temperature uniformity is the objective.
 
-In the context of automotive defrosters, the Chebyshev approach could be directly applied to front windshield defrosters (where driver visibility constraints are even more stringent) or to heated mirrors. The $p$-parameter provides a simple manufacturing specification: a single number that fully defines the trace layout for any given window height and trace count.
+The Chebyshev spacing result has broader implications beyond the rear window heating trace pattern. The key insight is that 
+non-uniform spatial distribution of heat sources, optimised using a single continuous parameter, can 
+be as effective as changing materials or operating conditions. This principle applies to any distributed heating 
+or cooling problem where temperature uniformity has to be achieved.
 
-Furthermore, the observation that bulk-conductivity materials (Silver, Gold) overheat catastrophically in this geometry has a practical consequence: screen-printed thick-film pastes are not merely a cost-saving alternative to bulk metals --- they are \emph{functionally necessary} for the correct thermal behaviour. This finding is consistent with the industrial practice of using Pd--Ag and Ag paste formulations with controlled conductivity \cite{prudenziati2012}.
 
-\textbf{STILL DO: ELEMENT ORDER CONVERGENCE ANALYSIS} --- comparing linear vs.\ quadratic elements for the Joule heating/temperature solution to verify that the default element order is sufficient.
 
-\textbf{STILL DO: ADAPTIVE MESH REFINEMENT ANALYSIS} --- using COMSOL's adaptive mesh refinement to verify error control near the trace boundaries where temperature gradients are steepest.
+
+% In the context of automotive defrosters, the Chebyshev approach could be directly applied to front windshield defrosters 
+% (where driver visibility constraints are even more stringent) or to heated mirrors. The $p$-parameter provides a 
+% simple manufacturing specification: a single number that fully defines the trace layout for any given window height 
+% and trace count.
+
+% Furthermore, the observation that bulk-conductivity materials (Silver, Gold) overheat catastrophically in this geometry 
+% has a practical consequence: screen-printed thick-film pastes are not merely a cost-saving alternative to bulk 
+% metals --- they are \emph{functionally necessary} for the correct thermal behaviour. This finding is consistent 
+% with the industrial practice of using Pd--Ag and Ag paste formulations with controlled conductivity \cite{prudenziati2012}.
+
+
+
+
+
+\textbf{STILL DO: ELEMENT ORDER CONVERGENCE ANALYSIS} --- comparing linear vs.\ quadratic elements for the Joule 
+heating/temperature solution to verify that the default element order is sufficient.
+
+\textbf{STILL DO: ADAPTIVE MESH REFINEMENT ANALYSIS} --- using COMSOL's adaptive mesh refinement to verify error 
+control near the trace boundaries where temperature gradients are steepest.
