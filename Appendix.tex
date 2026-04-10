@@ -1,0 +1,129 @@
+\appendix
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{lstlisting}[language=MATLAB]
+
+% clf; clear; close all;
+
+% % Assignment of constant design parameter values
+% springparams1;
+
+% % Additional parameters
+% Tau12max = 600e6;                 % Pa
+% freq1lb  = ncamfac * nm * 0.5;    % Hz 
+
+% Av    = Dv^2 * pi/4;              % m^2
+% F1min = Av * p1;                  % N
+% F2min = Av * p2;                  % N
+
+% % Matrix of output values for combinations of design variables D and d
+% D = [0.020:0.001:0.040];
+% d = [0.0020:0.0002:0.0050];
+
+% % Pre-allocate
+% f  = zeros(length(d), length(D));
+% g1 = zeros(length(d), length(D));
+% g2 = zeros(length(d), length(D));
+% g3 = zeros(length(d), length(D));
+% g4 = zeros(length(d), length(D));
+% g5 = zeros(length(d), length(D));
+
+% for j = 1:length(d)
+%     for i = 1:length(D)
+
+%         [svol, smass, bvol, matc, manc, Lmin, L2, k, F1, F2, Tau1, Tau2, freq1] = ...
+%             springanalysis1(D(i), d(j), L0, L1, n, E, G, rho, Dv, h, p1, p2, nm, ncamfac, nne, matp, bldp);
+
+%         % Objective (unscaled): minimize mass
+%         f(j,i) = smass;
+
+%         g1(j,i) = (Lmin / L2) - 1;          
+%         g2(j,i) = (F1min / F1) - 1;          
+%         g3(j,i) = (F2min / F2) - 1;          
+%         g4(j,i) = (Tau2 / Tau12max) - 1;     
+%         g5(j,i) = (freq1lb / freq1) - 1;     
+
+%     end
+% end
+
+% % Contour plot of objective and constraints
+% figure(1)
+% contour(D, d, f, 'ShowText', 'on', 'LabelSpacing', 500);
+% hold on
+
+% % Constraint boundaries (g = 0)
+% contour(D, d, g1, [0 0], 'r', 'LineWidth', 1.5)
+% contour(D, d, g2, [0 0], 'g', 'LineWidth', 1.5)
+% contour(D, d, g3, [0 0], 'k', 'LineWidth', 1.5)
+% contour(D, d, g4, [0 0], 'b', 'LineWidth', 1.5)
+% contour(D, d, g5, [0 0], 'c', 'LineWidth', 1.5)
+
+% % Extra contour levels (>0) as dashed lines to show infeasible side
+% contour(D, d, g1, [0.005 0.005], '--r', 'LineWidth', 1)
+% contour(D, d, g2, [0.01  0.01 ], '--g', 'LineWidth', 1)
+% contour(D, d, g3, [0.05  0.05 ], '--k', 'LineWidth', 1)
+% contour(D, d, g4, [0.01  0.01 ], '--b', 'LineWidth', 1)
+% contour(D, d, g5, [0.01  0.01 ], '--c', 'LineWidth', 1)
+
+% title('Transformed and scaled optimization problem')
+% xlabel('D (m)')
+% ylabel('d (m)')
+% legend('smass', 'g1', 'g2', 'g3', 'g4', 'g5', 'Location', 'best')
+% grid on
+% hold off
+% \end{lstlisting}

@@ -1,0 +1,141 @@
+% ============================================================
+\chapter{Model Validation}
+\label{ch:validation}
+% ============================================================
+
+
+% ------------------------------------------------------------
+\section{Mesh Convergence Study}
+\label{sec:mesh-convergence}
+% ------------------------------------------------------------
+
+A mesh convergence study was performed to verify that all results are independent of mesh resolution. The study was carried out using a stationary Electric Currents and Heat Transfer solve under the Sim~6 Scenario~1 conditions (mild winter: $T_\text{amb} = \SI{2}{\celsius}$, $h_\text{ext} = \SI{15}{\watt\per\metre\squared\per\kelvin}$), with the final design (Pd--Ag alloy, 20~traces, Chebyshev $p = 1.3$, $V_\text{in} = \SI{12}{\volt}$). Four physics-controlled mesh levels were tested, from Extra Coarse to Extra Fine.
+
+\begin{table}[H]
+    \centering
+    \caption{Mesh convergence results (stationary EC + HT, Pd--Ag alloy, 20~traces, Chebyshev $p = 1.3$, $V_\text{in} = \SI{12}{\volt}$, Scenario~1 conditions).}
+    \label{tab:mesh-convergence}
+    \begin{tabular}{@{}lccc@{}}
+        \toprule
+        \textbf{Mesh level} & \textbf{Domain elements} & $T_\text{min}$ \textbf{(K)} & $\Delta T_\text{min}$ \textbf{vs Extra Fine} \\
+        \midrule
+        Extra Coarse & 185,852  & 281.607 & 0.004\,K \\
+        Coarse       & 241,089  & 281.609 & 0.002\,K \\
+        Fine         & 274,402  & 281.611 & $<$0.001\,K \\
+        Extra Fine   & 319,050  & 281.611 & --- \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The minimum surface temperature varies by only \SI{0.004}{\kelvin} across all four mesh levels, confirming that the solution is fully converged even at Extra Coarse resolution for this geometry. The Fine mesh (274,402 elements) is selected for all simulations as it matches the Extra Fine result to within \SI{0.001}{\kelvin} while keeping solve times practical.
+
+It should be noted that mesh resolution is more critical for configurations where the result falls close to a threshold. For the Nichrome~V material near the dew point:
+\begin{itemize}
+    \item \textbf{Nichrome~V, 18~traces, \SI{12}{\volt}:} A coarse mesh predicted a defrost time of 48~minutes, while the Fine mesh reveals that the steady-state $T_\text{min} = \SI{283.09}{\kelvin}$ remains \emph{below} the dew point --- the window never fully defrosts.
+    \item \textbf{Nichrome~V, 16~traces, \SI{14.5}{\volt}:} The coarse mesh predicted ``Never'', while the Fine mesh gives 59~minutes ($T_\text{min} = \SI{283.152}{\kelvin}$, barely above the dew point).
+\end{itemize}
+
+These borderline cases confirm that the Fine mesh is necessary for reliable results near the dew point threshold, and justify its use throughout this study.
+
+
+% ------------------------------------------------------------
+\section{Comparison to Literature}
+\label{sec:literature-validation}
+% ------------------------------------------------------------
+
+The model physics and boundary condition values are validated against published experimental and numerical studies.
+
+The convection coefficients used in this model ($h_\text{ext} = \SI{15}{\watt\per\metre\squared\per\kelvin}$, $h_\text{int} = \SI{7}{\watt\per\metre\squared\per\kelvin}$) are compared with experimental measurements by Ho\.{z}ejowska et al.\ \cite{hozejowska2019}, who reported measured $h$~values for automotive glass under various driving conditions. Their results support the order of magnitude used in this study, with exterior values in the range \SIrange{10}{25}{\watt\per\metre\squared\per\kelvin} depending on vehicle speed.
+
+R\"uhl et al.\ \cite{ruhl2016} performed coupled finite element simulations of electrically heated glass panes with resistive lines, validated against infrared thermography and thermocouple measurements. Their modelling approach --- coupling electric currents with heat transfer via Joule heating in a 2D representation --- is directly analogous to the physics setup used in this work.
+
+Koshlak et al.\ \cite{koshlak2024} measured that 83--85\% of the heat generated in electrically heated automotive glass is directed inward (toward the cabin side), which is consistent with the asymmetric convection coefficients used in this model ($h_\text{int} < h_\text{ext}$, meaning less heat loss to the interior).
+
+% ------------------------------------------------------------
+\section{Back-of-Envelope Power and Temperature Estimate}
+\label{sec:back-of-envelope}
+% ------------------------------------------------------------
+
+An independent analytical estimate of the steady-state average temperature provides a direct check on the numerical results. The approach is to compute the total Joule heating power from the trace resistance and compare the resulting energy balance temperature with the COMSOL output.
+
+Each trace has electrical resistance:
+\begin{equation}
+    R_\text{trace} = \frac{L_\text{glass}}{\sigma_\text{trace} \cdot w_\text{trace} \cdot t_\text{trace}}
+    \label{eq:trace-resistance}
+\end{equation}
+For the Sim~1 baseline (silver paste, $\sigma = \SI{2e6}{\siemens\per\metre}$):
+\begin{equation}
+    R_\text{trace} = \frac{1.5}{2 \times 10^6 \times 1.7 \times 10^{-3} \times 0.11 \times 10^{-3}} = \SI{4.01}{\ohm}
+\end{equation}
+The power per trace is $P_\text{trace} = V_\text{in}^2 / R_\text{trace} = 144 / 4.01 = \SI{35.9}{\watt}$, and the total power for 12~traces is:
+\begin{equation}
+    P_\text{total} = 12 \times 35.9 = \SI{431}{\watt}
+\end{equation}
+
+Note that this physical power is correctly reproduced in the 2D COMSOL model through the $\sigma_\text{eff}$ correction (\Cref{eq:sigma-eff}): the effective resistance in the model is $R_\text{model} = L_\text{glass}/(\sigma_\text{eff} \cdot w_\text{trace} \cdot t_\text{glass}) = L_\text{glass}/(\sigma_\text{trace} \cdot w_\text{trace} \cdot t_\text{trace}) = R_\text{trace}$.
+
+At steady state, the total Joule heating must equal the convective losses from both sides of the glass:
+\begin{equation}
+    P_\text{total} = (h_\text{ext} + h_\text{int}) \cdot A_\text{glass} \cdot (T_\text{avg} - T_\text{weighted})
+    \label{eq:energy-balance}
+\end{equation}
+where $A_\text{glass} = L_\text{glass} \times H_\text{glass} = \SI{1.2}{\metre\squared}$ and the convection-weighted ambient temperature is:
+\begin{equation}
+    T_\text{weighted} = \frac{h_\text{ext} \cdot T_\text{amb} + h_\text{int} \cdot T_\text{cabin}}{h_\text{ext} + h_\text{int}} = \frac{15 \times 275.15 + 7 \times 293.15}{22} = \SI{280.9}{\kelvin}
+\end{equation}
+
+Solving for $T_\text{avg}$:
+\begin{equation}
+    T_\text{avg} = T_\text{weighted} + \frac{P_\text{total}}{(h_\text{ext} + h_\text{int}) \cdot A_\text{glass}} = 280.9 + \frac{431}{22 \times 1.2} = 280.9 + 16.3 = \SI{297.2}{\kelvin}
+\end{equation}
+
+The COMSOL surface-average temperature for Sim~1 (12~traces, silver paste, \SI{12}{\volt}) is $T_\text{avg} = \SI{297.13}{\kelvin}$. The back-of-envelope estimate gives \SI{297.2}{\kelvin} --- a deviation of only \SI{0.07}{\kelvin} ($<0.03\%$). This excellent agreement confirms that:
+\begin{itemize}
+    \item The $\sigma_\text{eff}$ correction correctly maps the 3D trace geometry to the 2D model
+    \item The Joule heating and convective boundary conditions are consistently implemented
+    \item The total energy balance of the model is accurate
+\end{itemize}
+
+\begin{table}[H]
+    \centering
+    \caption{Back-of-envelope validation of the average temperature for selected configurations.}
+    \label{tab:back-of-envelope}
+    \begin{tabular}{@{}llcccc@{}}
+        \toprule
+        \textbf{Material} & $n_\text{traces}$ & $P_\text{total}$ (W) & $T_\text{avg}^\text{analytical}$ (K) & $T_\text{avg}^\text{COMSOL}$ (K) & \textbf{Error} \\
+        \midrule
+        Silver paste & 12 & 431 & 297.2 & 297.13 & 0.03\% \\
+        Pd--Ag alloy & 14 & 578 & 302.8 & --- \emph{extract from COMSOL} & --- \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\textbf{STILL DO: EXTRACT $T_\text{avg}$ FROM COMSOL FOR Pd--Ag 14-TRACE AND 20-TRACE CONFIGURATIONS TO COMPLETE THE TABLE}
+
+
+
+% ------------------------------------------------------------
+\section{Sensitivity Analysis}
+\label{sec:sensitivity}
+% ------------------------------------------------------------
+
+The parametric sweeps performed in Sim~2 and Sim~2b serve as a de facto sensitivity analysis, showing how the minimum surface temperature responds to changes in the three main design variables.
+
+\begin{table}[H]
+    \centering
+    \caption{Sensitivity of minimum surface temperature to design parameters (Pd--Ag alloy, baseline: 14~traces, \SI{12}{\volt}).}
+    \label{tab:sensitivity}
+    \begin{tabular}{@{}lcc@{}}
+        \toprule
+        \textbf{Parameter change} & $\Delta T_\text{min}$ \textbf{(K)} & \textbf{Sensitivity} \\
+        \midrule
+        $n_\text{traces}$: 14 $\to$ 16 (+2 traces) & +1.40 & \SI{0.70}{\kelvin}/trace \\
+        $V_\text{in}$: 12 $\to$ \SI{14.5}{\volt} (+\SI{2.5}{\volt}) & +1.16 & \SI{0.46}{\kelvin\per\volt} \\
+        Material: Pd--Ag $\to$ Nichrome~V & $-1.49$ & --- \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The results confirm that \textbf{the number of traces is the most influential parameter}, followed by applied voltage. The choice of trace material has a strong effect through its conductivity: higher conductivity produces more Joule heating per unit length of trace.
+
+The external heat transfer coefficient $h_\text{ext}$ is also a sensitive parameter (as noted in the literature \cite{hozejowska2019}), since it directly controls the rate of heat loss from the glass. This was systematically addressed in Sim~6 (\Cref{sec:sim6}), which swept $h_\text{ext}$ alongside $T_\text{amb}$ and $T_\text{dew}$ across five realistic weather scenarios, confirming that the final design remains robust across all tested conditions.
