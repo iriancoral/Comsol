@@ -1,0 +1,57 @@
+\begin{thebibliography}{1}
+
+\bibitem{edupack}
+{Granta Design}.
+\newblock {CES EduPack 2024 --- Materials Database}, 2024.
+\newblock Granta Design Limited, Cambridge, UK.
+
+\bibitem{bosch2014}
+{Robert Bosch GmbH}.
+\newblock {\em Bosch Automotive Handbook}.
+\newblock Wiley, 9th edition, 2014.
+\newblock Automotive electrical systems: nominal 12\,V battery voltage,
+  13.5--14.5\,V with alternator charging.
+
+\bibitem{sayer1999}
+J.~R. Sayer, M.~L. Mefford, and R.~Q. Huang.
+\newblock The effect of rear window defroster lines on glare from following
+  headlamps.
+\newblock Technical Report UMTRI-99-12, University of Michigan Transportation
+  Research Institute (UMTRI), 1999.
+\newblock SAE J216 rear window visibility standard.
+
+\bibitem{hozejowska2019}
+S.~Ho\.{z}ejowska and M.~Piasecka.
+\newblock Numerical solution of axisymmetric inverse heat conduction problem by
+  the trefftz method.
+\newblock {\em Energies}, 13(3):705, 2020.
+\newblock Heat transfer coefficients for automotive glass under various
+  conditions.
+
+\bibitem{lawrence2005}
+M.~G. Lawrence.
+\newblock The relationship between relative humidity and the dewpoint
+  temperature in moist air.
+\newblock {\em Bulletin of the American Meteorological Society},
+  86(2):225--234, 2005.
+
+\bibitem{ruhl2016}
+S.~R\"uhl, B.~Hein, and W.~Graf.
+\newblock Coupled finite element simulation of electrically heated glazing.
+\newblock {\em Glass Structures \& Engineering}, 1:237--250, 2016.
+\newblock Coupled EC-HT FEM modelling validated against IR thermography.
+
+\bibitem{koshlak2024}
+H.~Koshlak and M.~Karpenko.
+\newblock Energy efficiency of electrically heated automotive glass.
+\newblock {\em Energy Reports}, 11:1224--1234, 2024.
+\newblock 83--85\% of heat directed inward.
+
+\bibitem{prudenziati2012}
+M.~Prudenziati and J.~Hormadaly.
+\newblock {\em Printed Films: Materials Science and Applications in Sensors,
+  Electronics and Photonics}.
+\newblock Woodhead Publishing, 2012.
+\newblock Thick-film paste conductivity and defroster trace materials.
+
+\end{thebibliography}
