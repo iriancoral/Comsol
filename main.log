@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.8)  9 APR 2026 23:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.8)  11 APR 2026 21:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1329,16 +1329,16 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 164.
  [3]) (2.tex [4]
 Chapter 2.
-<images/Sim1 —voltage distribution.png, id=198, 700.11563pt x 427.5975pt>
+<images/Sim1 —voltage distribution.png, id=198, 658.71094pt x 307.90031pt>
 File: images/Sim1 —voltage distribution.png Graphic file (type png)
 <use images/Sim1 —voltage distribution.png>
 Package pdftex.def Info: images/Sim1 —voltage distribution.png  used on input line 56.
-(pdftex.def)             Requested size: 232.17242pt x 141.79921pt.
-<images/Sim1 —temperature distribution.png, id=199, 700.11563pt x 427.5975pt>
+(pdftex.def)             Requested size: 232.17242pt x 108.52312pt.
+<images/Sim1 —temperature distribution.png, id=199, 658.71094pt x 307.90031pt>
 File: images/Sim1 —temperature distribution.png Graphic file (type png)
 <use images/Sim1 —temperature distribution.png>
 Package pdftex.def Info: images/Sim1 —temperature distribution.png  used on input line 58.
-(pdftex.def)             Requested size: 232.17242pt x 141.79921pt.
+(pdftex.def)             Requested size: 232.17242pt x 108.52312pt.
 [5
 
  <./images/Sim1 —voltage distribution.png (PNG copy)> <./images/Sim1 —temperature distribution.png (PNG copy)>]
@@ -1459,7 +1459,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  99i,14n,117p,773b,1141s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Irian\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/google/roboto/RobotoSlab-Bold.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/google/roboto/RobotoSlab-Regular.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on main.pdf (24 pages, 2192525 bytes).
+Output written on main.pdf (24 pages, 2147445 bytes).
 PDF statistics:
  483 PDF objects out of 1000 (max. 8388607)
  124 named destinations out of 1000 (max. 500000)
