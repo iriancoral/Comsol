@@ -3,7 +3,7 @@
 \label{ch:conclusion}
 % ============================================================
 
-This report presents the design and optimisation of a resistive rear window defroster using coupled multiphysics finite element modelling in COMSOL Multiphysics~6.2. The design was developed iteratively through five simulations addressing thermal performance, material selection, structural integrity, transient response, and trace pattern optimisation.
+This report presents the design and optimisation of a resistive rear window defroster using coupled multiphysics finite element modelling in COMSOL Multiphysics~6.2. The design was developed iteratively through six simulations addressing thermal performance, material selection, structural integrity, transient response, trace pattern optimisation, and weather condition robustness.
 
 The key findings of this study are:
 
@@ -26,6 +26,8 @@ The key findings of this study are:
 
     \item \textbf{Alternative high-performance design:} Pd--Ag alloy, 22~traces, \SI{14.5}{\volt} --- achieves 8-minute defrost time when the engine is running.
 
+    \item \textbf{The final design is robust across all tested weather conditions (Sim~6).} Five scenarios ranging from mild autumn (\SI{10}{\celsius}) to extreme cold (\SI{-20}{\celsius}) and freezing rain ($h_\text{ext} = \SI{40}{\watt\per\metre\squared\per\kelvin}$) were tested, each with a physically realistic dew point \cite{lawrence2005}. All five scenarios defrost within \SI{8}{\minute} with a minimum steady-state margin of \SI{+5.4}{\kelvin} above the dew point, confirming that the design is not tuned to a single favourable condition.
+
     \item \textbf{Chebyshev trace spacing halves the defrost time.} The non-uniform Chebyshev spacing (\Cref{eq:chebyshev}) with exponent $p = 1.3$ reduces the defrost time from \SI{12}{\minute} to \SI{6}{\minute} and raises $T_\text{min}$ by \SI{6.8}{\kelvin} --- without changing the number of traces, material, or voltage. The discrete zoned approach (6/8/6) provides only a modest \SI{1}{\minute} improvement, confirming that a continuous optimisation is needed. The optimal exponent ($p = 1.3$) was found via a 16-point parametric sweep, exploiting COMSOL's ability to parametrically update the geometry.
 
     \item \textbf{Final recommended design:}
@@ -43,4 +45,4 @@ The key findings of this study are:
 
 The simulation methodology --- coupling Electric Currents, Heat Transfer, and Solid Mechanics with parametric sweeps over material properties, geometry, and operating conditions --- provides a systematic framework for defroster design. The model was validated through mesh convergence, back-of-envelope analytical estimates (agreeing to within 0.03\%), and comparison with published experimental data.
 
-The key insight of this study is that \textbf{geometry optimisation} (trace placement) can be equally or more impactful than material or electrical optimisation. The Chebyshev spacing approach provides a mathematically principled, single-parameter design specification that can be applied to any rectangular heated-glass application. Future work should extend the model to 3D curved glass, validate against physical prototypes, and perform weather condition sweeps to test design robustness across climate scenarios.
+The key insight of this study is that \textbf{geometry optimisation} (trace placement) can be equally or more impactful than material or electrical optimisation. The Chebyshev spacing approach provides a mathematically principled, single-parameter design specification that can be applied to any rectangular heated-glass application. Future work should extend the model to 3D curved glass, validate against physical prototypes, and investigate the effect of varying interior convection ($h_\text{int}$) with different cabin HVAC states.

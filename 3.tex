@@ -9,44 +9,33 @@
 \label{sec:mesh-convergence}
 % ------------------------------------------------------------
 
-A mesh convergence study was performed to ensure that the results are independent of the mesh resolution. The transient defrost simulation (Sim~3) was run with two mesh settings: Extra~coarse and Fine. \Cref{tab:mesh-convergence} compares the results for representative configurations.
+A mesh convergence study was performed to verify that all results are independent of mesh resolution. The study was carried out using a stationary Electric Currents and Heat Transfer solve under the Sim~6 Scenario~1 conditions (mild winter: $T_\text{amb} = \SI{2}{\celsius}$, $h_\text{ext} = \SI{15}{\watt\per\metre\squared\per\kelvin}$), with the final design (Pd--Ag alloy, 20~traces, Chebyshev $p = 1.3$, $V_\text{in} = \SI{12}{\volt}$). Four physics-controlled mesh levels were tested, from Extra Coarse to Extra Fine.
 
 \begin{table}[H]
     \centering
-    \caption{Mesh convergence results for the transient defrost study (Pd--Ag alloy, $V_\text{in} = \SI{12}{\volt}$).}
+    \caption{Mesh convergence results (stationary EC + HT, Pd--Ag alloy, 20~traces, Chebyshev $p = 1.3$, $V_\text{in} = \SI{12}{\volt}$, Scenario~1 conditions).}
     \label{tab:mesh-convergence}
-    \begin{tabular}{@{}llcc@{}}
+    \begin{tabular}{@{}lccc@{}}
         \toprule
-        & & \textbf{Extra coarse mesh} & \textbf{Fine mesh} \\
-        & & & (189,192 elements) \\
+        \textbf{Mesh level} & \textbf{Domain elements} & $T_\text{min}$ \textbf{(K)} & $\Delta T_\text{min}$ \textbf{vs Extra Fine} \\
         \midrule
-        \multirow{2}{*}{$n_\text{traces} = 14$} & Defrost time  & 42\,min & 41\,min \\
-                                                  & $T_\text{min}$ (steady) & 283.38\,K & 283.38\,K \\
-        \midrule
-        \multirow{2}{*}{$n_\text{traces} = 20$} & Defrost time  & 12\,min & 12\,min \\
-                                                  & $T_\text{min}$ (steady) & 288.24\,K & 288.24\,K \\
+        Extra Coarse & 185,852  & 281.607 & 0.004\,K \\
+        Coarse       & 241,089  & 281.609 & 0.002\,K \\
+        Fine         & 274,402  & 281.611 & $<$0.001\,K \\
+        Extra Fine   & 319,050  & 281.611 & --- \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-\begin{figure}[H]
-    \centering
-    \fbox{\parbox{0.48\textwidth}{\centering\vspace{2.5cm}\textit{TODO (Sebtain): Extra coarse mesh}\vspace{2.5cm}}}
-    \hfill
-    \fbox{\parbox{0.48\textwidth}{\centering\vspace{2.5cm}\textit{TODO (Sebtain): Fine mesh (189,192 elements)}\vspace{2.5cm}}}
-    \caption{Comparison of mesh densities used in the convergence study. (a)~Extra coarse mesh. (b)~Fine mesh (189,192 domain elements).}
-    \label{fig:mesh-comparison}
-\end{figure}
+The minimum surface temperature varies by only \SI{0.004}{\kelvin} across all four mesh levels, confirming that the solution is fully converged even at Extra Coarse resolution for this geometry. The Fine mesh (274,402 elements) is selected for all simulations as it matches the Extra Fine result to within \SI{0.001}{\kelvin} while keeping solve times practical.
 
-For the Pd--Ag alloy configurations, the stationary temperature results are virtually identical between the two mesh levels, and the transient defrost times agree within 1~minute. This confirms that the Fine mesh provides converged results.
-
-However, the mesh refinement did reveal an important difference for the Nichrome~V material near the dew point boundary:
+It should be noted that mesh resolution is more critical for configurations where the result falls close to a threshold. For the Nichrome~V material near the dew point:
 \begin{itemize}
-    \item \textbf{Nichrome~V, 18~traces, \SI{12}{\volt}:} The coarse mesh predicted a defrost time of 48~minutes, while the fine mesh shows that the steady-state $T_\text{min}$ is only \SI{283.09}{\kelvin} --- \emph{below} the dew point. The window never fully defrosts.
-    \item \textbf{Nichrome~V, 16~traces, \SI{14.5}{\volt}:} The coarse mesh predicted ``Never'', while the fine mesh gives 59~minutes ($T_\text{min} = \SI{283.152}{\kelvin}$, barely above the dew point).
+    \item \textbf{Nichrome~V, 18~traces, \SI{12}{\volt}:} A coarse mesh predicted a defrost time of 48~minutes, while the Fine mesh reveals that the steady-state $T_\text{min} = \SI{283.09}{\kelvin}$ remains \emph{below} the dew point --- the window never fully defrosts.
+    \item \textbf{Nichrome~V, 16~traces, \SI{14.5}{\volt}:} The coarse mesh predicted ``Never'', while the Fine mesh gives 59~minutes ($T_\text{min} = \SI{283.152}{\kelvin}$, barely above the dew point).
 \end{itemize}
 
-These borderline cases highlight the importance of sufficient mesh resolution when results are near a threshold.
+These borderline cases confirm that the Fine mesh is necessary for reliable results near the dew point threshold, and justify its use throughout this study.
 
 
 % ------------------------------------------------------------
@@ -149,4 +138,4 @@ The parametric sweeps performed in Sim~2 and Sim~2b serve as a de facto sensitiv
 
 The results confirm that \textbf{the number of traces is the most influential parameter}, followed by applied voltage. The choice of trace material has a strong effect through its conductivity: higher conductivity produces more Joule heating per unit length of trace.
 
-The external heat transfer coefficient $h_\text{ext}$ is also a sensitive parameter (as noted in the literature \cite{hozejowska2019}), since it directly controls the rate of heat loss from the glass. However, this was not systematically swept in the current study and is recommended as future work.
+The external heat transfer coefficient $h_\text{ext}$ is also a sensitive parameter (as noted in the literature \cite{hozejowska2019}), since it directly controls the rate of heat loss from the glass. This was systematically addressed in Sim~6 (\Cref{sec:sim6}), which swept $h_\text{ext}$ alongside $T_\text{amb}$ and $T_\text{dew}$ across five realistic weather scenarios, confirming that the final design remains robust across all tested conditions.
