@@ -100,11 +100,11 @@ The key conclusion is that \textbf{increasing the number of traces is more effec
 \label{sec:sim2b}
 % ------------------------------------------------------------
 
-Sim~2b extends the parametric sweep to include four candidate trace materials from the CES EduPack database \cite{edupack}. The sweep covers $4 \times 8 \times 4 = 128$ combinations (4~materials, 8~trace counts, 4~voltages).
+Sim~2b extend the parametric sweep to includes four candidate trace materials from the CES EduPack database \cite{edupack}. The sweep is covering $4 \times 8 \times 4 = 128$ combinations (4~materials, 8~trace counts and 4~voltages).
 
-The voltages used reflect the realistic automotive range: \SI{10}{\volt} (battery low), \SI{12}{\volt} (nominal), \SI{13.5}{\volt} (engine running), and \SI{14.5}{\volt} (maximum alternator output).
+The voltages used reflects the realistic automotive range: \SI{10}{\volt} (battery low), \SI{12}{\volt} (nominal), \SI{13.5}{\volt} (engine is running), and \SI{14.5}{\volt} (maximum alternator output).
 
-The minimum number of traces needed to reach the dew point for each material and voltage is shown in \Cref{tab:sim2b-min-traces}.
+The minimum number of traces which is needed to reach the dew point for each material and voltage are shown in \Cref{tab:sim2b-min-traces}.
 
 \begin{table}[H]
     \centering
@@ -122,7 +122,7 @@ The minimum number of traces needed to reach the dew point for each material and
     \end{tabular}
 \end{table}
 
-The full temperature results for the two viable materials (Pd--Ag alloy and Nichrome~V) are shown in \Cref{tab:sim2b-pdag,tab:sim2b-nichrome}.
+The full temperature results for the two viable materials (Pd--Ag alloy and Nichrome~V) is shown in \Cref{tab:sim2b-pdag,tab:sim2b-nichrome}.
 
 \begin{table}[H]
     \centering
@@ -172,9 +172,9 @@ The full temperature results for the two viable materials (Pd--Ag alloy and Nich
 \end{figure}
 
 \begin{itemize}
-    \item \textbf{Silver (commercial purity) and Gold (soft annealed) are not viable} --- their bulk conductivity ($>10^7$\,S/m) is too high for the screen-printed geometry, causing extreme overheating (Silver reaches \SI{625}{\kelvin} at 22~traces, \SI{14.5}{\volt}).
-    \item \textbf{Pd--Ag alloy is the best EduPack material} --- it reaches the dew point at 14~traces (\SI{12}{\volt}+). Temperatures remain in a safe range.
-    \item \textbf{Nichrome~V is viable but requires more traces} (18--22 depending on voltage).
+    \item \textbf{Silver (commercial purity) and Gold (soft annealed) are not viable} --- their bulk conductivity ($>10^7$\,S/m) are too high for the screen-printed geometry, causing extreme overheating (Silver reach \SI{625}{\kelvin} at 22~traces, \SI{14.5}{\volt}).
+    \item \textbf{Pd--Ag alloy is the best EduPack material} --- it reaches the dew point at 14~traces (\SI{12}{\volt}+). The temperatures remains in a safe range.
+    \item \textbf{Nichrome~V is viable but requires more traces} (18--22 depending on the voltage).
 \end{itemize}
 
 
@@ -183,40 +183,64 @@ The full temperature results for the two viable materials (Pd--Ag alloy and Nich
 \label{sec:sim2c}
 % ------------------------------------------------------------
 
-Sim~2c evaluates the thermal stresses for the two shortlisted materials (Pd--Ag alloy and Nichrome~V). Solid Mechanics and Thermal Expansion are re-enabled, and a sequential solve is used:
+Sim~2c evaluate the thermal stresses for the two shortlisted materials (Pd--Ag alloy and Nichrome~V). Silver and Gold was excluded from this analysis as both materials overheats severely in Sim~2b, making them not viable candidate for the defroster design. Since stress analysis are only relevant for materials that actually meets the thermal criteria, there is no point to included them here.
+
+The voltage range were also narrowed down to \SI{12}{\volt} and \SI{14.5}{\volt} only. The \SI{12}{\volt} represents the nominal battery voltage which is the primary operating condition, and \SI{14.5}{\volt} represents the maximum alternator output which is the most worst-case scenario in terms of Joule heating and therefore thermal stress. The intermediate voltages of \SI{10}{\volt} and \SI{13.5}{\volt} was not included as they do not adds additional informations beyond what these two extreme cases already captures.
+
+For the trace count, only configurations from $n_\text{traces} = 14$ to $n_\text{traces} = 22$ was selected. This is because Sim~2b showed that below 14~traces, neither material is able to reaches the dew point at any of the tested voltages, so performing a stress analysis on these configurations would of been pointless.
+
+Solid Mechanics and Thermal Expansion are re-enabled, and a sequential solve were used:
 \begin{itemize}
     \item \textbf{Step 1:} Electric Currents + Heat Transfer (stationary)
     \item \textbf{Step 2:} Solid Mechanics with Thermal Expansion (stationary, using Step~1 temperatures)
 \end{itemize}
 
-This sequential approach avoids the spatial frame conflict (``dvol\_spatial undefined'') encountered when solving all physics simultaneously in COMSOL~6.2.
+This sequential approach avoid the spatial frame conflict (``dvol\_spatial undefined'') which is encountered when solving all the physics simultaneously in COMSOL~6.2.
 
 \begin{table}[H]
     \centering
-    \caption{Von Mises stress results at $V_\text{in} = \SI{12}{\volt}$.}
-    \label{tab:sim2c-stress}
-    \begin{tabular}{@{}lccccc@{}}
+    \caption{Von Mises stress results for Pd--Ag alloy (yield strength = \SI{410}{\mega\pascal}). Safety factor = yield / max stress.}
+    \label{tab:sim2c-stress-pdag}
+    \begin{tabular}{@{}lcccc@{}}
         \toprule
-        \textbf{Material} & $n_\text{traces}$ & \textbf{Max stress (MPa)} & \textbf{Yield (MPa)} & \textbf{Safety factor} \\
+        $n_\text{traces}$ & \textbf{Max stress at \SI{12}{\volt} (MPa)} & \textbf{SF at \SI{12}{\volt}} & \textbf{Max stress at \SI{14.5}{\volt} (MPa)} & \textbf{SF at \SI{14.5}{\volt}} \\
         \midrule
-        Pd--Ag alloy & 14 & 120.3 & 410 & 3.4$\times$ \\
-        Pd--Ag alloy & 18 & 134.5 & 410 & 3.0$\times$ \\
-        Nichrome~V   & 14 & 94.6  & 365 & 3.9$\times$ \\
-        Nichrome~V   & 18 & 102.9 & 365 & 3.5$\times$ \\
+        14 & 120.1 & 3.42$\times$ & 167.7 & 2.44$\times$ \\
+        16 & 126.5 & 3.24$\times$ & 176.9 & 2.32$\times$ \\
+        18 & 133.4 & 3.07$\times$ & 187.0 & 2.19$\times$ \\
+        20 & 141.2 & 2.90$\times$ & 198.4 & 2.07$\times$ \\
+        22 & 150.9 & 2.72$\times$ & 212.6 & 1.93$\times$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Von Mises stress results for Nichrome~V (yield strength = \SI{365}{\mega\pascal}). Safety factor = yield / max stress.}
+    \label{tab:sim2c-stress-nichrome}
+    \begin{tabular}{@{}lcccc@{}}
+        \toprule
+        $n_\text{traces}$ & \textbf{Max stress at \SI{12}{\volt} (MPa)} & \textbf{SF at \SI{12}{\volt}} & \textbf{Max stress at \SI{14.5}{\volt} (MPa)} & \textbf{SF at \SI{14.5}{\volt}} \\
+        \midrule
+        14 & 93.9  & 3.89$\times$ & 124.9 & 2.92$\times$ \\
+        16 & 98.2  & 3.72$\times$ & 131.0 & 2.79$\times$ \\
+        18 & 102.6 & 3.56$\times$ & 137.6 & 2.65$\times$ \\
+        20 & 106.7 & 3.42$\times$ & 143.7 & 2.54$\times$ \\
+        22 & 111.2 & 3.28$\times$ & 150.2 & 2.43$\times$ \\
         \bottomrule
     \end{tabular}
 \end{table}
 
 \begin{figure}[H]
     \centering
-    \fbox{\parbox{0.48\textwidth}{\centering\vspace{2.5cm}\textit{TODO (Sebtain): Sim2c --- von Mises stress, Pd--Ag, 14 traces}\vspace{2.5cm}}}
+    \includegraphics[width=0.48\textwidth]{sim2c_stress_pdag_20traces_12V.png}
     \hfill
-    \fbox{\parbox{0.48\textwidth}{\centering\vspace{2.5cm}\textit{TODO (Sebtain): Sim2c --- von Mises stress, Nichrome~V, 18 traces}\vspace{2.5cm}}}
-    \caption{Von Mises stress distribution at $V_\text{in} = \SI{12}{\volt}$. (a)~Pd--Ag alloy, $n_\text{traces} = 14$. (b)~Nichrome~V, $n_\text{traces} = 18$. Peak stresses concentrate at trace endpoints near the fixed edges.}
+    \includegraphics[width=0.48\textwidth]{sim2c_stress_nichrome_20traces_12V.png}
+    \caption{Von Mises stress distribution at $V_\text{in} = \SI{12}{\volt}$, $n_\text{traces} = 20$ for both materials. (a)~Pd--Ag alloy (max stress = \SI{141.2}{\mega\pascal}, SF = 2.90$\times$). (b)~Nichrome~V (max stress = \SI{106.7}{\mega\pascal}, SF = 3.42$\times$). Peak stresses concentrate at trace endpoints near the fixed edges.}
     \label{fig:sim2c-stress}
 \end{figure}
 
-Both materials pass the stress constraint with safety factors $>3\times$. Peak stresses (\SI{\sim120}{\mega\pascal}) concentrate at trace endpoints near the fixed boundary --- a conservative artifact of the fully fixed edge condition. The glass bulk stress remains very low (\SIrange{2}{4}{\mega\pascal}), well below the \SI{120}{\mega\pascal} fracture strength of tempered glass.
+Both materials passes the stress constraint across all configurations tested. At the recommended operating voltage of \SI{12}{\volt}, safety factors ranges from 2.72$\times$ to 3.42$\times$ for Pd--Ag alloy and from 3.28$\times$ to 3.89$\times$ for Nichrome~V. At the maximum voltage of \SI{14.5}{\volt}, the safety factors are lower but still remains above 1.9$\times$ for all configurations. Nichrome~V consistently shows a lower stress than Pd--Ag alloy due to it's lower coefficient of thermal expansion ($\alpha = \SI{13e-6}{\per\kelvin}$ vs \SI{15e-6}{\per\kelvin}). Peak stresses concentrates at trace endpoints near the fixed boundary --- a conservative artifact of the fully fixed edge condition. The glass bulk stress remain very low, well below the \SI{120}{\mega\pascal} fracture strength of tempered glass \cite{ruhl2016}.
 
 
 % ------------------------------------------------------------
@@ -224,11 +248,11 @@ Both materials pass the stress constraint with safety factors $>3\times$. Peak s
 \label{sec:sim3}
 % ------------------------------------------------------------
 
-Sim~3 evaluates how long each configuration takes to defrost the window from the initial frosted condition ($T_\text{init} = \SI{278.15}{\kelvin}$) to the point where $T_\text{min} \geq T_\text{dew}$.
+Sim~3 evaluate how long does each configuration takes to defrost the window from the initial frosted condition ($T_\text{init} = \SI{278.15}{\kelvin}$) to the point where $T_\text{min} \geq T_\text{dew}$.
 
-A time-dependent study is used with output times from 0 to \SI{3600}{\second} in \SI{60}{\second} increments. The Electric Currents equation is set to stationary form (the electric field equilibrates in microseconds compared to the thermal time scale of minutes). Solid Mechanics is disabled for computational efficiency.
+A time-dependent study is used with output times from 0 to \SI{3600}{\second} in \SI{60}{\second} increments. The Electric Currents equation is set to stationary form (the electric field equilibrates in microseconds compared to the thermal time scale of minutes). Solid Mechanics are disabled for computational efficiency.
 
-The sweep covers: 2~materials $\times$ 5~trace counts (14, 16, 18, 20, 22) $\times$ 2~voltages (12, \SI{14.5}{\volt}) = 20~runs. The mesh was refined to Fine (189,192~domain elements) for accuracy.
+The sweep covers: 2~materials $\times$ 5~trace counts (14, 16, 18, 20, 22) $\times$ 2~voltages (12, \SI{14.5}{\volt}) = 20~runs. The mesh were refined to Fine (189,192~domain elements) for a better accuracy.
 
 Defrost times for all configurations are summarised in \Cref{tab:sim3-defrost}.
 
@@ -262,16 +286,16 @@ Defrost times for all configurations are summarised in \Cref{tab:sim3-defrost}.
     \label{fig:sim3-transient}
 \end{figure}
 
-Based on these results, \textbf{Pd--Ag alloy with $n_\text{traces} = 20$ at $V_\text{in} = \SI{12}{\volt}$ is selected as the recommended design}. The key reasons are:
+Based on these results, \textbf{Pd--Ag alloy with $n_\text{traces} = 20$ at $V_\text{in} = \SI{12}{\volt}$ were selected as the recommended design}. The key reason for this are:
 
 \begin{itemize}
-    \item \textbf{Battery-only operation:} A nominal automotive 12\,V system operates directly from the battery without the engine running \cite{bosch2014}. This is critical for a rear defroster, which must function during a cold start before the engine---and therefore the alternator---is active. Voltages of \SI{13.5}{\volt} and \SI{14.5}{\volt} are only available when the alternator is charging, requiring the engine to be running.
-    \item \textbf{Acceptable defrost time:} At \SI{12}{\volt}, 20~traces defrosts the window in \SI{12}{\minute} --- well within a practical warm-up period.
-    \item \textbf{Adequate thermal margin:} The steady-state $T_\text{min} = \SI{288.2}{\kelvin}$ is \SI{5.05}{\kelvin} above the dew point, providing a comfortable margin against condensation re-formation.
-    \item \textbf{Diminishing returns at 22~traces:} Increasing to 22~traces reduces defrost time by only 2~minutes (10 vs.\ 12~min at \SI{12}{\volt}) at the cost of higher material use and increased trace density.
+    \item \textbf{Battery-only operation:} A nominal automotive 12\,V system operates directly from the battery without the engine running \cite{bosch2014}. This is critical for a rear defroster, which must functions during a cold start before the engine---and therefore the alternator---is active. Voltages of \SI{13.5}{\volt} and \SI{14.5}{\volt} is only available when the alternator is charging, which requires the engine to be running.
+    \item \textbf{Acceptable defrost time:} At \SI{12}{\volt}, 20~traces defrost the window in \SI{12}{\minute} --- well within a practical warm-up period.
+    \item \textbf{Adequate thermal margin:} The steady-state $T_\text{min} = \SI{288.2}{\kelvin}$ is \SI{5.05}{\kelvin} above the dew point, this provides a comfortable margin against condensation re-formation.
+    \item \textbf{Diminishing returns at 22~traces:} Increasing to 22~traces reduce defrost time by only 2~minutes (10 vs.\ 12~min at \SI{12}{\volt}) at the cost of higher material use and increased trace density.
 \end{itemize}
 
-An alternative configuration of 22~traces at \SI{14.5}{\volt} achieves defrost in \SI{8}{\minute} but requires the engine to be running and is therefore only suitable as a secondary high-performance mode.
+An alternative configuration of 22~traces at \SI{14.5}{\volt} achieve defrost in \SI{8}{\minute} but requires the engine to be running and therefore is only suitable as a secondary high-performance mode.
 
 
 % ------------------------------------------------------------

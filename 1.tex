@@ -3,20 +3,38 @@
 \label{ch:model-definition}
 % ============================================================
 
-In this project, the design and optimisation of a resistive rear window defroster for an automotive application is investigated using finite element multiphysics modelling in COMSOL Multiphysics 6.2. The defroster must raise the entire glass surface temperature above the dew point to eliminate condensation and frost, while remaining within safe thermal and mechanical stress limits.
+% ------------------------------------------------------------
+\section{Introduction}
+\label{sec:introduction}
+% ------------------------------------------------------------
+
+Rear window condensation and frost is a common problem in automotive vehicles, particularly during colder months where the temperature of the glass surface drops below the dew point of the surrounding air \cite{lawrence2005}. When this happens, moisture from the cabin air condenses on the inner surface of the glass, which significantly reduce the driver's rear visibility and creates a safety hazard \cite{sayer1999}. To addresses this issue, most modern vehicles are equipped with electrically heated rear window defrosters that uses thin resistive traces embedded on the glass to raise it's surface temperature above the dew point.
+
+\subsection{Problem Statement}
+
+The aim of this study is to design and optimise a resistive rear window defroster system for a standard automotive application using finite element multiphysics modelling in COMSOL Multiphysics 6.2. Specifically, the study seeks to answers the following questions:
+
+\begin{enumerate}
+    \item What is the optimal number of heating traces and operating voltage which is needed to ensure the entire glass surface temperature exceeds the dew point?
+    \item Which trace material from the available candidates (sourced from the CES EduPack database \cite{edupack}) provides the best balance between thermal performance and structural integrity?
+    \item How long does it takes for the defroster to fully clear the window from an initial frosted condition, and can this be improved through non-uniform trace spacing?
+    \item Is the final design robust enough to performs adequately across a range of realistic weather conditions?
+\end{enumerate}
+
+The defroster must raises the entire glass surface temperature above the dew point to eliminate condensation and frost, while remaining within safe thermal and mechanical stress limits. The design is developed iteratively through a series of simulations of increasing complexity, starting from a baseline model and progressively refining the configuration through parametric sweeps, material selection, stress analysis, trace spacing optimisation, and weather robustness testing.
 
 % ------------------------------------------------------------
 \section{Problem Description}
 \label{sec:problem-description}
 % ------------------------------------------------------------
 
-Rear window defrosters operate by passing electric current through thin conductive traces deposited on the inner surface of the glass. Joule heating in the traces conducts into the glass, raising its temperature above the dew point. The key design challenge is to achieve sufficiently uniform heating across the entire window using the minimum number of traces at a voltage compatible with a standard \SI{12}{\volt} automotive electrical system.
+Rear window defrosters works by passing electric current through thin conductive traces which are deposited on the inner surface of the glass \cite{ruhl2016}. The Joule heating produced in the traces then conducts into the glass, raising it's temperature above the dew point \cite{koshlak2024}. The main design challenge is to achieve a sufficiently uniform heating across the entire window, using minimum number of traces at a voltage that is compatible with standard \SI{12}{\volt} automotive electrical system \cite{bosch2014}.
 
-The design must satisfy three main criteria:
+The design must satisfy three main criterias:
 \begin{enumerate}
-    \item \textbf{Thermal:} The minimum surface temperature of the glass must exceed the dew point temperature ($T_\text{dew} = \SI{283.15}{\kelvin}$, i.e.\ \SI{10}{\degreeCelsius}).
-    \item \textbf{Structural:} Thermal stresses from differential expansion between the trace material and glass must remain below material yield strengths.
-    \item \textbf{Transient:} The window must defrost within a reasonable time (target: $\leq \SI{15}{\minute}$).
+    \item \textbf{Thermal:} The minimum surface temperature of the glass must exceeds the dew point temperature ($T_\text{dew} = \SI{283.15}{\kelvin}$, i.e.\ \SI{10}{\degreeCelsius}) \cite{lawrence2005}.
+    \item \textbf{Structural:} Thermal stresses from the differential expansion between trace material and the glass must remain below the material yield strengths \cite{ruhl2016}.
+    \item \textbf{Transient:} The window should defrost within a reasonable amount of time (target: $\leq \SI{15}{\minute}$) \cite{prudenziati2012}.
 \end{enumerate}
 
 
@@ -25,7 +43,7 @@ The design must satisfy three main criteria:
 \label{sec:geometry}
 % ------------------------------------------------------------
 
-The model is a two-dimensional representation of a flat rear window. The geometry consists of three components:
+The model is a two-dimensional representation of a flat rear window, which is a common approach used in literature for this type of problem \cite{ruhl2016, koshlak2024}. The geometry consists of three components:
 
 \begin{itemize}
     \item A rectangular glass pane of dimensions $L_\text{glass} \times H_\text{glass}$ = \SI{1.5}{\metre} $\times$ \SI{0.8}{\metre}
@@ -67,7 +85,7 @@ Since the model is two-dimensional with out-of-plane thickness, an effective 2D 
     \sigma_\text{eff} = \sigma_\text{trace} \cdot \frac{t_\text{trace}}{t_\text{glass}}
     \label{eq:sigma-eff}
 \end{equation}
-This accounts for the fact that the thin conductive traces occupy only a fraction of the out-of-plane glass thickness.
+This accounts for the fact that the thin conductive traces occupy only a fraction of the out-of-plane glass thickness. The trace dimensions used here is consistent with typical screen-printed defroster traces reported in the literature \cite{prudenziati2012}.
 
 
 % ------------------------------------------------------------
@@ -117,7 +135,7 @@ Four candidate trace materials were evaluated, with properties sourced from the 
 \label{sec:boundary-conditions}
 % ------------------------------------------------------------
 
-The boundary conditions represent a cold winter morning scenario where the exterior of the glass is exposed to ambient air and the interior faces the vehicle cabin. The values are listed in \Cref{tab:bcs}.
+The boundary conditions represents a cold winter morning scenario, where the exterior of the glass is expose to ambient air and the interior is facing the vehicle cabin. The values are listed in \Cref{tab:bcs}.
 
 \begin{table}[H]
     \centering
@@ -138,18 +156,18 @@ The boundary conditions represent a cold winter morning scenario where the exter
     \end{tabular}
 \end{table}
 
-\textbf{Electrical.} An electric potential $V_\text{in}$ is applied on the left bus bar, and ground ($V = 0$) on the right bus bar. The electric current physics is defined only on the trace and bus bar domains (not the glass, which is electrically insulating).
+\textbf{Electrical.} A electric potential $V_\text{in}$ is applied on the left bus bar, and ground ($V = 0$) on the right bus bar. The electric current physics are defined only on the trace and bus bar domains (not the glass, which is electrically insulating).
 
-\textbf{Thermal.} Since the model is 2D with out-of-plane thickness, heat losses to the exterior and interior are modelled using a volumetric heat source that accounts for convection on both sides of the glass:
+\textbf{Thermal.} Since the model is 2D with out-of-plane thickness, heat loses to the exterior and interior are modelled using a volumetric heat source which accounts for convection on both sides of the glass:
 
 \begin{equation}
     Q_\text{conv} = \frac{h_\text{ext}(T_\text{amb} - T) + h_\text{int}(T_\text{cabin} - T)}{t_\text{glass}}
     \label{eq:heat-source}
 \end{equation}
 
-This expression replaces the out-of-plane heat flux boundary condition, which caused spatial frame conflicts in COMSOL 6.2 when coupled with solid mechanics.
+This expression replace the out-of-plane heat flux boundary condition, which caused spatial frame conflicts in COMSOL 6.2 when it is coupled with solid mechanics.
 
-\textbf{Mechanical.} For the stress analysis (Sim~2c), fixed constraints are applied on the left and right outer edges of the glass, representing the car body frame holding the window. This is a conservative simplification; in reality, a rubber seal provides some compliance.
+\textbf{Mechanical.} For the stress analysis (Sim~2c), fixed constraints are applied on the left and right outer edges of the glass, representing the car body frame which holds the window. This is a conservative simplification, in reality a rubber seal provides some compliance.
 
 
 % ------------------------------------------------------------
@@ -161,7 +179,7 @@ The model involves three coupled physics: Electric Currents, Heat Transfer in So
 
 \begin{figure}[H]
     \centering
-    \fbox{\parbox{0.6\textwidth}{\centering\vspace{2.5cm}\textit{TODO: Create flow diagram --- EC $\to$ Joule Heating $\to$ HT $\to$ Thermal Expansion $\to$ SM (draw manually)}\vspace{2.5cm}}}
+    \includegraphics[width=0.85\textwidth]{physics_coupling_diagram.png}
     \caption{Physics coupling in the multiphysics model. Joule heating from Electric Currents drives Heat Transfer, which in turn drives thermal expansion in Solid Mechanics.}
     \label{fig:coupling-diagram}
 \end{figure}
