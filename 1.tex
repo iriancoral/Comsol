@@ -1,16 +1,16 @@
 % ============================================================
-\chapter{Model Definition}
+\section{Model Definition}
 \label{ch:model-definition}
 % ============================================================
 
 % ------------------------------------------------------------
-\section{Introduction}
+\subsection{Introduction}
 \label{sec:introduction}
 % ------------------------------------------------------------
 
 Rear window condensation and frost is a common problem in automotive vehicles, particularly during colder months where the temperature of the glass surface drops below the dew point of the surrounding air \cite{lawrence2005}. When this happens, moisture from the cabin air condenses on the inner surface of the glass, which significantly reduce the driver's rear visibility and creates a safety hazard \cite{sayer1999}. To addresses this issue, most modern vehicles are equipped with electrically heated rear window defrosters that uses thin resistive traces embedded on the glass to raise it's surface temperature above the dew point.
 
-\subsection{Problem Statement}
+\subsubsection{Problem Statement}
 
 The aim of this study is to design and optimise a resistive rear window defroster system for a standard automotive application using finite element multiphysics modelling in COMSOL Multiphysics 6.2. Specifically, the study seeks to answers the following questions:
 
@@ -24,7 +24,7 @@ The aim of this study is to design and optimise a resistive rear window defroste
 The defroster must raises the entire glass surface temperature above the dew point to eliminate condensation and frost, while remaining within safe thermal and mechanical stress limits. The design is developed iteratively through a series of simulations of increasing complexity, starting from a baseline model and progressively refining the configuration through parametric sweeps, material selection, stress analysis, trace spacing optimisation, and weather robustness testing.
 
 % ------------------------------------------------------------
-\section{Problem Description}
+\subsection{Problem Description}
 \label{sec:problem-description}
 % ------------------------------------------------------------
 
@@ -39,11 +39,11 @@ The design must satisfy three main criterias:
 
 
 % ------------------------------------------------------------
-\section{Geometry}
+\subsection{Geometry IRIAN}
 \label{sec:geometry}
 % ------------------------------------------------------------
 
-The model is a two-dimensional representation of a flat rear window, which is a common approach used in literature for this type of problem \cite{ruhl2016, koshlak2024}. The geometry consists of three components:
+The model is a two-dimensional representation of a flat rear window. The geometry consists of three components:
 
 \begin{itemize}
     \item A rectangular glass pane of dimensions $L_\text{glass} \times H_\text{glass}$ = \SI{1.5}{\metre} $\times$ \SI{0.8}{\metre}
@@ -51,7 +51,7 @@ The model is a two-dimensional representation of a flat rear window, which is a 
     \item Two vertical bus bars (left and right edges) connecting all traces to the power supply
 \end{itemize}
 
-The number of traces ($n_\text{traces}$) is a key design variable, swept from 8 to 22 in the parametric studies. The traces are uniformly spaced across the glass height. \Cref{fig:geometry} shows the COMSOL geometry for the baseline configuration.
+The number of traces ($n_\text{traces}$) is a key design variable, swept from 8 to 22 in the parametric studies to find the optimal trace pattern. The traces are uniformly spaced across the glass height. \Cref{fig:geometry} shows the COMSOL geometry for the baseline configuration.
 
 \begin{figure}[H]
     \centering
@@ -89,7 +89,7 @@ This accounts for the fact that the thin conductive traces occupy only a fractio
 
 
 % ------------------------------------------------------------
-\section{Materials}
+\subsection{Materials}
 \label{sec:materials}
 % ------------------------------------------------------------
 
@@ -131,11 +131,14 @@ Four candidate trace materials were evaluated, with properties sourced from the 
 
 
 % ------------------------------------------------------------
-\section{Boundary Conditions}
+\subsection{Boundary Conditions IRIAN}
 \label{sec:boundary-conditions}
 % ------------------------------------------------------------
 
-The boundary conditions represents a cold winter morning scenario, where the exterior of the glass is expose to ambient air and the interior is facing the vehicle cabin. The values are listed in \Cref{tab:bcs}.
+The boundary conditions set for the base simulation represent a cold winter morning scenario, 
+where the outside of the glass is exposed to 
+ambient air and the interior is facing the inside of the car. The values are the base values for
+all simulations and listed in \Cref{tab:bcs}.
 
 \begin{table}[H]
     \centering
@@ -156,22 +159,47 @@ The boundary conditions represents a cold winter morning scenario, where the ext
     \end{tabular}
 \end{table}
 
-\textbf{Electrical.} A electric potential $V_\text{in}$ is applied on the left bus bar, and ground ($V = 0$) on the right bus bar. The electric current physics are defined only on the trace and bus bar domains (not the glass, which is electrically insulating).
-
-\textbf{Thermal.} Since the model is 2D with out-of-plane thickness, heat loses to the exterior and interior are modelled using a volumetric heat source which accounts for convection on both sides of the glass:
-
+The dew point temperature $T_\text{dew}$ is estimated from the cabin air conditions using the Magnus approximation \cite{lawrence2005}:
 \begin{equation}
-    Q_\text{conv} = \frac{h_\text{ext}(T_\text{amb} - T) + h_\text{int}(T_\text{cabin} - T)}{t_\text{glass}}
-    \label{eq:heat-source}
+    T_\text{dew} = \frac{b \, \gamma(T,\mathrm{RH})}{a - \gamma(T,\mathrm{RH})},
+    \qquad
+    \gamma(T,\mathrm{RH}) = \ln\!\left(\frac{\mathrm{RH}}{100}\right) + \frac{a\,T}{b + T}
+    \label{eq:dew-point}
 \end{equation}
+with Magnus constants $a = 17.625$ and $b = \SI{243.04}{\degreeCelsius}$, and $T$ in \si{\degreeCelsius}. For a cabin at $T_\text{cabin} = \SI{20}{\degreeCelsius}$ and a representative relative humidity $\mathrm{RH} = \SI{50}{\percent}$:
+\begin{equation*}
+    \gamma = \ln(0.50) + \frac{17.625 \cdot 20}{243.04 + 20} \approx 0.647
+    \quad\Rightarrow\quad
+    T_\text{dew} \approx \frac{243.04 \cdot 0.647}{17.625 - 0.647} \approx \SI{9.3}{\degreeCelsius}.
+\end{equation*}
+This is rounded up to $T_\text{dew} = \SI{10}{\degreeCelsius}$ (\SI{283.15}{\kelvin}) to provide a small safety margin against higher cabin humidity (e.g.\ from passengers breathing).
 
-This expression replace the out-of-plane heat flux boundary condition, which caused spatial frame conflicts in COMSOL 6.2 when it is coupled with solid mechanics.
+Furthermore a electric potential $V_\text{in}$ is applied on the left bus bar, and ground ($V = 0$) on the right bus bar.
+The electric current physics are defined only on the trace and bus bar
+domains and not on the glass.
 
-\textbf{Mechanical.} For the stress analysis (Sim~2c), fixed constraints are applied on the left and right outer edges of the glass, representing the car body frame which holds the window. This is a conservative simplification, in reality a rubber seal provides some compliance.
+% Since the model is 2D with out-of-plane thickness, heat loses to the exterior and interior 
+% are modelled using a volumetric heat source which accounts for convection on both sides of the glass:
+
+
+% \begin{equation}
+%     Q_\text{conv} = \frac{h_\text{ext}(T_\text{amb} - T) + h_\text{int}(T_\text{cabin} - T)}{t_\text{glass}}
+%     \label{eq:heat-source}
+% \end{equation}
+
+
+
+% This expression replace the out-of-plane heat flux boundary condition, which caused spatial frame conflicts in COMSOL 6.2 when it is coupled with solid mechanics.
+
+For the stress analysis (Sim~2c), fixed constraints are applied on the left and right 
+outer edges of the glass, representing the car body frame which holds the window. This is a
+simplification of a real window since in an actual window the glass is surrounded by an elastic 
+sealant which provides some complience. 
+
 
 
 % ------------------------------------------------------------
-\section{Physics Coupling and Governing Equations}
+\subsection{Physics Coupling and Governing Equations}
 \label{sec:governing-equations}
 % ------------------------------------------------------------
 

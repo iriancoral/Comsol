@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.8)  14 APR 2026 10:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.3.8)  14 APR 2026 19:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -730,7 +730,7 @@ Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 ) (C:\Users\Irian\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\helvet.sty
 Package: helvet 2020/03/25 PSNFSS-v9.3 (WaS) 
 )
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 74.
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 77.
  (C:\Users\Irian\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1phv.fd
 File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
 ) (C:\Users\Irian\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
@@ -739,24 +739,24 @@ File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 ) (main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
  (C:\Users\Irian\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count394
@@ -776,7 +776,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (C:\Users\Irian\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package hyperref Info: Link coloring ON on input line 74.
+Package hyperref Info: Link coloring ON on input line 77.
  (main.out) (main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
@@ -825,7 +825,7 @@ Package caption Info: End \AtBeginDocument code.
 (C:\Users\Irian\AppData\Local\Programs\MiKTeX\tex/latex/translations/dicts\translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 74.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 77.
 \c@lstlisting=\count402
  (titlepage.tex
 LaTeX Font Info:    Trying to load font information for T1+RobotoSlab-TLF on input line 2.
@@ -856,7 +856,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 42.
  (C:\Users\Irian\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<images/TU_delft_logo.jpg, id=154, 481.8pt x 226.6869pt>
+<images/TU_delft_logo.jpg, id=109, 481.8pt x 226.6869pt>
 File: images/TU_delft_logo.jpg Graphic file (type jpg)
 <use images/TU_delft_logo.jpg>
 Package pdftex.def Info: images/TU_delft_logo.jpg  used on input line 51.
@@ -864,209 +864,155 @@ Package pdftex.def Info: images/TU_delft_logo.jpg  used on input line 51.
  [1
 
 {C:/Users/Irian/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/roboto/rbto_j2bk2t.enc}{C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/roboto/rbto_a4rth4.enc} <./images/TU_delft_logo.jpg>]) (1.tex
-Chapter 1.
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.49     \item A
-                 rectangular glass pane of dimensions $L_\text{glass} \times... [1
-
-{C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}]
 LaTeX Font Info:    Trying to load font information for TS1+phv on input line 49.
  (C:\Users\Irian\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1phv.fd
 File: ts1phv.fd 2020/03/25 scalable font definitions for TS1/phv.
 )
-<images/COMSOL — Geometry view showing glass (grey), traces (orange), bus.png, id=198, 609.02531pt x 356.83313pt>
+<images/COMSOL — Geometry view showing glass (grey), traces (orange), bus.png, id=128, 609.02531pt x 356.83313pt>
 File: images/COMSOL — Geometry view showing glass (grey), traces (orange), bus.png Graphic file (type png)
 <use images/COMSOL — Geometry view showing glass (grey), traces (orange), bus.png>
 Package pdftex.def Info: images/COMSOL — Geometry view showing glass (grey), traces (orange), bus.png  used on input line 58.
 (pdftex.def)             Requested size: 411.14528pt x 240.90096pt.
- [2 <./images/COMSOL — Geometry view showing glass (grey), traces (orange), bus.png (PNG copy)>]
-<images/physics_coupling_diagram.png, id=215, 1019.007pt x 370.2633pt>
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.62 
+      [1{C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}] [2 <./images/COMSOL — Geometry view showing glass (grey), traces (orange), bus.png (PNG copy)>]
+<images/physics_coupling_diagram.png, id=171, 1019.007pt x 370.2633pt>
 File: images/physics_coupling_diagram.png Graphic file (type png)
 <use images/physics_coupling_diagram.png>
-Package pdftex.def Info: images/physics_coupling_diagram.png  used on input line 182.
+Package pdftex.def Info: images/physics_coupling_diagram.png  used on input line 210.
 (pdftex.def)             Requested size: 411.14528pt x 149.39084pt.
- [3]) (2.tex [4 <./images/physics_coupling_diagram.png>]
-Chapter 2.
-<images/Sim1 —voltage distribution.png, id=242, 658.71094pt x 307.90031pt>
+ [3]
+
+LaTeX Warning: Reference `eq:heat-source' on page 1 undefined on input line 227.
+
+) (2.tex [4 <./images/physics_coupling_diagram.png>]
+<images/Sim1 —voltage distribution.png, id=198, 658.71094pt x 307.90031pt>
 File: images/Sim1 —voltage distribution.png Graphic file (type png)
 <use images/Sim1 —voltage distribution.png>
 Package pdftex.def Info: images/Sim1 —voltage distribution.png  used on input line 45.
 (pdftex.def)             Requested size: 232.17242pt x 108.52312pt.
-<images/Sim1 —temperature distribution.png, id=243, 658.71094pt x 307.90031pt>
+<images/Sim1 —temperature distribution.png, id=199, 658.71094pt x 307.90031pt>
 File: images/Sim1 —temperature distribution.png Graphic file (type png)
 <use images/Sim1 —temperature distribution.png>
 Package pdftex.def Info: images/Sim1 —temperature distribution.png  used on input line 47.
 (pdftex.def)             Requested size: 232.17242pt x 108.52312pt.
-[5
-
- <./images/Sim1 —voltage distribution.png (PNG copy)> <./images/Sim1 —temperature distribution.png (PNG copy)>]
-<images/Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png, id=251, 659.46375pt x 343.2825pt>
+<images/Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png, id=201, 659.46375pt x 343.2825pt>
 File: images/Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png Graphic file (type png)
 <use images/Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png>
 Package pdftex.def Info: images/Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png  used on input line 68.
 (pdftex.def)             Requested size: 338.58632pt x 176.25555pt.
-
+ [5 <./images/Sim1 —voltage distribution.png (PNG copy)> <./images/Sim1 —temperature distribution.png (PNG copy)> <./images/Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png (PNG copy)>]
 Overfull \hbox (1.12712pt too wide) in paragraph at lines 103--104
 \T1/phv/m/n/10 Sim 2b ex-tend the para-met-ric sweep to in-cludes four can-di-date trace ma-te-ri-als from the CES Edu-Pack database
  []
 
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 119.
-[6 <./images/Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png (PNG copy)>]
-<images/fig_sim2b_material_comparison.png, id=265, 496.4949pt x 316.90395pt>
+[6]
+<images/fig_sim2b_material_comparison.png, id=223, 496.4949pt x 316.90395pt>
 File: images/fig_sim2b_material_comparison.png Graphic file (type png)
 <use images/fig_sim2b_material_comparison.png>
 Package pdftex.def Info: images/fig_sim2b_material_comparison.png  used on input line 169.
 (pdftex.def)             Requested size: 362.77264pt x 231.56038pt.
  [7 <./images/fig_sim2b_material_comparison.png>]
-<images/sim2c_stress_pdag_20traces_12V.png, id=275, 657.95813pt x 493.845pt>
+<images/sim2c_stress_pdag_20traces_12V.png, id=230, 657.95813pt x 493.845pt>
 File: images/sim2c_stress_pdag_20traces_12V.png Graphic file (type png)
 <use images/sim2c_stress_pdag_20traces_12V.png>
 Package pdftex.def Info: images/sim2c_stress_pdag_20traces_12V.png  used on input line 236.
 (pdftex.def)             Requested size: 232.17242pt x 174.25746pt.
-<images/sim2c_stress_nichrome_20traces_12V.png, id=276, 657.95813pt x 493.845pt>
+<images/sim2c_stress_nichrome_20traces_12V.png, id=231, 657.95813pt x 493.845pt>
 File: images/sim2c_stress_nichrome_20traces_12V.png Graphic file (type png)
 <use images/sim2c_stress_nichrome_20traces_12V.png>
 Package pdftex.def Info: images/sim2c_stress_nichrome_20traces_12V.png  used on input line 238.
 (pdftex.def)             Requested size: 232.17242pt x 174.25746pt.
- [8]
-<images/fig_sim3_transient_pdag_12V.png, id=285, 496.13354pt x 316.5426pt>
+ [8 <./images/sim2c_stress_pdag_20traces_12V.png> <./images/sim2c_stress_nichrome_20traces_12V.png>]
+<images/fig_sim3_transient_pdag_12V.png, id=243, 496.13354pt x 316.5426pt>
 File: images/fig_sim3_transient_pdag_12V.png Graphic file (type png)
 <use images/fig_sim3_transient_pdag_12V.png>
 Package pdftex.def Info: images/fig_sim3_transient_pdag_12V.png  used on input line 284.
 (pdftex.def)             Requested size: 362.77264pt x 231.45575pt.
- [9 <./images/sim2c_stress_pdag_20traces_12V.png> <./images/sim2c_stress_nichrome_20traces_12V.png>]
-<images/Sim4 geometry zoned 6 - 8 - 6 layout.png, id=295, 659.46375pt x 343.2825pt>
+ [9 <./images/fig_sim3_transient_pdag_12V.png>]
+<images/Sim4 geometry zoned 6 - 8 - 6 layout.png, id=252, 659.46375pt x 343.2825pt>
 File: images/Sim4 geometry zoned 6 - 8 - 6 layout.png Graphic file (type png)
 <use images/Sim4 geometry zoned 6 - 8 - 6 layout.png>
 Package pdftex.def Info: images/Sim4 geometry zoned 6 - 8 - 6 layout.png  used on input line 320.
 (pdftex.def)             Requested size: 232.17242pt x 120.8578pt.
-<images/Sim4 temperature distribution — zoned 6-8-6 t= 660.png, id=296, 658.71094pt x 307.90031pt>
+<images/Sim4 temperature distribution — zoned 6-8-6 t= 660.png, id=253, 658.71094pt x 307.90031pt>
 File: images/Sim4 temperature distribution — zoned 6-8-6 t= 660.png Graphic file (type png)
 <use images/Sim4 temperature distribution — zoned 6-8-6 t= 660.png>
 Package pdftex.def Info: images/Sim4 temperature distribution — zoned 6-8-6 t= 660.png  used on input line 322.
 (pdftex.def)             Requested size: 232.17242pt x 108.52312pt.
- [10 <./images/fig_sim3_transient_pdag_12V.png>]
-<images/Sim5 geometry — Chebyshev p = 0.7.png, id=305, 659.46375pt x 343.2825pt>
+ [10 <./images/Sim4 geometry zoned 6 - 8 - 6 layout.png (PNG copy)> <./images/Sim4 temperature distribution — zoned 6-8-6 t= 660.png (PNG copy)>]
+<images/Sim5 geometry — Chebyshev p = 0.7.png, id=264, 659.46375pt x 343.2825pt>
 File: images/Sim5 geometry — Chebyshev p = 0.7.png Graphic file (type png)
 <use images/Sim5 geometry — Chebyshev p = 0.7.png>
 Package pdftex.def Info: images/Sim5 geometry — Chebyshev p = 0.7.png  used on input line 359.
 (pdftex.def)             Requested size: 232.17242pt x 120.8578pt.
-<images/Sim5 geometry — Chebyshev p = 1.3.png, id=306, 659.46375pt x 343.2825pt>
+<images/Sim5 geometry — Chebyshev p = 1.3.png, id=265, 659.46375pt x 343.2825pt>
 File: images/Sim5 geometry — Chebyshev p = 1.3.png Graphic file (type png)
 <use images/Sim5 geometry — Chebyshev p = 1.3.png>
 Package pdftex.def Info: images/Sim5 geometry — Chebyshev p = 1.3.png  used on input line 361.
 (pdftex.def)             Requested size: 232.17242pt x 120.8578pt.
- [11 <./images/Sim4 geometry zoned 6 - 8 - 6 layout.png (PNG copy)> <./images/Sim4 temperature distribution — zoned 6-8-6 t= 660.png (PNG copy)>]
-Overfull \hbox (125.77669pt too wide) in paragraph at lines 378--379
-[]\T1/phv/m/n/10 To find the op-ti-mal ex-po-nent, a para-met-ric sweep was per-formed over $\OML/cmm/m/it/10 p \OMS/cmsy/m/n/10 2 f\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 7\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 8\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 9\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 95\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 1\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 2\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 3\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 4\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 5\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 6\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 7\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 8\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 9\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 2\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 3\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 0\OMS/cmsy/m/n/10 g$\T1/phv/m/n/10 .
+
+Overfull \hbox (69.10999pt too wide) in paragraph at lines 378--379
+[]\T1/phv/m/n/10 To find the op-ti-mal ex-po-nent, a para-met-ric sweep was per-formed over $\OML/cmm/m/it/10 p \OMS/cmsy/m/n/10 2 f\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 7\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 8\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 9\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 1\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 2\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 3\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 4\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 5\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 6\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 7\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 8\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 9\OMS/cmsy/m/n/10 g$\T1/phv/m/n/10 .
  []
 
-<images/Plot of steady-state Tmin vs p, peak at p = 1.3.png, id=317, 494.5677pt x 313.4109pt>
+<images/Plot of steady-state Tmin vs p, peak at p = 1.3.png, id=267, 494.5677pt x 313.4109pt>
 File: images/Plot of steady-state Tmin vs p, peak at p = 1.3.png Graphic file (type png)
 <use images/Plot of steady-state Tmin vs p, peak at p = 1.3.png>
 Package pdftex.def Info: images/Plot of steady-state Tmin vs p, peak at p = 1.3.png  used on input line 411.
 (pdftex.def)             Requested size: 232.17242pt x 147.12619pt.
-<images/Plot of defrost time vs p, minimum at p = 1.3.png, id=318, 496.254pt x 313.6518pt>
+<images/Plot of defrost time vs p, minimum at p = 1.3.png, id=268, 496.254pt x 313.6518pt>
 File: images/Plot of defrost time vs p, minimum at p = 1.3.png Graphic file (type png)
 <use images/Plot of defrost time vs p, minimum at p = 1.3.png>
 Package pdftex.def Info: images/Plot of defrost time vs p, minimum at p = 1.3.png  used on input line 413.
 (pdftex.def)             Requested size: 232.17242pt x 146.74153pt.
-[12 <./images/Sim5 geometry — Chebyshev p = 0.7.png (PNG copy)> <./images/Sim5 geometry — Chebyshev p = 1.3.png (PNG copy)>]
-<images/Chebyshev p = 1.3 t = 360s.png, id=327, 658.71094pt x 307.90031pt>
+<images/Chebyshev p = 1.3 t = 360s.png, id=270, 658.71094pt x 307.90031pt>
 File: images/Chebyshev p = 1.3 t = 360s.png Graphic file (type png)
 <use images/Chebyshev p = 1.3 t = 360s.png>
-Package pdftex.def Info: images/Chebyshev p = 1.3 t = 360s.png  used on input line 428.
+Package pdftex.def Info: images/Chebyshev p = 1.3 t = 360s.png  used on input line 431.
 (pdftex.def)             Requested size: 232.17242pt x 108.52312pt.
-<images/Chebyshev p = 1.3 t = 3600s.png, id=328, 658.71094pt x 307.90031pt>
+<images/Chebyshev p = 1.3 t = 3600s.png, id=271, 658.71094pt x 307.90031pt>
 File: images/Chebyshev p = 1.3 t = 3600s.png Graphic file (type png)
 <use images/Chebyshev p = 1.3 t = 3600s.png>
-Package pdftex.def Info: images/Chebyshev p = 1.3 t = 3600s.png  used on input line 430.
+Package pdftex.def Info: images/Chebyshev p = 1.3 t = 3600s.png  used on input line 433.
 (pdftex.def)             Requested size: 232.17242pt x 108.52312pt.
- [13 <./images/Plot of steady-state Tmin vs p, peak at p = 1.3.png> <./images/Plot of defrost time vs p, minimum at p = 1.3.png> <./images/Chebyshev p = 1.3 t = 360s.png (PNG copy)> <./images/Chebyshev p = 1.3 t = 3600s.png (PNG copy)>]
-<images/fig_sim6_weather_sweep.png, id=342, 532.6299pt x 338.2236pt>
+[11 <./images/Sim5 geometry — Chebyshev p = 0.7.png (PNG copy)> <./images/Sim5 geometry — Chebyshev p = 1.3.png (PNG copy)> <./images/Plot of steady-state Tmin vs p, peak at p = 1.3.png> <./images/Plot of defrost time vs p, minimum at p = 1.3.png>]
+<images/fig_sim6_weather_sweep.png, id=287, 532.6299pt x 338.2236pt>
 File: images/fig_sim6_weather_sweep.png Graphic file (type png)
 <use images/fig_sim6_weather_sweep.png>
-Package pdftex.def Info: images/fig_sim6_weather_sweep.png  used on input line 481.
+Package pdftex.def Info: images/fig_sim6_weather_sweep.png  used on input line 484.
 (pdftex.def)             Requested size: 386.95897pt x 245.71933pt.
- [14 <./images/fig_sim6_weather_sweep.png>]) (3.tex [15]
-Chapter 3.
-[16
-
-] [17]) (4.tex [18]
-Chapter 4.
-<images/fig_defrost_bar_comparison.png, id=387, 605.98395pt x 353.03896pt>
-File: images/fig_defrost_bar_comparison.png Graphic file (type png)
-<use images/fig_defrost_bar_comparison.png>
-Package pdftex.def Info: images/fig_defrost_bar_comparison.png  used on input line 50.
-(pdftex.def)             Requested size: 435.32422pt x 253.61684pt.
-[19
-
-]
-Overfull \hbox (1.9296pt too wide) in paragraph at lines 63--64
-\T1/phv/m/n/10 Figure [][]4.2[][] shows the steady-state tem-per-a-ture dis-tri-bu-tion for the rec-om-mended de-sign (Pd--Ag al-loy, 20 traces,
- []
-
-<images/Steady-state temperature distribution t = 3600.png, id=395, 660.21657pt x 343.2825pt>
-File: images/Steady-state temperature distribution t = 3600.png Graphic file (type png)
-<use images/Steady-state temperature distribution t = 3600.png>
-Package pdftex.def Info: images/Steady-state temperature distribution t = 3600.png  used on input line 67.
-(pdftex.def)             Requested size: 411.14528pt x 213.78102pt.
-<images/Temperature distribution at t = 360s.png, id=396, 660.21657pt x 343.2825pt>
-File: images/Temperature distribution at t = 360s.png Graphic file (type png)
-<use images/Temperature distribution at t = 360s.png>
-Package pdftex.def Info: images/Temperature distribution at t = 360s.png  used on input line 74.
-(pdftex.def)             Requested size: 411.14528pt x 213.78102pt.
-[20 <./images/fig_defrost_bar_comparison.png> <./images/Steady-state temperature distribution t = 3600.png (PNG copy)>]
-<images/fig_conductivity_effect.png, id=406, 496.4949pt x 312.9291pt>
-File: images/fig_conductivity_effect.png Graphic file (type png)
-<use images/fig_conductivity_effect.png>
-Package pdftex.def Info: images/fig_conductivity_effect.png  used on input line 102.
-(pdftex.def)             Requested size: 362.77264pt x 228.65598pt.
- [21 <./images/Temperature distribution at t = 360s.png (PNG copy)>]
-<images/6-8-6 temperature distribution.png, id=414, 660.21657pt x 343.2825pt>
-File: images/6-8-6 temperature distribution.png Graphic file (type png)
-<use images/6-8-6 temperature distribution.png>
-Package pdftex.def Info: images/6-8-6 temperature distribution.png  used on input line 121.
-(pdftex.def)             Requested size: 232.17242pt x 120.71637pt.
-File: images/Temperature distribution at t = 360s.png Graphic file (type png)
-<use images/Temperature distribution at t = 360s.png>
-Package pdftex.def Info: images/Temperature distribution at t = 360s.png  used on input line 132.
-(pdftex.def)             Requested size: 232.17242pt x 120.71637pt.
-<images/Plot of Tmin vs time for Chebyshev p values and zoned with dew point line.png, id=416, 566.8377pt x 351.4731pt>
-File: images/Plot of Tmin vs time for Chebyshev p values and zoned with dew point line.png Graphic file (type png)
-<use images/Plot of Tmin vs time for Chebyshev p values and zoned with dew point line.png>
-Package pdftex.def Info: images/Plot of Tmin vs time for Chebyshev p values and zoned with dew point line.png  used on input line 134.
-(pdftex.def)             Requested size: 232.17242pt x 143.9601pt.
- [22 <./images/fig_conductivity_effect.png> <./images/6-8-6 temperature distribution.png (PNG copy)>] [23 <./images/Plot of Tmin vs time for Chebyshev p values and zoned with dew point line.png>]) (5.tex [24]
-Chapter 5.
-[25
-
-]) [26] (main.bbl) [27
+ [12 <./images/Chebyshev p = 1.3 t = 360s.png (PNG copy)> <./images/Chebyshev p = 1.3 t = 3600s.png (PNG copy)>]) (3.tex [13 <./images/fig_sim6_weather_sweep.png>] [14]) (4.tex [15] [16]) (5.tex) [17] (main.bbl) [18
 
 ] (Appendix.tex) (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 7EC88B5387DC811BB1E6968762108854;7100.
+(rerunfilecheck)             Checksum: 8680458DDE228E69078EA2A74526059B;5154.
  ) 
 Here is how much of TeX's memory you used:
- 33575 strings out of 467871
- 686195 string characters out of 5418377
- 1041213 words of memory out of 5000000
- 61777 multiletter control sequences out of 15000+600000
- 700062 words of font info for 96 fonts, out of 8000000 for 9000
+ 33454 strings out of 467871
+ 682306 string characters out of 5418377
+ 1043177 words of memory out of 5000000
+ 61686 multiletter control sequences out of 15000+600000
+ 695596 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,14n,117p,989b,1320s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,14n,117p,989b,1196s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Irian\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/google/roboto/RobotoSlab-Bold.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/google/roboto/RobotoSlab-Regular.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/Irian/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on main.pdf (28 pages, 3184127 bytes).
+Output written on main.pdf (19 pages, 2142160 bytes).
 PDF statistics:
- 568 PDF objects out of 1000 (max. 8388607)
- 143 named destinations out of 1000 (max. 500000)
- 434 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 456 PDF objects out of 1000 (max. 8388607)
+ 114 named destinations out of 1000 (max. 500000)
+ 316 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -381,26 +381,9 @@ INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvr
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvb8t.tfm
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvr8t.tfm
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvb8t.tfm
-INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvr8t.tfm
-INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvb8t.tfm
-INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvr8t.tfm
-INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvb8t.tfm
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvb8t.tfm
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvr8t.tfm
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvr8t.tfm
-INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\helvetic\phvb8t.vf
-INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvb8r.tfm
-INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\base\8r.enc
-INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\helvetic\phvb8t.vf
-INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvb8r.tfm
-INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\helvetic\phvr8t.vf
-INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvr8r.tfm
-INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\helvetic\phvb8t.vf
-INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvb8r.tfm
-INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\helvetic\phvb8t.vf
-INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvb8r.tfm
-INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\helvetic\phvr8t.vf
-INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvr8r.tfm
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\tex\latex\psnfss\ts1phv.fd
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\tex\latex\psnfss\ts1phv.fd
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\tex\latex\psnfss\ts1phv.fd
@@ -411,6 +394,15 @@ INPUT .\images\COMSOL — Geometry view showing glass (grey), traces (orange), b
 INPUT .\images\COMSOL — Geometry view showing glass (grey), traces (orange), bus.png
 INPUT .\images\COMSOL — Geometry view showing glass (grey), traces (orange), bus.png
 INPUT .\images\COMSOL — Geometry view showing glass (grey), traces (orange), bus.png
+INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\helvetic\phvb8t.vf
+INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvb8r.tfm
+INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\base\8r.enc
+INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\helvetic\phvr8t.vf
+INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvr8r.tfm
+INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\helvetic\phvb8t.vf
+INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvb8r.tfm
+INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\helvetic\phvr8t.vf
+INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvr8r.tfm
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\helvetic\phvr8c.vf
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx7.tfm
@@ -451,14 +443,14 @@ INPUT .\images\Line plot — Tmin vs ntraces at Vin = 12V with dew point line.pn
 INPUT .\images\Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png
 INPUT .\images\Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvro8t.tfm
-INPUT .\images\fig_sim2b_material_comparison.png
-INPUT .\images\fig_sim2b_material_comparison.png
-INPUT .\images\fig_sim2b_material_comparison.png
-INPUT .\images\fig_sim2b_material_comparison.png
-INPUT .\images\fig_sim2b_material_comparison.png
-INPUT .\images\fig_sim2b_material_comparison.png
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\helvetic\phvro8t.vf
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvro8r.tfm
+INPUT .\images\fig_sim2b_material_comparison.png
+INPUT .\images\fig_sim2b_material_comparison.png
+INPUT .\images\fig_sim2b_material_comparison.png
+INPUT .\images\fig_sim2b_material_comparison.png
+INPUT .\images\fig_sim2b_material_comparison.png
+INPUT .\images\fig_sim2b_material_comparison.png
 INPUT .\images\sim2c_stress_pdag_20traces_12V.png
 INPUT .\images\sim2c_stress_pdag_20traces_12V.png
 INPUT .\images\sim2c_stress_pdag_20traces_12V.png
@@ -479,20 +471,20 @@ INPUT .\images\fig_sim3_transient_pdag_12V.png
 INPUT .\images\fig_sim3_transient_pdag_12V.png
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvb8t.tfm
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvb8t.tfm
-INPUT .\images\Sim4 geometry zoned 6 - 8 - 6 layout.png
-INPUT .\images\Sim4 geometry zoned 6 - 8 - 6 layout.png
-INPUT .\images\Sim4 geometry zoned 6 - 8 - 6 layout.png
-INPUT .\images\Sim4 geometry zoned 6 - 8 - 6 layout.png
-INPUT .\images\Sim4 geometry zoned 6 - 8 - 6 layout.png
-INPUT .\images\Sim4 geometry zoned 6 - 8 - 6 layout.png
-INPUT .\images\Sim4 temperature distribution — zoned 6-8-6 t= 660.png
-INPUT .\images\Sim4 temperature distribution — zoned 6-8-6 t= 660.png
-INPUT .\images\Sim4 temperature distribution — zoned 6-8-6 t= 660.png
-INPUT .\images\Sim4 temperature distribution — zoned 6-8-6 t= 660.png
-INPUT .\images\Sim4 temperature distribution — zoned 6-8-6 t= 660.png
-INPUT .\images\Sim4 temperature distribution — zoned 6-8-6 t= 660.png
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\helvetic\phvb8t.vf
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvb8r.tfm
+INPUT .\images\Sim4 geometry zoned 6 - 8 - 6 layout.png
+INPUT .\images\Sim4 geometry zoned 6 - 8 - 6 layout.png
+INPUT .\images\Sim4 geometry zoned 6 - 8 - 6 layout.png
+INPUT .\images\Sim4 geometry zoned 6 - 8 - 6 layout.png
+INPUT .\images\Sim4 geometry zoned 6 - 8 - 6 layout.png
+INPUT .\images\Sim4 geometry zoned 6 - 8 - 6 layout.png
+INPUT .\images\Sim4 temperature distribution — zoned 6-8-6 t= 660.png
+INPUT .\images\Sim4 temperature distribution — zoned 6-8-6 t= 660.png
+INPUT .\images\Sim4 temperature distribution — zoned 6-8-6 t= 660.png
+INPUT .\images\Sim4 temperature distribution — zoned 6-8-6 t= 660.png
+INPUT .\images\Sim4 temperature distribution — zoned 6-8-6 t= 660.png
+INPUT .\images\Sim4 temperature distribution — zoned 6-8-6 t= 660.png
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ectt1000.tfm
 INPUT .\images\Sim5 geometry — Chebyshev p = 0.7.png
 INPUT .\images\Sim5 geometry — Chebyshev p = 0.7.png
@@ -546,45 +538,6 @@ INPUT .\4.tex
 INPUT .\4.tex
 INPUT .\4.tex
 INPUT 4.tex
-INPUT .\images\fig_defrost_bar_comparison.png
-INPUT .\images\fig_defrost_bar_comparison.png
-INPUT .\images\fig_defrost_bar_comparison.png
-INPUT .\images\fig_defrost_bar_comparison.png
-INPUT .\images\fig_defrost_bar_comparison.png
-INPUT .\images\fig_defrost_bar_comparison.png
-INPUT .\images\Steady-state temperature distribution t = 3600.png
-INPUT .\images\Steady-state temperature distribution t = 3600.png
-INPUT .\images\Steady-state temperature distribution t = 3600.png
-INPUT .\images\Steady-state temperature distribution t = 3600.png
-INPUT .\images\Steady-state temperature distribution t = 3600.png
-INPUT .\images\Steady-state temperature distribution t = 3600.png
-INPUT .\images\Temperature distribution at t = 360s.png
-INPUT .\images\Temperature distribution at t = 360s.png
-INPUT .\images\Temperature distribution at t = 360s.png
-INPUT .\images\Temperature distribution at t = 360s.png
-INPUT .\images\Temperature distribution at t = 360s.png
-INPUT .\images\Temperature distribution at t = 360s.png
-INPUT .\images\fig_conductivity_effect.png
-INPUT .\images\fig_conductivity_effect.png
-INPUT .\images\fig_conductivity_effect.png
-INPUT .\images\fig_conductivity_effect.png
-INPUT .\images\fig_conductivity_effect.png
-INPUT .\images\fig_conductivity_effect.png
-INPUT .\images\6-8-6 temperature distribution.png
-INPUT .\images\6-8-6 temperature distribution.png
-INPUT .\images\6-8-6 temperature distribution.png
-INPUT .\images\6-8-6 temperature distribution.png
-INPUT .\images\6-8-6 temperature distribution.png
-INPUT .\images\6-8-6 temperature distribution.png
-INPUT .\images\Temperature distribution at t = 360s.png
-INPUT .\images\Temperature distribution at t = 360s.png
-INPUT .\images\Temperature distribution at t = 360s.png
-INPUT .\images\Plot of Tmin vs time for Chebyshev p values and zoned with dew point line.png
-INPUT .\images\Plot of Tmin vs time for Chebyshev p values and zoned with dew point line.png
-INPUT .\images\Plot of Tmin vs time for Chebyshev p values and zoned with dew point line.png
-INPUT .\images\Plot of Tmin vs time for Chebyshev p values and zoned with dew point line.png
-INPUT .\images\Plot of Tmin vs time for Chebyshev p values and zoned with dew point line.png
-INPUT .\images\Plot of Tmin vs time for Chebyshev p values and zoned with dew point line.png
 INPUT .\5.tex
 INPUT .\5.tex
 INPUT .\5.tex
@@ -593,6 +546,10 @@ INPUT 5.tex
 INPUT .\main.bbl
 INPUT .\main.bbl
 INPUT main.bbl
+INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvr8t.tfm
+INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvb8t.tfm
+INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\helvetic\phvb8t.vf
+INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvb8r.tfm
 INPUT .\Appendix.tex
 INPUT .\Appendix.tex
 INPUT .\Appendix.tex
