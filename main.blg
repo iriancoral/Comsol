@@ -5,36 +5,37 @@ Reallocating 'name_of_file' (item size: 1) to 6 items.
 The style file: unsrt.bst
 Reallocating 'name_of_file' (item size: 1) to 4 items.
 Database file #1: ref.bib
+Warning--empty author in ruhl2016
 You've used 8 entries,
             1791 wiz_defined-function locations,
-            499 strings with 5009 characters,
-and the built_in function-call counts, 1591 in all, are:
-= -- 151
-> -- 58
+            498 strings with 4973 characters,
+and the built_in function-call counts, 1540 in all, are:
+= -- 148
+> -- 48
 < -- 1
-+ -- 23
-- -- 15
-* -- 90
-:= -- 266
-add.period$ -- 30
++ -- 20
+- -- 12
+* -- 88
+:= -- 250
+add.period$ -- 29
 call.type$ -- 8
 change.case$ -- 7
 chr.to.int$ -- 0
-cite$ -- 8
+cite$ -- 9
 duplicate$ -- 68
 empty$ -- 161
-format.name$ -- 15
-if$ -- 350
+format.name$ -- 12
+if$ -- 341
 int.to.chr$ -- 0
 int.to.str$ -- 8
 missing$ -- 8
-newline$ -- 49
-num.names$ -- 8
-pop$ -- 20
+newline$ -- 48
+num.names$ -- 7
+pop$ -- 21
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 23
+skip$ -- 24
 stack$ -- 0
 substring$ -- 90
 swap$ -- 8
@@ -42,7 +43,8 @@ text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
-while$ -- 15
+warning$ -- 1
+while$ -- 14
 width$ -- 9
-write$ -- 100
+write$ -- 98
+(There was 1 warning)

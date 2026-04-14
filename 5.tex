@@ -1,48 +1,71 @@
 % ============================================================
-\chapter{Conclusion}
+\section{Conclusion}
 \label{ch:conclusion}
 % ============================================================
 
-This report presents the design and optimisation of a resistive rear window defroster using coupled multiphysics finite element modelling in COMSOL Multiphysics~6.2. The design was developed iteratively through six simulations addressing thermal performance, material selection, structural integrity, transient response, trace pattern optimisation, and weather condition robustness.
+In this report the design and optimisation of a car rear-window defroster using has been presented using coupled
+multiphysics finite element modelling in COMSOL Multiphysics~6.2. In order to complete the design of the heating trace 
+pattern six simulations have been analyzed each with its own respective optimization part.  Each stage narrowed 
+the design space using the results of the previous one, 
+producing a final configuration that satisfies the dew-point, defrost-time, stress, and obscuration requirements 
+simultaneously.
 
-The key findings of this study are:
+Four main conclusions can be drawn from the study. First, the number of heating traces is by far the most 
+influential design parameter as increasing the trace count from 12 to 20 at \SI{12}{\volt} raises the 
+minimum steady-state temperature $T_\text{min}$ by more than \SI{6}{\kelvin}. In contrast raising the 
+voltage from \SI{12}{\volt} to \SI{14.5}{\volt} at fourteen traces gives an increase of only \SI{1.2}{\kelvin}. 
 
-\begin{enumerate}
-    \item \textbf{The number of heating traces is the most influential design parameter.} Increasing the trace count from 12 to 20 raises $T_\text{min}$ by over \SI{6}{\kelvin} at \SI{12}{\volt}, whereas increasing voltage from 12 to \SI{14.5}{\volt} at 14~traces yields only \SI{1.2}{\kelvin}.
+Second, out of all the materials the Pd--Ag alloy ($\sigma = \SI{2.3e6}{\siemens\per\metre}$) 
+is a clear winner in terms of heat generation and distribution, reaching the dew point with fourteen 
 
-    \item \textbf{Pd--Ag alloy ($\sigma = \SI{2.3e6}{\siemens\per\metre}$) is the optimal trace material.} It reaches the dew point with 14~traces at \SI{12}{\volt}, while Nichrome~V requires 18--20~traces. Bulk conductivity materials (Silver, Gold) overheat catastrophically and are not viable for this geometry.
+traces at \SI{12}{\volt} where Nichrome~V needs eighteen to twenty. However, bulk-conductivity materials 
+such as silver and gold overheat too much in this geometry and cannot be used for the trace pattern optimization. 
 
-    \item \textbf{Both shortlisted materials pass the stress analysis} with safety factors exceeding $3\times$, confirming that thermal expansion mismatch between the traces and glass does not pose a structural risk.
+\textcolor{red}{Sebtain pls confirm}Third, the stress analysis confirms that thermal expansion mismatch 
+between the traces and the glass does not pose a structural risk, with safety 
+factors exceeding $3\times$ for both shortlisted materials. 
+Fourth, geometry optimisation proves to be as meaningful as material or 
+electrical optimisation. With the application of the Chebyshev trace spacing (\Cref{eq:chebyshev}) with exponent 
+$p = 1.3$ is shown that the defrost time is halved from \SI{12}{\minute} to \SI{6}{\minute} and the 
+$T_\text{min}$ is raised by \SI{6.8}{\kelvin} with zero additional cost which resulted to be the optimal design.
 
-    \item \textbf{The recommended design} is:
-    \begin{itemize}
-        \item Material: Pd--Ag alloy
-        \item Number of traces: 20
-        \item Voltage: \SI{12}{\volt} (nominal battery)
-        \item Steady-state $T_\text{min}$: \SI{288.2}{\kelvin} (\SI{5}{\kelvin} above dew point)
-        \item Defrost time: 12~minutes
-        \item Stress safety factor: $\sim 3.1 \times$
-    \end{itemize}
 
-    \item \textbf{Alternative high-performance design:} Pd--Ag alloy, 22~traces, \SI{14.5}{\volt} --- achieves 8-minute defrost time when the engine is running.
 
-    \item \textbf{The final design is robust across all tested weather conditions (Sim~6).} Five scenarios ranging from mild autumn (\SI{10}{\celsius}) to extreme cold (\SI{-20}{\celsius}) and freezing rain ($h_\text{ext} = \SI{40}{\watt\per\metre\squared\per\kelvin}$) were tested, each with a physically realistic dew point \cite{lawrence2005}. All five scenarios defrost within \SI{8}{\minute} with a minimum steady-state margin of \SI{+5.4}{\kelvin} above the dew point, confirming that the design is not tuned to a single favourable condition.
 
-    \item \textbf{Chebyshev trace spacing halves the defrost time.} The non-uniform Chebyshev spacing (\Cref{eq:chebyshev}) with exponent $p = 1.3$ reduces the defrost time from \SI{12}{\minute} to \SI{6}{\minute} and raises $T_\text{min}$ by \SI{6.8}{\kelvin} --- without changing the number of traces, material, or voltage. The discrete zoned approach (6/8/6) provides only a modest \SI{1}{\minute} improvement, confirming that a continuous optimisation is needed. The optimal exponent ($p = 1.3$) was found via a 16-point parametric sweep, exploiting COMSOL's ability to parametrically update the geometry.
 
-    \item \textbf{Final recommended design:}
-    \begin{itemize}
-        \item Material: Pd--Ag alloy ($\sigma = \SI{2.3e6}{\siemens\per\metre}$)
-        \item Number of traces: 20
-        \item Spacing: Chebyshev with $p = 1.3$
-        \item Voltage: \SI{12}{\volt} (nominal battery)
-        \item Steady-state $T_\text{min}$: \SI{295.0}{\kelvin} (\SI{12}{\kelvin} above dew point)
-        \item Defrost time: \SI{6}{\minute}
-        \item Stress safety factor: $\sim 3.1 \times$
-        \item Window obscuration: 4.25\% ($<5\%$ SAE~J216 limit)
-    \end{itemize}
-\end{enumerate}
+% The final recommended design uses a Pd--Ag alloy ($\sigma = \SI{2.3e6}{\siemens\per\metre}$)
+% with twenty traces following Chebyshev spacing with exponent $p = 1.3$ operating at a
+%  battery voltage of \SI{12}{\volt} which is the standard car battery voltage. 
+%  \textcolor{red}{Is 295  wel steady state of is dat gewoon na een uur ?}
+% This configuration reaches a steady-state $T_\text{min}$ of \SI{295.0}{\kelvin}
+% which is \SI{12}{\kelvin} above the dew point it reaches the dew temperature in \SI{6}{\minute}. 
+% Furthermore, it is able to maintain a
+% stress safety factor of approximately $3.1\times$, and occupies 4.25\% of the window area,
+% comfortably below the 5\% limit imposed by SAE~J216. 
 
-The simulation methodology --- coupling Electric Currents, Heat Transfer, and Solid Mechanics with parametric sweeps over material properties, geometry, and operating conditions --- provides a systematic framework for defroster design. The model was validated through mesh convergence, back-of-envelope analytical estimates (agreeing to within 0.03\%), and comparison with published experimental data.
 
-The key insight of this study is that \textbf{geometry optimisation} (trace placement) can be equally or more impactful than material or electrical optimisation. The Chebyshev spacing approach provides a mathematically principled, single-parameter design specification that can be applied to any rectangular heated-glass application. Future work should extend the model to 3D curved glass, validate against physical prototypes, and investigate the effect of varying interior convection ($h_\text{int}$) with different cabin HVAC states.
+% An alternative high-performance variant
+% with twenty-two traces at \SI{14.5}{\volt} achieves an 8-minute defrost time when the engine
+% is running, and may be preferred in markets where faster clearing is prioritised over
+% battery-only operation. 
+
+More importantly, the recommended design is not tuned to a 
+single favourable operating temperature, to check for validity five weather scenarios are tested in Sim~6 --- ranging ambient 
+temperatures from \SIrange{-20}{10}{\celsius}, external convection coefficients from 
+\SIrange{10}{40}{\watt\per\metre\squared\per\kelvin} and physically realistic dew points 
+\textcolor{red}{Sebtain do you know this source?}
+\cite{lawrence2005} --- all defrost within \SI{8}{\minute} with a minimum steady-state 
+margin of \SI{+5.4}{\kelvin} above the dew point, confirming robustness across the expected 
+operating envelope.
+
+The simulation methodology itself with coupling Electric Currents, Heat Transfer, and Solid 
+Mechanics through parametric sweeps over material properties, geometry, and operating 
+conditions provides a systematic and reusable framework for optimization of trace pattern optimization. 
+Furthermore, the result is supported by mesh convergence studies, back-of-envelope 
+analytical estimates (agreeing to within 0.03\%) and boundary conditions. 
+To conclude the key insight is that the Chebyshev spacing 
+rule offers a mathematically principled formula based on a single-parameter that can be 
+applied to any rectangular heated-glass application. Future work should extend the model 
+to three-dimensional glass, validate the simulation results against a physical 
+prototype and investigate the effect of varying interior convection ($h_\text{int}$) 
+under different car air conditioning states.
