@@ -5,57 +5,6 @@
 
 
 % ------------------------------------------------------------
-\section{Transient Defrost Performance}
-\label{sec:defrost-results}
-% ------------------------------------------------------------
-
-The transient defrost times for all tested configurations are presented in \Cref{tab:defrost-pdag,tab:defrost-nichrome}. These results are from the fine-mesh simulation (189,192~domain elements).
-
-\begin{table}[H]
-    \centering
-    \caption{Defrost time (minutes) for Pd--Ag alloy ($\sigma = \SI{2.3e6}{\siemens\per\metre}$). Defrost is defined as the time for $T_\text{min}$ to reach \SI{283.15}{\kelvin}.}
-    \label{tab:defrost-pdag}
-    \begin{tabular}{@{}lcc@{}}
-        \toprule
-        $n_\text{traces}$ & \SI{12}{\volt} & \SI{14.5}{\volt} \\
-        \midrule
-        14 & 41 & 22 \\
-        16 & 22 & 16 \\
-        18 & 16 & 12 \\
-        20 & \textbf{12} & 10 \\
-        22 & 10 & \textbf{8} \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Defrost time (minutes) for Nichrome~V ($\sigma = \SI{9.3e5}{\siemens\per\metre}$). ``Never'' indicates that $T_\text{min}$ does not reach \SI{283.15}{\kelvin} within \SI{60}{\minute}.}
-    \label{tab:defrost-nichrome}
-    \begin{tabular}{@{}lcc@{}}
-        \toprule
-        $n_\text{traces}$ & \SI{12}{\volt} & \SI{14.5}{\volt} \\
-        \midrule
-        14 & Never & Never \\
-        16 & Never & 59 \\
-        18 & Never & 25 \\
-        20 & 28 & 18 \\
-        22 & 20 & 14 \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\textwidth]{fig_defrost_bar_comparison.png}
-    \caption{Defrost time comparison between Pd--Ag alloy and Nichrome~V at \SI{12}{\volt} and \SI{14.5}{\volt}. ``N'' indicates the configuration never reaches the dew point within \SI{60}{\minute}.}
-    \label{fig:defrost-comparison}
-\end{figure}
-
-Pd--Ag alloy consistently defrosts faster than Nichrome~V at the same trace count and voltage. Nichrome~V requires $\geq 20$~traces at \SI{12}{\volt} to defrost at all within 60~minutes, while Pd--Ag defrosts with as few as 14~traces (in 41~minutes).
-
-
-% ------------------------------------------------------------
 \section{Temperature Distribution}
 \label{sec:temp-distribution}
 % ------------------------------------------------------------

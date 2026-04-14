@@ -8,33 +8,33 @@
 \label{sec:introduction}
 % ------------------------------------------------------------
 
-Rear window condensation and frost is a common problem in automotive vehicles, particularly during colder months where the temperature of the glass surface drops below the dew point of the surrounding air \cite{lawrence2005}. When this happens, moisture from the cabin air condenses on the inner surface of the glass, which significantly reduce the driver's rear visibility and creates a safety hazard \cite{sayer1999}. To addresses this issue, most modern vehicles are equipped with electrically heated rear window defrosters that uses thin resistive traces embedded on the glass to raise it's surface temperature above the dew point.
+Rear window condensation and frost are a common problem in automotive vehicles, especially during the colder months when the glass surface temperature drops below the dew point of surrounding air \cite{lawrence2005}. When this happen, the moisture from cabin air will condense on the inner surface of the glass, this significantly reduces the driver's rear visibility and create a safety hazard \cite{sayer1999}. To address this issue, most of the modern vehicles are equipped with electrically heated rear window defrosters which uses thin resistive traces that are embedded on the glass to raise it's surface temperature above the dew point.
 
 \subsection{Problem Statement}
 
-The aim of this study is to design and optimise a resistive rear window defroster system for a standard automotive application using finite element multiphysics modelling in COMSOL Multiphysics 6.2. Specifically, the study seeks to answers the following questions:
+The aim of this study is to design and also optimise a resistive rear window defroster system for standard automotive application, using finite element multiphysics modelling in COMSOL Multiphysics 6.2. More specifically, the study seek to answer the following questions:
 
 \begin{enumerate}
-    \item What is the optimal number of heating traces and operating voltage which is needed to ensure the entire glass surface temperature exceeds the dew point?
-    \item Which trace material from the available candidates (sourced from the CES EduPack database \cite{edupack}) provides the best balance between thermal performance and structural integrity?
-    \item How long does it takes for the defroster to fully clear the window from an initial frosted condition, and can this be improved through non-uniform trace spacing?
-    \item Is the final design robust enough to performs adequately across a range of realistic weather conditions?
+    \item What is the optimal number of heating traces and the operating voltage that is needed to make sure the entire glass surface temperature exceed the dew point?
+    \item Which trace material out of the available candidates (sourced from CES EduPack database \cite{edupack}) provides the best balance between thermal performance and structural integrity?
+    \item How long does it take for the defroster to fully clear the window from a initial frosted condition, and can this be improved by using non-uniform trace spacing?
+    \item Is the final design robust enough to perform adequately across a range of realistic weather condition?
 \end{enumerate}
 
-The defroster must raises the entire glass surface temperature above the dew point to eliminate condensation and frost, while remaining within safe thermal and mechanical stress limits. The design is developed iteratively through a series of simulations of increasing complexity, starting from a baseline model and progressively refining the configuration through parametric sweeps, material selection, stress analysis, trace spacing optimisation, and weather robustness testing.
+The defroster must raise the entire glass surface temperature above the dew point to eliminates condensation and frost at the same time it should remaining within safe thermal and mechanical stress limits. The design was developed iteratively through a series of simulations with increasing complexity. We started from a baseline model and then we refining the configuration through parametric sweeps, material selection, stress analysis, trace spacing optimisation, and at the end we also performed a weather study for robustness testing.
 
 % ------------------------------------------------------------
 \section{Problem Description}
 \label{sec:problem-description}
 % ------------------------------------------------------------
 
-Rear window defrosters works by passing electric current through thin conductive traces which are deposited on the inner surface of the glass \cite{ruhl2016}. The Joule heating produced in the traces then conducts into the glass, raising it's temperature above the dew point \cite{koshlak2024}. The main design challenge is to achieve a sufficiently uniform heating across the entire window, using minimum number of traces at a voltage that is compatible with standard \SI{12}{\volt} automotive electrical system \cite{bosch2014}.
+Rear window defrosters work by passing an electric current through thin conductive traces that are deposited on the inner surface of the glass \cite{ruhl2016}. The Joule heating that is produced in the traces conducts into the glass, which raises it's temperature above the dew point \cite{koshlak2024}. The main design challenge here is achieving sufficiently uniform heating across the entire window, while using a minimum number of traces at a voltage compatible with the standard \SI{12}{\volt} automotive electrical system \cite{bosch2014}.
 
-The design must satisfy three main criterias:
+The design must satisfies three main criteria:
 \begin{enumerate}
-    \item \textbf{Thermal:} The minimum surface temperature of the glass must exceeds the dew point temperature ($T_\text{dew} = \SI{283.15}{\kelvin}$, i.e.\ \SI{10}{\degreeCelsius}) \cite{lawrence2005}.
-    \item \textbf{Structural:} Thermal stresses from the differential expansion between trace material and the glass must remain below the material yield strengths \cite{ruhl2016}.
-    \item \textbf{Transient:} The window should defrost within a reasonable amount of time (target: $\leq \SI{15}{\minute}$) \cite{prudenziati2012}.
+    \item \textbf{Thermal:} The minimum surface temperature of glass must exceeds the dew point temperature ($T_\text{dew} = \SI{283.15}{\kelvin}$, at \ \SI{10}{\degreeCelsius}) \cite{lawrence2005}.
+    \item \textbf{Structural:} The thermal stresses from differential expansion between the trace material and glass must remains below material yield strengths \cite{ruhl2016}.
+    \item \textbf{Transient:} The window should be defrosted within a reasonable time (target: $\leq \SI{15}{\minute}$) \cite{prudenziati2012}.
 \end{enumerate}
 
 
@@ -43,11 +43,11 @@ The design must satisfy three main criterias:
 \label{sec:geometry}
 % ------------------------------------------------------------
 
-The model is a two-dimensional representation of a flat rear window, which is a common approach used in literature for this type of problem \cite{ruhl2016, koshlak2024}. The geometry consists of three components:
+The model is represented by a two-dimensional flat rear window, which is a common approach used in literature for this type of problem \cite{ruhl2016, koshlak2024}. The geometry consists of three components:
 
 \begin{itemize}
     \item A rectangular glass pane of dimensions $L_\text{glass} \times H_\text{glass}$ = \SI{1.5}{\metre} $\times$ \SI{0.8}{\metre}
-    \item Horizontal conductive heating traces spanning the full width of the glass, created using a linear array
+    \item Horizontal conductive heating traces spanning the full width of the glass. These are created using a linear array
     \item Two vertical bus bars (left and right edges) connecting all traces to the power supply
 \end{itemize}
 
@@ -175,7 +175,9 @@ This expression replace the out-of-plane heat flux boundary condition, which cau
 \label{sec:governing-equations}
 % ------------------------------------------------------------
 
-The model involves three coupled physics: Electric Currents, Heat Transfer in Solids, and Solid Mechanics. Their coupling is illustrated in \Cref{fig:coupling-diagram}.
+The model involve three coupled physics interfaces: Electric Currents (ec), Heat Transfer in Solids (ht), and Solid Mechanics (solid). Each of these physics captures a different aspect of the defroster behaviour, and they are coupled together through multiphysics nodes in COMSOL. The coupling between them is illustrated in \Cref{fig:coupling-diagram}.
+
+The first physics is \textbf{Electric Currents}, which solves for the electric potential distribution across the conductive traces and bus bars. When a voltage is applied across the bus bars, current will flows through the traces and this generates resistive heating. This physics is only active on the trace and bus bar domains since the glass itself is electrically insulating. The second physics is \textbf{Heat Transfer in Solids}, which computes the temperature field across the entire glass and trace domains. It recieves the Joule heating from Electric Currents as a volumetric heat source through the \textit{Electromagnetic Heating} multiphysics coupling. This is what actually heats up the glass. The third physics is \textbf{Solid Mechanics}, which calculate the mechanical stresses and deformations that arises from the temperature differences in the model. It is coupled to Heat Transfer through the \textit{Thermal Expansion} multiphysics node, which converts temperature changes into thermal strains. This coupling is important because the trace materials and the glass has different coefficients of thermal expansion, so when they heat up together they will expand by different amounts which creates stress at the interface.
 
 \begin{figure}[H]
     \centering
@@ -184,34 +186,36 @@ The model involves three coupled physics: Electric Currents, Heat Transfer in So
     \label{fig:coupling-diagram}
 \end{figure}
 
-\textbf{Electric Currents.} The electric field in the conductive traces is governed by current conservation:
+The governing equations for each physics are given below.
+
+\textbf{Electric Currents.} The electric field in the conductive traces are governed by current conservation:
 \begin{equation}
     \nabla \cdot \mathbf{J} = 0
     \label{eq:current-conservation}
 \end{equation}
 where $\mathbf{J} = \sigma_\text{eff} \mathbf{E}$ is the current density and $\mathbf{E} = -\nabla V$ is the electric field.
 
-\textbf{Heat Transfer in Solids.} The heat equation in the glass domain is:
+\textbf{Heat Transfer in Solids.} The heat equation in the glass domain are:
 \begin{equation}
     \rho C_p \frac{\partial T}{\partial t} = \nabla \cdot (k \nabla T) + Q_e + Q_\text{conv}
     \label{eq:heat-equation}
 \end{equation}
-where $Q_e = \mathbf{J} \cdot \mathbf{E}$ is the resistive (Joule) heating from the Electromagnetic Heating multiphysics coupling, and $Q_\text{conv}$ is the convective heat source from \Cref{eq:heat-source}.
+where $Q_e = \mathbf{J} \cdot \mathbf{E}$ is the resistive (Joule) heating that comes from the Electromagnetic Heating multiphysics coupling, and $Q_\text{conv}$ is the convective heat source from \Cref{eq:heat-source}.
 
-For stationary studies, the left-hand side is zero and the equation reduces to:
+For stationary studies the left-hand side is zero so the equation reduce to:
 \begin{equation}
     \nabla \cdot (k \nabla T) + Q_e + Q_\text{conv} = 0
     \label{eq:heat-stationary}
 \end{equation}
 
-\textbf{Solid Mechanics.} The mechanical equilibrium is described by:
+\textbf{Solid Mechanics.} The mechanical equilibrium are described by:
 \begin{equation}
     \nabla \cdot \mathbf{S} + \mathbf{F}_v = 0
     \label{eq:solid-mechanics}
 \end{equation}
-where $\mathbf{S}$ is the Cauchy stress tensor. Thermal expansion introduces an initial strain:
+where $\mathbf{S}$ is the Cauchy stress tensor. Thermal expansion introduce an initial strain:
 \begin{equation}
     \boldsymbol{\varepsilon}_\text{th} = \alpha (T - T_\text{ref}) \mathbf{I}
     \label{eq:thermal-expansion}
 \end{equation}
-with reference temperature $T_\text{ref} = T_\text{amb} = \SI{275.15}{\kelvin}$.
+with a reference temperature of $T_\text{ref} = T_\text{amb} = \SI{275.15}{\kelvin}$.

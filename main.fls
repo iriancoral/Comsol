@@ -1,6 +1,6 @@
-PWD c:\Users\sebta\Documents\Comsol project\Comsol-main\Comsol-main
+PWD C:\Users\sebta\Documents\Comsol project\Comsol-main\Comsol-main
 INPUT C:\Users\sebta\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\sebta\Documents\Comsol project\Comsol-main\Comsol-main\main.tex
+INPUT main.tex
 OUTPUT main.log
 INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\tex\latex\base\report.cls
 INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\tex\latex\base\report.cls
@@ -421,6 +421,7 @@ INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cme
 INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbsy10.tfm
 INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmbsy7.tfm
 INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmbsy5.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvro8t.tfm
 INPUT .\images\physics_coupling_diagram.png
 INPUT .\images\physics_coupling_diagram.png
 INPUT .\images\physics_coupling_diagram.png
@@ -432,45 +433,67 @@ INPUT .\2.tex
 INPUT .\2.tex
 INPUT .\2.tex
 INPUT 2.tex
-INPUT .\images\Sim1 —voltage distribution.png
-INPUT .\images\Sim1 —voltage distribution.png
-INPUT .\images\Sim1 —voltage distribution.png
-INPUT .\images\Sim1 —voltage distribution.png
-INPUT .\images\Sim1 —voltage distribution.png
-INPUT .\images\Sim1 —voltage distribution.png
-INPUT .\images\Sim1 —temperature distribution.png
-INPUT .\images\Sim1 —temperature distribution.png
-INPUT .\images\Sim1 —temperature distribution.png
-INPUT .\images\Sim1 —temperature distribution.png
-INPUT .\images\Sim1 —temperature distribution.png
-INPUT .\images\Sim1 —temperature distribution.png
-INPUT .\images\Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png
-INPUT .\images\Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png
-INPUT .\images\Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png
-INPUT .\images\Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png
-INPUT .\images\Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png
-INPUT .\images\Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png
-INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvro8t.tfm
-INPUT .\images\fig_sim2b_material_comparison.png
-INPUT .\images\fig_sim2b_material_comparison.png
-INPUT .\images\fig_sim2b_material_comparison.png
-INPUT .\images\fig_sim2b_material_comparison.png
-INPUT .\images\fig_sim2b_material_comparison.png
-INPUT .\images\fig_sim2b_material_comparison.png
 INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\helvetic\phvro8t.vf
 INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvro8r.tfm
-INPUT .\images\sim2c_stress_pdag_20traces_12V.png
-INPUT .\images\sim2c_stress_pdag_20traces_12V.png
-INPUT .\images\sim2c_stress_pdag_20traces_12V.png
-INPUT .\images\sim2c_stress_pdag_20traces_12V.png
-INPUT .\images\sim2c_stress_pdag_20traces_12V.png
-INPUT .\images\sim2c_stress_pdag_20traces_12V.png
-INPUT .\images\sim2c_stress_nichrome_20traces_12V.png
-INPUT .\images\sim2c_stress_nichrome_20traces_12V.png
-INPUT .\images\sim2c_stress_nichrome_20traces_12V.png
-INPUT .\images\sim2c_stress_nichrome_20traces_12V.png
-INPUT .\images\sim2c_stress_nichrome_20traces_12V.png
-INPUT .\images\sim2c_stress_nichrome_20traces_12V.png
+INPUT .\images\Sim1 —voltage distribution.png
+INPUT .\images\Sim1 —voltage distribution.png
+INPUT .\images\Sim1 —voltage distribution.png
+INPUT .\images\Sim1 —voltage distribution.png
+INPUT .\images\Sim1 —voltage distribution.png
+INPUT .\images\Sim1 —voltage distribution.png
+INPUT .\images\Sim1 —temperature distribution.png
+INPUT .\images\Sim1 —temperature distribution.png
+INPUT .\images\Sim1 —temperature distribution.png
+INPUT .\images\Sim1 —temperature distribution.png
+INPUT .\images\Sim1 —temperature distribution.png
+INPUT .\images\Sim1 —temperature distribution.png
+INPUT .\images\Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png
+INPUT .\images\Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png
+INPUT .\images\Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png
+INPUT .\images\Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png
+INPUT .\images\Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png
+INPUT .\images\Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png
+INPUT .\images\fig_sim2b_material_comparison.png
+INPUT .\images\fig_sim2b_material_comparison.png
+INPUT .\images\fig_sim2b_material_comparison.png
+INPUT .\images\fig_sim2b_material_comparison.png
+INPUT .\images\fig_sim2b_material_comparison.png
+INPUT .\images\fig_sim2b_material_comparison.png
+INPUT .\images\sim2c_stress_nichrome_20traces_12V_new.png
+INPUT .\images\sim2c_stress_nichrome_20traces_12V_new.png
+INPUT .\images\sim2c_stress_nichrome_20traces_12V_new.png
+INPUT .\images\sim2c_stress_nichrome_20traces_12V_new.png
+INPUT .\images\sim2c_stress_nichrome_20traces_12V_new.png
+INPUT .\images\sim2c_stress_nichrome_20traces_12V_new.png
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvr8t.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr9.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr6.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi9.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi6.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy9.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy6.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex9.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx9.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx6.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam7.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
+INPUT .\images\sim2c_stress_pdag_20traces_12V_new.png
+INPUT .\images\sim2c_stress_pdag_20traces_12V_new.png
+INPUT .\images\sim2c_stress_pdag_20traces_12V_new.png
+INPUT .\images\sim2c_stress_pdag_20traces_12V_new.png
+INPUT .\images\sim2c_stress_pdag_20traces_12V_new.png
+INPUT .\images\sim2c_stress_pdag_20traces_12V_new.png
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\helvetic\phvr8t.vf
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvr8r.tfm
+INPUT .\images\fig_defrost_bar_comparison.png
+INPUT .\images\fig_defrost_bar_comparison.png
+INPUT .\images\fig_defrost_bar_comparison.png
+INPUT .\images\fig_defrost_bar_comparison.png
+INPUT .\images\fig_defrost_bar_comparison.png
+INPUT .\images\fig_defrost_bar_comparison.png
 INPUT .\images\fig_sim3_transient_pdag_12V.png
 INPUT .\images\fig_sim3_transient_pdag_12V.png
 INPUT .\images\fig_sim3_transient_pdag_12V.png
@@ -546,12 +569,6 @@ INPUT .\4.tex
 INPUT .\4.tex
 INPUT .\4.tex
 INPUT 4.tex
-INPUT .\images\fig_defrost_bar_comparison.png
-INPUT .\images\fig_defrost_bar_comparison.png
-INPUT .\images\fig_defrost_bar_comparison.png
-INPUT .\images\fig_defrost_bar_comparison.png
-INPUT .\images\fig_defrost_bar_comparison.png
-INPUT .\images\fig_defrost_bar_comparison.png
 INPUT .\images\Steady-state temperature distribution t = 3600.png
 INPUT .\images\Steady-state temperature distribution t = 3600.png
 INPUT .\images\Steady-state temperature distribution t = 3600.png
@@ -609,16 +626,22 @@ INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\c
 INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
 INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi7.pfb
 INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi7.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi9.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi9.pfb
 INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmib10.pfb
 INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmib10.pfb
 INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
 INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr9.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr9.pfb
 INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy7.pfb
 INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy7.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy9.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy9.pfb
 INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\urw\helvetic\uhvb8a.pfb
 INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\urw\helvetic\uhvb8a.pfb
 INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\urw\helvetic\uhvr8a.pfb
