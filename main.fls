@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 PWD c:\Users\Irian\Desktop\Irian\Irian\Irian Claude\Scorro\Master\Jaar 2\Comsol\Final report
 INPUT C:\Users\Irian\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
 INPUT c:\Users\Irian\Desktop\Irian\Irian\Irian Claude\Scorro\Master\Jaar 2\Comsol\Final report\main.tex
+=======
+PWD C:\Users\sebta\Documents\Comsol project\Comsol-main\Comsol-main
+INPUT C:\Users\sebta\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
+INPUT main.tex
+>>>>>>> origin/master
 OUTPUT main.log
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\tex\latex\base\report.cls
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\tex\latex\base\report.cls
@@ -394,6 +400,7 @@ INPUT .\images\COMSOL — Geometry view showing glass (grey), traces (orange), b
 INPUT .\images\COMSOL — Geometry view showing glass (grey), traces (orange), bus.png
 INPUT .\images\COMSOL — Geometry view showing glass (grey), traces (orange), bus.png
 INPUT .\images\COMSOL — Geometry view showing glass (grey), traces (orange), bus.png
+<<<<<<< HEAD
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\helvetic\phvb8t.vf
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvb8r.tfm
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\base\8r.enc
@@ -413,6 +420,19 @@ INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cme
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbsy10.tfm
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmbsy7.tfm
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmbsy5.tfm
+=======
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\helvetic\phvr8c.vf
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx7.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx5.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmib10.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmmib7.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmmib5.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbsy10.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmbsy7.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmbsy5.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvro8t.tfm
+>>>>>>> origin/master
 INPUT .\images\physics_coupling_diagram.png
 INPUT .\images\physics_coupling_diagram.png
 INPUT .\images\physics_coupling_diagram.png
@@ -424,6 +444,11 @@ INPUT .\2.tex
 INPUT .\2.tex
 INPUT .\2.tex
 INPUT 2.tex
+<<<<<<< HEAD
+=======
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\helvetic\phvro8t.vf
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvro8r.tfm
+>>>>>>> origin/master
 INPUT .\images\Sim1 —voltage distribution.png
 INPUT .\images\Sim1 —voltage distribution.png
 INPUT .\images\Sim1 —voltage distribution.png
@@ -442,15 +467,19 @@ INPUT .\images\Line plot — Tmin vs ntraces at Vin = 12V with dew point line.pn
 INPUT .\images\Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png
 INPUT .\images\Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png
 INPUT .\images\Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png
+<<<<<<< HEAD
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvro8t.tfm
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\helvetic\phvro8t.vf
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvro8r.tfm
+=======
+>>>>>>> origin/master
 INPUT .\images\fig_sim2b_material_comparison.png
 INPUT .\images\fig_sim2b_material_comparison.png
 INPUT .\images\fig_sim2b_material_comparison.png
 INPUT .\images\fig_sim2b_material_comparison.png
 INPUT .\images\fig_sim2b_material_comparison.png
 INPUT .\images\fig_sim2b_material_comparison.png
+<<<<<<< HEAD
 INPUT .\images\sim2c_stress_pdag_20traces_12V.png
 INPUT .\images\sim2c_stress_pdag_20traces_12V.png
 INPUT .\images\sim2c_stress_pdag_20traces_12V.png
@@ -463,6 +492,43 @@ INPUT .\images\sim2c_stress_nichrome_20traces_12V.png
 INPUT .\images\sim2c_stress_nichrome_20traces_12V.png
 INPUT .\images\sim2c_stress_nichrome_20traces_12V.png
 INPUT .\images\sim2c_stress_nichrome_20traces_12V.png
+=======
+INPUT .\images\sim2c_stress_nichrome_20traces_12V_new.png
+INPUT .\images\sim2c_stress_nichrome_20traces_12V_new.png
+INPUT .\images\sim2c_stress_nichrome_20traces_12V_new.png
+INPUT .\images\sim2c_stress_nichrome_20traces_12V_new.png
+INPUT .\images\sim2c_stress_nichrome_20traces_12V_new.png
+INPUT .\images\sim2c_stress_nichrome_20traces_12V_new.png
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvr8t.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr9.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr6.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi9.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi6.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy9.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy6.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex9.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx9.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx6.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam7.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
+INPUT .\images\sim2c_stress_pdag_20traces_12V_new.png
+INPUT .\images\sim2c_stress_pdag_20traces_12V_new.png
+INPUT .\images\sim2c_stress_pdag_20traces_12V_new.png
+INPUT .\images\sim2c_stress_pdag_20traces_12V_new.png
+INPUT .\images\sim2c_stress_pdag_20traces_12V_new.png
+INPUT .\images\sim2c_stress_pdag_20traces_12V_new.png
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\helvetic\phvr8t.vf
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvr8r.tfm
+INPUT .\images\fig_defrost_bar_comparison.png
+INPUT .\images\fig_defrost_bar_comparison.png
+INPUT .\images\fig_defrost_bar_comparison.png
+INPUT .\images\fig_defrost_bar_comparison.png
+INPUT .\images\fig_defrost_bar_comparison.png
+INPUT .\images\fig_defrost_bar_comparison.png
+>>>>>>> origin/master
 INPUT .\images\fig_sim3_transient_pdag_12V.png
 INPUT .\images\fig_sim3_transient_pdag_12V.png
 INPUT .\images\fig_sim3_transient_pdag_12V.png
@@ -538,6 +604,36 @@ INPUT .\4.tex
 INPUT .\4.tex
 INPUT .\4.tex
 INPUT 4.tex
+<<<<<<< HEAD
+=======
+INPUT .\images\Steady-state temperature distribution t = 3600.png
+INPUT .\images\Steady-state temperature distribution t = 3600.png
+INPUT .\images\Steady-state temperature distribution t = 3600.png
+INPUT .\images\Temperature distribution at t = 360s.png
+INPUT .\images\Temperature distribution at t = 360s.png
+INPUT .\images\Temperature distribution at t = 360s.png
+INPUT .\images\fig_conductivity_effect.png
+INPUT .\images\fig_conductivity_effect.png
+INPUT .\images\fig_conductivity_effect.png
+INPUT .\images\fig_conductivity_effect.png
+INPUT .\images\fig_conductivity_effect.png
+INPUT .\images\fig_conductivity_effect.png
+INPUT .\images\6-8-6 temperature distribution.png
+INPUT .\images\6-8-6 temperature distribution.png
+INPUT .\images\6-8-6 temperature distribution.png
+INPUT .\images\6-8-6 temperature distribution.png
+INPUT .\images\6-8-6 temperature distribution.png
+INPUT .\images\6-8-6 temperature distribution.png
+INPUT .\images\Temperature distribution at t = 360s.png
+INPUT .\images\Temperature distribution at t = 360s.png
+INPUT .\images\Temperature distribution at t = 360s.png
+INPUT .\images\Plot of Tmin vs time for Chebyshev p values and zoned with dew point line.png
+INPUT .\images\Plot of Tmin vs time for Chebyshev p values and zoned with dew point line.png
+INPUT .\images\Plot of Tmin vs time for Chebyshev p values and zoned with dew point line.png
+INPUT .\images\Plot of Tmin vs time for Chebyshev p values and zoned with dew point line.png
+INPUT .\images\Plot of Tmin vs time for Chebyshev p values and zoned with dew point line.png
+INPUT .\images\Plot of Tmin vs time for Chebyshev p values and zoned with dew point line.png
+>>>>>>> origin/master
 INPUT .\5.tex
 INPUT .\5.tex
 INPUT .\5.tex
@@ -558,6 +654,7 @@ INPUT Appendix.tex
 INPUT main.aux
 INPUT .\main.out
 INPUT .\main.out
+<<<<<<< HEAD
 INPUT C:\Users\Irian\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1000.pk
 INPUT C:\Users\Irian\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1000.pk
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\type1\google\roboto\RobotoSlab-Bold.pfb
@@ -588,3 +685,41 @@ INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\type1\urw\helvetic\uhvr
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\type1\urw\helvetic\uhvr8a.pfb
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\type1\urw\helvetic\uhvro8a.pfb
 INPUT C:\Users\Irian\AppData\Local\Programs\MiKTeX\fonts\type1\urw\helvetic\uhvro8a.pfb
+=======
+INPUT C:\Users\sebta\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1000.pk
+INPUT C:\Users\sebta\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1000.pk
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\google\roboto\RobotoSlab-Bold.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\google\roboto\RobotoSlab-Bold.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\google\roboto\RobotoSlab-Regular.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\google\roboto\RobotoSlab-Regular.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi7.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi7.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi9.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi9.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmib10.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmib10.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr9.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr9.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy7.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy7.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy9.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy9.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\urw\helvetic\uhvb8a.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\urw\helvetic\uhvb8a.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\urw\helvetic\uhvr8a.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\urw\helvetic\uhvr8a.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\urw\helvetic\uhvro8a.pfb
+INPUT C:\Users\sebta\AppData\Local\Programs\MiKTeX\fonts\type1\urw\helvetic\uhvro8a.pfb
+>>>>>>> origin/master

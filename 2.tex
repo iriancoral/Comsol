@@ -122,47 +122,7 @@ The minimum number of traces which is needed to reach the dew point for each mat
     \end{tabular}
 \end{table}
 
-The full temperature results for the two viable materials (Pd--Ag alloy and Nichrome~V) is shown in \Cref{tab:sim2b-pdag,tab:sim2b-nichrome}.
-
-\begin{table}[H]
-    \centering
-    \caption{$T_\text{min}$ (K) for Pd--Ag alloy ($\sigma = \SI{2.3e6}{\siemens\per\metre}$). Values $\geq \SI{283.15}{\kelvin}$ shown in \textbf{bold}.}
-    \label{tab:sim2b-pdag}
-    \begin{tabular}{@{}lcccc@{}}
-        \toprule
-        $n_\text{traces}$ & \SI{10}{\volt} & \SI{12}{\volt} & \SI{13.5}{\volt} & \SI{14.5}{\volt} \\
-        \midrule
-        8  & 280.85 & 280.83 & 280.82 & 280.82 \\
-        10 & 281.26 & 281.43 & 281.58 & 281.69 \\
-        12 & 281.87 & 282.31 & 282.69 & 282.97 \\
-        14 & 282.62 & \textbf{283.38} & \textbf{284.05} & \textbf{284.54} \\
-        16 & \textbf{283.59} & \textbf{284.78} & \textbf{285.81} & \textbf{286.57} \\
-        18 & \textbf{284.71} & \textbf{286.39} & \textbf{287.86} & \textbf{288.93} \\
-        20 & \textbf{286.00} & \textbf{288.24} & \textbf{290.20} & \textbf{291.63} \\
-        22 & \textbf{287.43} & \textbf{290.31} & \textbf{292.82} & \textbf{294.65} \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{$T_\text{min}$ (K) for Nichrome~V ($\sigma = \SI{9.3e5}{\siemens\per\metre}$). Values $\geq \SI{283.15}{\kelvin}$ shown in \textbf{bold}.}
-    \label{tab:sim2b-nichrome}
-    \begin{tabular}{@{}lcccc@{}}
-        \toprule
-        $n_\text{traces}$ & \SI{10}{\volt} & \SI{12}{\volt} & \SI{13.5}{\volt} & \SI{14.5}{\volt} \\
-        \midrule
-        8  & 280.87 & 280.86 & 280.86 & 280.85 \\
-        10 & 281.03 & 281.10 & 281.16 & 281.21 \\
-        12 & 281.28 & 281.46 & 281.61 & 281.72 \\
-        14 & 281.58 & 281.89 & 282.16 & 282.36 \\
-        16 & 281.97 & 282.45 & 282.87 & \textbf{283.18} \\
-        18 & 282.43 & \textbf{283.11} & \textbf{283.70} & \textbf{284.13} \\
-        20 & 282.95 & \textbf{283.86} & \textbf{284.65} & \textbf{285.23} \\
-        22 & \textbf{283.53} & \textbf{284.69} & \textbf{285.71} & \textbf{286.45} \\
-        \bottomrule
-    \end{tabular}
-\end{table}
+For Pd--Ag alloy, the dew point was been reached at as few as 14~traces at \SI{12}{\volt} (\SI{283.38}{\kelvin}), going all the way up to \SI{294.65}{\kelvin} at 22~traces and \SI{14.5}{\volt}, which gives a quite wide viable operating range. Nichrome~V on the other hand need more traces to achieves the same result --- the dew point was first reach at 16~traces and \SI{14.5}{\volt} (\SI{283.18}{\kelvin}), and the maximum $T_\text{min}$ that was recorded across the whole sweep is only \SI{286.45}{\kelvin} at 22~traces and \SI{14.5}{\volt}. The full trends for both of the materials can be seen in \Cref{fig:sim2b-material-comparison}.
 
 \begin{figure}[H]
     \centering
@@ -233,14 +193,22 @@ This sequential approach avoid the spatial frame conflict (``dvol\_spatial undef
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.48\textwidth]{sim2c_stress_pdag_20traces_12V.png}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{sim2c_stress_nichrome_20traces_12V_new.png}
+        \caption{Nichrome~V (max stress = \SI{106.7}{\mega\pascal}, SF = 3.42$\times$)}
+    \end{subfigure}
     \hfill
-    \includegraphics[width=0.48\textwidth]{sim2c_stress_nichrome_20traces_12V.png}
-    \caption{Von Mises stress distribution at $V_\text{in} = \SI{12}{\volt}$, $n_\text{traces} = 20$ for both materials. (a)~Pd--Ag alloy (max stress = \SI{141.2}{\mega\pascal}, SF = 2.90$\times$). (b)~Nichrome~V (max stress = \SI{106.7}{\mega\pascal}, SF = 3.42$\times$). Peak stresses concentrate at trace endpoints near the fixed edges.}
+    \begin{subfigure}[b]{0.40\textwidth}
+        \includegraphics[width=\textwidth]{sim2c_stress_pdag_20traces_12V_new.png}
+        \caption{Pd--Ag alloy (max stress = \SI{141.2}{\mega\pascal}, SF = 2.90$\times$)}
+    \end{subfigure}
+    \caption{Von Mises stress distribution (N/m$^2$) at $V_\text{in} = \SI{12}{\volt}$, $n_\text{traces} = 20$ for both trace materials. The colour scale ranges from 0 to $3 \times 10^7$~N/m$^2$ and the red contour lines shows stress levels. Peak stresses concentrate at trace endpoints near the fixed edges, the glass bulk stress remain very low throughout.}
     \label{fig:sim2c-stress}
 \end{figure}
 
-Both materials passes the stress constraint across all configurations tested. At the recommended operating voltage of \SI{12}{\volt}, safety factors ranges from 2.72$\times$ to 3.42$\times$ for Pd--Ag alloy and from 3.28$\times$ to 3.89$\times$ for Nichrome~V. At the maximum voltage of \SI{14.5}{\volt}, the safety factors are lower but still remains above 1.9$\times$ for all configurations. Nichrome~V consistently shows a lower stress than Pd--Ag alloy due to it's lower coefficient of thermal expansion ($\alpha = \SI{13e-6}{\per\kelvin}$ vs \SI{15e-6}{\per\kelvin}). Peak stresses concentrates at trace endpoints near the fixed boundary --- a conservative artifact of the fully fixed edge condition. The glass bulk stress remain very low, well below the \SI{120}{\mega\pascal} fracture strength of tempered glass \cite{ruhl2016}.
+Both materials passes the stress constraint across all configurations tested. At the recommended operating voltage of \SI{12}{\volt}, safety factors ranges from 2.72$\times$ to 3.42$\times$ for Pd--Ag alloy and from 3.28$\times$ to 3.89$\times$ for Nichrome~V. At the maximum voltage of \SI{14.5}{\volt}, the safety factors are lower but still remains above 1.9$\times$ for all configurations.
+
+The thermal stresses arises because the conductive traces is bonded directly onto the glass surface, and the trace materials has a higher coefficient of thermal expansion compared to the glass (for example, Pd--Ag has $\alpha = \SI{15e-6}{\per\kelvin}$ compared to $\approx\SI{9e-6}{\per\kelvin}$ for soda-lime glass). When the traces heat up due to Joule heating, they tries to expand more than the glass underneath it, but since they are attached to the glass this mismatch in expansion create stresses at the interface between the trace and glass. The fixed edge constraints on left and right boundaries further restrict the glass from deforming freely, which amplify the stress near the trace endpoints at the edges. This is why peak von Mises stresses concentrates at the trace endpoints near the fixed boundary --- it is a conservative artifact of the fully fixed edge condition (in reality a rubber seal would provide some compliance). The glass bulk stress away from the traces remains very low, well below the \SI{120}{\mega\pascal} fracture strength of tempered glass \cite{ruhl2016}.
 
 
 % ------------------------------------------------------------
@@ -248,36 +216,20 @@ Both materials passes the stress constraint across all configurations tested. At
 \label{sec:sim3}
 % ------------------------------------------------------------
 
-Sim~3 evaluate how long does each configuration takes to defrost the window from the initial frosted condition ($T_\text{init} = \SI{278.15}{\kelvin}$) to the point where $T_\text{min} \geq T_\text{dew}$.
+Sim~3 evaluates how long each configuration take to defrost the window starting from the initial frosted condition ($T_\text{init} = \SI{278.15}{\kelvin}$) until the point where $T_\text{min} \geq T_\text{dew}$.
 
-A time-dependent study is used with output times from 0 to \SI{3600}{\second} in \SI{60}{\second} increments. The Electric Currents equation is set to stationary form (the electric field equilibrates in microseconds compared to the thermal time scale of minutes). Solid Mechanics are disabled for computational efficiency.
+A time-dependent study were used with output times from 0 to \SI{3600}{\second} in \SI{60}{\second} increments. The Electric Currents equation was set to stationary form since the electric field equilibrate in microseconds compared to the thermal time scale which is in minutes. Solid Mechanics was disabled for computational efficiency since we do not need the stress results for this simulation.
 
-The sweep covers: 2~materials $\times$ 5~trace counts (14, 16, 18, 20, 22) $\times$ 2~voltages (12, \SI{14.5}{\volt}) = 20~runs. The mesh were refined to Fine (189,192~domain elements) for a better accuracy.
+The sweep cover: 2~materials $\times$ 5~trace counts (14, 16, 18, 20, 22) $\times$ 2~voltages (12, \SI{14.5}{\volt}) = 20~runs. The mesh were also refined to Fine (189,192~domain elements) for better accuracy.
 
-Defrost times for all configurations are summarised in \Cref{tab:sim3-defrost}.
+The overall defrost-time comparison for both materials is shown in \Cref{fig:defrost-comparison}, while the detailed transient response for Pd--Ag alloy at \SI{12}{\volt} is shown in \Cref{fig:sim3-transient}.
 
-\begin{table}[H]
+\begin{figure}[H]
     \centering
-    \caption{Defrost time (time for $T_\text{min}$ to reach $T_\text{dew} = \SI{283.15}{\kelvin}$) for all Sim~3 configurations. ``Never'' indicates the steady-state $T_\text{min}$ remains below the dew point at that voltage.}
-    \label{tab:sim3-defrost}
-    \begin{tabular}{@{}llcc@{}}
-        \toprule
-        \textbf{Material} & $n_\text{traces}$ & \SI{12}{\volt} & \SI{14.5}{\volt} \\
-        \midrule
-        Pd--Ag alloy & 14 & 41\,min & 22\,min \\
-        Pd--Ag alloy & 16 & 22\,min & 16\,min \\
-        Pd--Ag alloy & 18 & 16\,min & 12\,min \\
-        Pd--Ag alloy & 20 & \textbf{12\,min} & \textbf{10\,min} \\
-        Pd--Ag alloy & 22 & 10\,min &  8\,min \\
-        \midrule
-        Nichrome~V   & 14 & Never   & Never   \\
-        Nichrome~V   & 16 & Never   & 59\,min \\
-        Nichrome~V   & 18 & Never   & 25\,min \\
-        Nichrome~V   & 20 & 28\,min & 18\,min \\
-        Nichrome~V   & 22 & 20\,min & 14\,min \\
-        \bottomrule
-    \end{tabular}
-\end{table}
+    \includegraphics[width=0.9\textwidth]{fig_defrost_bar_comparison.png}
+    \caption{Defrost time comparison between Pd--Ag alloy and Nichrome~V at \SI{12}{\volt} and \SI{14.5}{\volt}. ``N'' indicates the configuration never reaches the dew point within \SI{60}{\minute}.}
+    \label{fig:defrost-comparison}
+\end{figure}
 
 \begin{figure}[H]
     \centering
@@ -286,16 +238,18 @@ Defrost times for all configurations are summarised in \Cref{tab:sim3-defrost}.
     \label{fig:sim3-transient}
 \end{figure}
 
+Pd--Ag alloy defrosts faster than Nichrome~V across the full sweep. At \SI{12}{\volt}, Pd--Ag reaches the dew point with as few as 14~traces, although slowly (\SI{41}{\minute}), and improves to \SI{12}{\minute} at 20~traces and \SI{10}{\minute} at 22~traces. Nichrome~V performs noticeably worse: it does not defrost at all below 20~traces at \SI{12}{\volt}, and even at \SI{14.5}{\volt} it only reaches the dew point in \SI{59}{\minute} for 16~traces. This confirms that Pd--Ag alloy provides the more practical operating window for battery-level voltage.
+
 Based on these results, \textbf{Pd--Ag alloy with $n_\text{traces} = 20$ at $V_\text{in} = \SI{12}{\volt}$ were selected as the recommended design}. The key reason for this are:
 
 \begin{itemize}
-    \item \textbf{Battery-only operation:} A nominal automotive 12\,V system operates directly from the battery without the engine running \cite{bosch2014}. This is critical for a rear defroster, which must functions during a cold start before the engine---and therefore the alternator---is active. Voltages of \SI{13.5}{\volt} and \SI{14.5}{\volt} is only available when the alternator is charging, which requires the engine to be running.
-    \item \textbf{Acceptable defrost time:} At \SI{12}{\volt}, 20~traces defrost the window in \SI{12}{\minute} --- well within a practical warm-up period.
-    \item \textbf{Adequate thermal margin:} The steady-state $T_\text{min} = \SI{288.2}{\kelvin}$ is \SI{5.05}{\kelvin} above the dew point, this provides a comfortable margin against condensation re-formation.
-    \item \textbf{Diminishing returns at 22~traces:} Increasing to 22~traces reduce defrost time by only 2~minutes (10 vs.\ 12~min at \SI{12}{\volt}) at the cost of higher material use and increased trace density.
+    \item \textbf{Battery-only operation:} A nominal automotive 12\,V system operate directly from the battery without the engine running \cite{bosch2014}. This is critical for a rear defroster, which must function during a cold start before the engine---and therefore the alternator---are active. Voltages of \SI{13.5}{\volt} and \SI{14.5}{\volt} are only available when the alternator is charging, which require the engine to be running.
+    \item \textbf{Acceptable defrost time:} At \SI{12}{\volt}, 20~traces defrosts the window in \SI{12}{\minute} --- which is well within a practical warm-up period.
+    \item \textbf{Adequate thermal margin:} The steady-state $T_\text{min} = \SI{288.2}{\kelvin}$ are \SI{5.05}{\kelvin} above the dew point, which provide a comfortable margin against condensation re-forming.
+    \item \textbf{Diminishing returns at 22~traces:} If you increase to 22~traces it only reduce defrost time by 2~minutes (10 vs.\ 12~min at \SI{12}{\volt}) at the cost of higher material use and also increased trace density.
 \end{itemize}
 
-An alternative configuration of 22~traces at \SI{14.5}{\volt} achieve defrost in \SI{8}{\minute} but requires the engine to be running and therefore is only suitable as a secondary high-performance mode.
+An alternative configuration of 22~traces at \SI{14.5}{\volt} can achieves defrost in \SI{8}{\minute} but it require the engine to be running and therefore it is only suitable as a secondary high-performance mode.
 
 
 % ------------------------------------------------------------
