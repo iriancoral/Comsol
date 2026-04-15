@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{lawrence2005}
 M.~G. Lawrence.
@@ -38,6 +38,13 @@ H.~Koshlak and M.~Karpenko.
 \newblock Automotive electrical systems: nominal 12\,V battery voltage,
   13.5--14.5\,V with alternator charging.
 
+\bibitem{astmc1048}
+{ASTM International}.
+\newblock {ASTM C1048-18: Standard Specification for Heat-Strengthened and
+  Fully Tempered Flat Glass}.
+\newblock Technical report, ASTM International, West Conshohocken, PA, 2018.
+\newblock Kind FT (fully tempered) minimum modulus of rupture: 165\,MPa.
+
 \bibitem{prudenziati2012}
 M.~Prudenziati and J.~Hormadaly.
 \newblock {\em Printed Films: Materials Science and Applications in Sensors,
@@ -52,5 +59,13 @@ S.~Ho\.{z}ejowska and M.~Piasecka.
 \newblock {\em Energies}, 13(3):705, 2020.
 \newblock Heat transfer coefficients for automotive glass under various
   conditions.
+
+\bibitem{ashrae2017}
+{ASHRAE}.
+\newblock {\em ASHRAE Handbook --- Fundamentals}.
+\newblock American Society of Heating, Refrigerating and Air-Conditioning
+  Engineers, Atlanta, GA, 2017.
+\newblock Chapter 1: Psychrometrics --- dew point temperature as a function of
+  ambient temperature and relative humidity.
 
 \end{thebibliography}

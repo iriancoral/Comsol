@@ -33,7 +33,8 @@ Rear window defrosters work by passing an electric current through thin conducti
 The design must satisfies three main criteria:
 \begin{enumerate}
     \item \textbf{Thermal:} The minimum surface temperature of glass must exceeds the dew point temperature ($T_\text{dew} = \SI{283.15}{\kelvin}$, at \ \SI{10}{\degreeCelsius}) \cite{lawrence2005}.
-    \item \textbf{Structural:} The thermal stresses from differential expansion between the trace material and glass must remains below material yield strengths \cite{ruhl2016}.
+%     \item \textbf{Structural:} The thermal stresses from differential expansion between the trace material and glass must remains below material yield strengths \cite{ruhl2016}.
+    \item \textbf{Structural:} The peak glass stress must stays below the tempered-glass fracture strength of \SI{165}{\mega\pascal} \cite{astmc1048}.
     \item \textbf{Transient:} The window should be defrosted within a reasonable time (target: $\leq \SI{15}{\minute}$) \cite{prudenziati2012}.
 \end{enumerate}
 
@@ -43,11 +44,8 @@ The design must satisfies three main criteria:
 \label{sec:geometry}
 % ------------------------------------------------------------
 
-<<<<<<< HEAD
-The model is a two-dimensional representation of a flat rear window. The geometry consists of three components:
-=======
-The model is represented by a two-dimensional flat rear window, which is a common approach used in literature for this type of problem \cite{ruhl2016, koshlak2024}. The geometry consists of three components:
->>>>>>> origin/master
+% The model is a two-dimensional representation of a flat rear window. The geometry consists of three components:
+The model is represented by a two-dimensional flat rear window, which is a common approach used in literature for this type of problem also \cite{ruhl2016, koshlak2024}. The geometry consists of three components:
 
 \begin{itemize}
     \item A rectangular glass pane of dimensions $L_\text{glass} \times H_\text{glass}$ = \SI{1.5}{\metre} $\times$ \SI{0.8}{\metre}
@@ -110,7 +108,8 @@ The window glass is modelled as tempered soda-lime glass using COMSOL's built-in
         Thermal conductivity ($k$) & \SI{1.4}{\watt\per\metre\per\kelvin} & COMSOL library \\
         Density ($\rho$) & \SI{2500}{\kilo\gram\per\metre\cubed} & COMSOL library \\
         Heat capacity ($C_p$) & \SI{750}{\joule\per\kilo\gram\per\kelvin} & COMSOL library \\
-        Fracture strength & \SI{120}{\mega\pascal} & Literature \\
+%         Fracture strength & \SI{120}{\mega\pascal} & Literature \\
+        Fracture strength & \SI{165}{\mega\pascal} & \cite{astmc1048} \\
         \bottomrule
     \end{tabular}
 \end{table}

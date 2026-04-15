@@ -56,20 +56,20 @@ Koshlak et al.\ \cite{koshlak2024} measured that 83--85\% of the heat generated 
 \label{sec:back-of-envelope}
 % ------------------------------------------------------------
 
-An independent analytical estimate of the steady-state average temperature provides a direct check on the numerical results. The approach is to compute the total Joule heating power from the trace resistance and compare the resulting energy balance temperature with the COMSOL output.
+An independent analytical estimate of the steady-state average temperature provide a direct check on the numerical results. In this section I used the recommended design from the previous simulations, which is Pd--Ag alloy with 20~traces at \SI{12}{\volt}, because this was the final design that got selected. The final Chebyshev spacing changes where the heat is more concentrated, it does not change the total electrical power input, so the same average-temperature estimate can still be used for the final 20-trace design also.
 
 Each trace has electrical resistance:
 \begin{equation}
     R_\text{trace} = \frac{L_\text{glass}}{\sigma_\text{trace} \cdot w_\text{trace} \cdot t_\text{trace}}
     \label{eq:trace-resistance}
 \end{equation}
-For the Sim~1 baseline (silver paste, $\sigma = \SI{2e6}{\siemens\per\metre}$):
+For the selected Pd--Ag design ($\sigma = \SI{2.3e6}{\siemens\per\metre}$):
 \begin{equation}
-    R_\text{trace} = \frac{1.5}{2 \times 10^6 \times 1.7 \times 10^{-3} \times 0.11 \times 10^{-3}} = \SI{4.01}{\ohm}
+    R_\text{trace} = \frac{1.5}{2.3 \times 10^6 \times 1.7 \times 10^{-3} \times 0.11 \times 10^{-3}} = \SI{3.49}{\ohm}
 \end{equation}
-The power per trace is $P_\text{trace} = V_\text{in}^2 / R_\text{trace} = 144 / 4.01 = \SI{35.9}{\watt}$, and the total power for 12~traces is:
+The power per trace is $P_\text{trace} = V_\text{in}^2 / R_\text{trace} = 144 / 3.49 = \SI{41.3}{\watt}$, and the total power for 20~traces is:
 \begin{equation}
-    P_\text{total} = 12 \times 35.9 = \SI{431}{\watt}
+    P_\text{total} = 20 \times 41.3 = \SI{825.8}{\watt}
 \end{equation}
 
 Note that this physical power is correctly reproduced in the 2D COMSOL model through the $\sigma_\text{eff}$ correction (\Cref{eq:sigma-eff}): the effective resistance in the model is $R_\text{model} = L_\text{glass}/(\sigma_\text{eff} \cdot w_\text{trace} \cdot t_\text{glass}) = L_\text{glass}/(\sigma_\text{trace} \cdot w_\text{trace} \cdot t_\text{trace}) = R_\text{trace}$.
@@ -86,32 +86,19 @@ where $A_\text{glass} = L_\text{glass} \times H_\text{glass} = \SI{1.2}{\metre\s
 
 Solving for $T_\text{avg}$:
 \begin{equation}
-    T_\text{avg} = T_\text{weighted} + \frac{P_\text{total}}{(h_\text{ext} + h_\text{int}) \cdot A_\text{glass}} = 280.9 + \frac{431}{22 \times 1.2} = 280.9 + 16.3 = \SI{297.2}{\kelvin}
+    T_\text{avg} = T_\text{weighted} + \frac{P_\text{total}}{(h_\text{ext} + h_\text{int}) \cdot A_\text{glass}} = 280.9 + \frac{825.8}{22 \times 1.2} = 280.9 + 31.3 = \SI{312.2}{\kelvin}
 \end{equation}
 
-The COMSOL surface-average temperature for Sim~1 (12~traces, silver paste, \SI{12}{\volt}) is $T_\text{avg} = \SI{297.13}{\kelvin}$. The back-of-envelope estimate gives \SI{297.2}{\kelvin} --- a deviation of only \SI{0.07}{\kelvin} ($<0.03\%$). This excellent agreement confirms that:
+The analytical estimate for the selected 20-trace Pd--Ag design is therefore a steady-state surface-average temperature of approximately \SI{312.2}{\kelvin}. This basically means the system is going toward this temperature in the long-time limit, not that the whole glass suddenly become this value at one exact time during the early transient. This value is intentionally an \emph{average} over the whole glass area, so it is expected to be much higher than the reported minimum temperatures for the same design (for example \SI{288.2}{\kelvin} for the uniform 20-trace case, or \SI{295.0}{\kelvin} for the Chebyshev $p = 1.3$ layout), because those minima happens at the coldest local points near the glass edges and not over the full surface.
+
+The exported COMSOL surface-average data for the final Chebyshev $p = 1.3$ design confirm this estimate pretty good. The average temperature rises from \SI{278.15}{\kelvin} initially to \SI{294.86}{\kelvin} at \SI{6}{\minute}, \SI{303.54}{\kelvin} at \SI{12}{\minute}, and \SI{312.05}{\kelvin} at \SI{60}{\minute}, which already shows the trend in a clear way. Relative to the COMSOL steady-state value, the response reaches approximately 90\% of the total temperature rise by \SI{19}{\minute}, 95\% by \SI{24}{\minute}, and 99\% by \SI{32}{\minute}, so basically most of the average heating is already there before the full 60 minute result. The final COMSOL value of \SI{312.05}{\kelvin} differs from the analytical estimate by only \SI{0.10}{\kelvin} (\SI{0.03}{\percent}), which is a very small error and because of that it shows excellent agreement between both methods.
+
+This close agreement support the conclusion that:
 \begin{itemize}
     \item The $\sigma_\text{eff}$ correction correctly maps the 3D trace geometry to the 2D model
     \item The Joule heating and convective boundary conditions are consistently implemented
     \item The total energy balance of the model is accurate
 \end{itemize}
-
-\begin{table}[H]
-    \centering
-    \caption{Back-of-envelope validation of the average temperature for selected configurations.}
-    \label{tab:back-of-envelope}
-    \begin{tabular}{@{}llcccc@{}}
-        \toprule
-        \textbf{Material} & $n_\text{traces}$ & $P_\text{total}$ (W) & $T_\text{avg}^\text{analytical}$ (K) & $T_\text{avg}^\text{COMSOL}$ (K) & \textbf{Error} \\
-        \midrule
-        Silver paste & 12 & 431 & 297.2 & 297.13 & 0.03\% \\
-        Pd--Ag alloy & 14 & 578 & 302.8 & --- \emph{extract from COMSOL} & --- \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-\textbf{STILL DO: EXTRACT $T_\text{avg}$ FROM COMSOL FOR Pd--Ag 14-TRACE AND 20-TRACE CONFIGURATIONS TO COMPLETE THE TABLE}
-
 
 
 % ------------------------------------------------------------

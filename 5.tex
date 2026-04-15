@@ -21,9 +21,12 @@ is a clear winner in terms of heat generation and distribution, reaching the dew
 traces at \SI{12}{\volt} where Nichrome~V needs eighteen to twenty. However, bulk-conductivity materials 
 such as silver and gold overheat too much in this geometry and cannot be used for the trace pattern optimization. 
 
-\textcolor{red}{Sebtain pls confirm}Third, the stress analysis confirms that thermal expansion mismatch 
-between the traces and the glass does not pose a structural risk, with safety 
-factors exceeding $3\times$ for both shortlisted materials. 
+% Third, the stress analysis confirms that thermal expansion mismatch 
+% between the traces and the glass does not pose a structural risk, with safety 
+% factors of about $3\times$ for both shortlisted materials. The simulated stresses 
+% never reached the \SI{120}{\mega\pascal} fracture strength of tempered glass 
+% \cite{ruhl2016}. 
+Third, once the COMSOL union result is interpreted as glass stress, the voltage choice changes a bit. The Pd--Ag cases at \SI{12}{\volt} stays below the tempered-glass fracture strength of \SI{165}{\mega\pascal} \cite{astmc1048}, but the Pd--Ag cases at \SI{14.5}{\volt} goes above it and were therefore not selected anymore. The highest stresses are on the fixed model edges, which is conservative because a real rear window sits in rubber and can move a bit also. 
 Fourth, geometry optimisation proves to be as meaningful as material or 
 electrical optimisation. With the application of the Chebyshev trace spacing (\Cref{eq:chebyshev}) with exponent 
 $p = 1.3$ is shown that the defrost time is halved from \SI{12}{\minute} to \SI{6}{\minute} and the 

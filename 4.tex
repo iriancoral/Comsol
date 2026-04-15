@@ -4,7 +4,6 @@
 % ============================================================
 
 % ------------------------------------------------------------
-<<<<<<< HEAD
 \subsection{Results}
 \label{sec:results}
 % ------------------------------------------------------------
@@ -35,7 +34,7 @@ The zoned layout showed only a small improvement time (\SI{11}{\minute} defrost,
 
 The Chebyshev $p = 1.3$ spacing halves the defrost time and raises the steady-state minimum temperature by \SI{6.8}{\kelvin} relative to the base configuration,
  purely through geometric redistribution of the same 20~traces. The design also remains within the SAE~J216 visibility limit with \SI{4.25}{\percent} obscuration.
-Combining the material, electrical, and geometric optima gives the final design for the trace pattern. Sim~6 further confirmed that this configuration is robust 
+Combining the material, electrical, and geometric optima gives the final design for the trace pattern. The \SI{14.5}{\volt} Pd--Ag cases was not carried further, because Sim~2c showed they go above the \SI{165}{\mega\pascal} glass limit and so it had to be removed. Sim~6 further confirmed that this configuration is robust 
  five weather scenarios ranging from \SIrange{-20}{10}{\celsius} ambient and \SIrange{10}{40}{\watt\per\metre\squared\per\kelvin} 
  for external convection. Every case reaches dew temperature within \SI{8}{\minute} and is able to keep a steady-state margin of at least 
  \SI{+5.4}{\kelvin} above its dew point. Therefore can be concluded that the final trace pattern configuration is the recommended outcome of this study.
@@ -95,9 +94,6 @@ Pd--Ag alloy consistently defrosts faster than Nichrome~V at the same trace coun
 
 % ------------------------------------------------------------
 \subsection{Temperature Distribution}
-=======
-\section{Temperature Distribution}
->>>>>>> origin/master
 \label{sec:temp-distribution}
 % ------------------------------------------------------------
 
@@ -224,7 +220,8 @@ The Chebyshev $p = 1.3$ spacing halves the defrost time compared to uniform spac
 \textcolor{red}{this whole chapter seems unnecessary}
 
 The optimized trace pattern is able to achieve improved perfomance solely base on trace placement, at zero additional cost. 
-The thermal stresses stay within safe limits (safety factor $\sim 3.1 \times$) and the design operates at nominal \SI{12}{\volt} 
+% The thermal stresses stay within safe limits (safety factor $\sim 3.1 \times$) and the design operates at nominal \SI{12}{\volt} 
+The selected \SI{12}{\volt} Pd--Ag design stays below the \SI{165}{\mega\pascal} glass limit, while the \SI{14.5}{\volt} Pd--Ag cases do not. The highest stress is on the fixed side edges of the model, which is a bit conservative because in real life there is rubber around the glass and it can move a little bit too. The design operates at nominal \SI{12}{\volt} 
 battery voltage, meaning it works even with the engine off. The parametric approach (sweeping material, trace 
 count, voltage, and spacing exponent) provides a comprehensive design map that allows easy trade-off analysis 
 for different requirements, while the multiphysics coupling between Electric Currents, Heat Transfer, and Solid 

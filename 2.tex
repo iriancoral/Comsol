@@ -145,6 +145,8 @@ For Pd--Ag alloy, the dew point was been reached at as few as 14~traces at \SI{1
 
 Sim~2c evaluate the thermal stresses for the two shortlisted materials (Pd--Ag alloy and Nichrome~V). Silver and Gold was excluded from this analysis as both materials overheats severely in Sim~2b, making them not viable candidate for the defroster design. Since stress analysis are only relevant for materials that actually meets the thermal criteria, there is no point to included them here.
 
+Because the geometry was built with Form Union, the reported peak von Mises stress is interpreted here as the stress in the glass body, not as a seperate trace-only stress by it self. For that reason the structural criterion used in this section is then $\sigma_\text{max} < \SI{165}{\mega\pascal}$ for tempered glass \cite{astmc1048}.
+
 The voltage range were also narrowed down to \SI{12}{\volt} and \SI{14.5}{\volt} only. The \SI{12}{\volt} represents the nominal battery voltage which is the primary operating condition, and \SI{14.5}{\volt} represents the maximum alternator output which is the most worst-case scenario in terms of Joule heating and therefore thermal stress. The intermediate voltages of \SI{10}{\volt} and \SI{13.5}{\volt} was not included as they do not adds additional informations beyond what these two extreme cases already captures.
 
 For the trace count, only configurations from $n_\text{traces} = 14$ to $n_\text{traces} = 22$ was selected. This is because Sim~2b showed that below 14~traces, neither material is able to reaches the dew point at any of the tested voltages, so performing a stress analysis on these configurations would of been pointless.
@@ -157,36 +159,86 @@ Solid Mechanics and Thermal Expansion are re-enabled, and a sequential solve wer
 
 This sequential approach avoid the spatial frame conflict (``dvol\_spatial undefined'') which is encountered when solving all the physics simultaneously in COMSOL~6.2.
 
+% \begin{table}[H]
+%     \centering
+%     \caption{Von Mises stress results for Pd--Ag alloy (yield strength = \SI{410}{\mega\pascal}). Safety factor = yield / max stress.}
+%     \label{tab:sim2c-stress-pdag}
+%     \begin{tabular}{@{}lcccc@{}}
+%         \toprule
+%         $n_\text{traces}$ & \textbf{Max stress at \SI{12}{\volt} (MPa)} & \textbf{SF at \SI{12}{\volt}} & \textbf{Max stress at \SI{14.5}{\volt} (MPa)} & \textbf{SF at \SI{14.5}{\volt}} \\
+%         \midrule
+%         14 & 120.1 & 3.42$\times$ & 167.7 & 2.44$\times$ \\
+%         16 & 126.5 & 3.24$\times$ & 176.9 & 2.32$\times$ \\
+%         18 & 133.4 & 3.07$\times$ & 187.0 & 2.19$\times$ \\
+%         20 & 141.2 & 2.90$\times$ & 198.4 & 2.07$\times$ \\
+%         22 & 150.9 & 2.72$\times$ & 212.6 & 1.93$\times$ \\
+%         \bottomrule
+%     \end{tabular}
+% \end{table}
+
 \begin{table}[H]
     \centering
-    \caption{Von Mises stress results for Pd--Ag alloy (yield strength = \SI{410}{\mega\pascal}). Safety factor = yield / max stress.}
+    \caption{Maximum glass von Mises stress for designs with Pd--Ag traces. Values above the \SI{165}{\mega\pascal} glass limit is shown in \textbf{bold}.}
     \label{tab:sim2c-stress-pdag}
-    \begin{tabular}{@{}lcccc@{}}
+    \begin{tabular}{@{}lcc@{}}
         \toprule
-        $n_\text{traces}$ & \textbf{Max stress at \SI{12}{\volt} (MPa)} & \textbf{SF at \SI{12}{\volt}} & \textbf{Max stress at \SI{14.5}{\volt} (MPa)} & \textbf{SF at \SI{14.5}{\volt}} \\
+        $n_\text{traces}$ & \textbf{Max glass stress at \SI{12}{\volt} (MPa)} & \textbf{Max glass stress at \SI{14.5}{\volt} (MPa)} \\
         \midrule
-        14 & 120.1 & 3.42$\times$ & 167.7 & 2.44$\times$ \\
-        16 & 126.5 & 3.24$\times$ & 176.9 & 2.32$\times$ \\
-        18 & 133.4 & 3.07$\times$ & 187.0 & 2.19$\times$ \\
-        20 & 141.2 & 2.90$\times$ & 198.4 & 2.07$\times$ \\
-        22 & 150.9 & 2.72$\times$ & 212.6 & 1.93$\times$ \\
+        14 & 120.1 & \textbf{167.7} \\
+        16 & 126.5 & \textbf{176.9} \\
+        18 & 133.4 & \textbf{187.0} \\
+        20 & 141.2 & \textbf{198.4} \\
+        22 & 150.9 & \textbf{212.6} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+% \begin{table}[H]
+%     \centering
+%     \caption{Von Mises stress results for Nichrome~V (yield strength = \SI{365}{\mega\pascal}). Safety factor = yield / max stress.}
+%     \label{tab:sim2c-stress-nichrome}
+%     \begin{tabular}{@{}lcccc@{}}
+%         \toprule
+%         $n_\text{traces}$ & \textbf{Max stress at \SI{12}{\volt} (MPa)} & \textbf{SF at \SI{12}{\volt}} & \textbf{Max stress at \SI{14.5}{\volt} (MPa)} & \textbf{SF at \SI{14.5}{\volt}} \\
+%         \midrule
+%         14 & 93.9  & 3.89$\times$ & 124.9 & 2.92$\times$ \\
+%         16 & 98.2  & 3.72$\times$ & 131.0 & 2.79$\times$ \\
+%         18 & 102.6 & 3.56$\times$ & 137.6 & 2.65$\times$ \\
+%         20 & 106.7 & 3.42$\times$ & 143.7 & 2.54$\times$ \\
+%         22 & 111.2 & 3.28$\times$ & 150.2 & 2.43$\times$ \\
+%         \bottomrule
+%     \end{tabular}
+% \end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Maximum glass von Mises stress for designs with Nichrome~V traces for the tested cases.}
+    \label{tab:sim2c-stress-nichrome}
+    \begin{tabular}{@{}lcc@{}}
+        \toprule
+        $n_\text{traces}$ & \textbf{Max glass stress at \SI{12}{\volt} (MPa)} & \textbf{Max glass stress at \SI{14.5}{\volt} (MPa)} \\
+        \midrule
+        14 & 93.9  & 124.9 \\
+        16 & 98.2  & 131.0 \\
+        18 & 102.6 & 137.6 \\
+        20 & 106.7 & 143.7 \\
+        22 & 111.2 & 150.2 \\
         \bottomrule
     \end{tabular}
 \end{table}
 
 \begin{table}[H]
     \centering
-    \caption{Von Mises stress results for Nichrome~V (yield strength = \SI{365}{\mega\pascal}). Safety factor = yield / max stress.}
-    \label{tab:sim2c-stress-nichrome}
-    \begin{tabular}{@{}lcccc@{}}
+    \caption{Configurations that satisfies both the thermal criterion from Sim~2b and the glass-stress criterion from Sim~2c.}
+    \label{tab:sim2c-pass-summary}
+    \begin{tabular}{@{}lll@{}}
         \toprule
-        $n_\text{traces}$ & \textbf{Max stress at \SI{12}{\volt} (MPa)} & \textbf{SF at \SI{12}{\volt}} & \textbf{Max stress at \SI{14.5}{\volt} (MPa)} & \textbf{SF at \SI{14.5}{\volt}} \\
+        \textbf{Material} & \textbf{Voltage} & \textbf{Trace counts that pass} \\
         \midrule
-        14 & 93.9  & 3.89$\times$ & 124.9 & 2.92$\times$ \\
-        16 & 98.2  & 3.72$\times$ & 131.0 & 2.79$\times$ \\
-        18 & 102.6 & 3.56$\times$ & 137.6 & 2.65$\times$ \\
-        20 & 106.7 & 3.42$\times$ & 143.7 & 2.54$\times$ \\
-        22 & 111.2 & 3.28$\times$ & 150.2 & 2.43$\times$ \\
+        Pd--Ag alloy & \SI{12}{\volt} & 14, 16, 18, 20, 22 \\
+        Pd--Ag alloy & \SI{14.5}{\volt} & none \\
+        Nichrome~V & \SI{12}{\volt} & 18, 20, 22 \\
+        Nichrome~V & \SI{14.5}{\volt} & 16, 18, 20, 22 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -195,20 +247,29 @@ This sequential approach avoid the spatial frame conflict (``dvol\_spatial undef
     \centering
     \begin{subfigure}[b]{0.48\textwidth}
         \includegraphics[width=\textwidth]{sim2c_stress_nichrome_20traces_12V_new.png}
-        \caption{Nichrome~V (max stress = \SI{106.7}{\mega\pascal}, SF = 3.42$\times$)}
+%         \caption{Nichrome~V (max stress = \SI{106.7}{\mega\pascal}, SF = 3.42$\times$)}
+        \caption{Nichrome~V (max glass stress = \SI{106.7}{\mega\pascal}, in the glass domain)}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.40\textwidth}
+    \begin{subfigure}[b]{0.48\textwidth}
         \includegraphics[width=\textwidth]{sim2c_stress_pdag_20traces_12V_new.png}
-        \caption{Pd--Ag alloy (max stress = \SI{141.2}{\mega\pascal}, SF = 2.90$\times$)}
+%         \caption{Pd--Ag alloy (max stress = \SI{141.2}{\mega\pascal}, SF = 2.90$\times$)}
+        \caption{Pd--Ag alloy (max glass stress = \SI{141.2}{\mega\pascal}, in the glass domain)}
     \end{subfigure}
-    \caption{Von Mises stress distribution (N/m$^2$) at $V_\text{in} = \SI{12}{\volt}$, $n_\text{traces} = 20$ for both trace materials. The colour scale ranges from 0 to $3 \times 10^7$~N/m$^2$ and the red contour lines shows stress levels. Peak stresses concentrate at trace endpoints near the fixed edges, the glass bulk stress remain very low throughout.}
+%     \caption{Von Mises stress distribution (N/m$^2$) at $V_\text{in} = \SI{12}{\volt}$, $n_\text{traces} = 20$ for both trace materials. The colour scale ranges from 0 to $3 \times 10^7$~N/m$^2$ and the red contour lines shows stress levels. Peak stresses concentrate at trace endpoints near the fixed edges, the glass bulk stress remain very low throughout.}
+    \caption{Glass von Mises stress distribution at $V_\text{in} = \SI{12}{\volt}$, $n_\text{traces} = 20$ for both trace materials. The highest stresses are at the trace ends near the fixed side edges, so these peaks is conservative because a real rear window is held by rubber and can move a bit.}
     \label{fig:sim2c-stress}
 \end{figure}
 
-Both materials passes the stress constraint across all configurations tested. At the recommended operating voltage of \SI{12}{\volt}, safety factors ranges from 2.72$\times$ to 3.42$\times$ for Pd--Ag alloy and from 3.28$\times$ to 3.89$\times$ for Nichrome~V. At the maximum voltage of \SI{14.5}{\volt}, the safety factors are lower but still remains above 1.9$\times$ for all configurations.
+% Both materials passes the stress constraint across all configurations tested. At the recommended operating voltage of \SI{12}{\volt}, safety factors ranges from 2.72$\times$ to 3.42$\times$ for Pd--Ag alloy and from 3.28$\times$ to 3.89$\times$ for Nichrome~V. At the maximum voltage of \SI{14.5}{\volt}, the safety factors are lower but still remains above 1.9$\times$ for all configurations.
+%
+% The thermal stresses arises because the conductive traces is bonded directly onto the glass surface, and the trace materials has a higher coefficient of thermal expansion compared to the glass (for example, Pd--Ag has $\alpha = \SI{15e-6}{\per\kelvin}$ compared to $\approx\SI{9e-6}{\per\kelvin}$ for soda-lime glass). When the traces heat up due to Joule heating, they tries to expand more than the glass underneath it, but since they are attached to the glass this mismatch in expansion create stresses at the interface between the trace and glass. The fixed edge constraints on left and right boundaries further restrict the glass from deforming freely, which amplify the stress near the trace endpoints at the edges. This is why peak von Mises stresses concentrates at the trace endpoints near the fixed boundary --- it is a conservative artifact of the fully fixed edge condition (in reality a rubber seal would provide some compliance). The glass bulk stress away from the traces remains very low, well below the \SI{165}{\mega\pascal} fracture strength of tempered glass \cite{astmc1048}.
 
-The thermal stresses arises because the conductive traces is bonded directly onto the glass surface, and the trace materials has a higher coefficient of thermal expansion compared to the glass (for example, Pd--Ag has $\alpha = \SI{15e-6}{\per\kelvin}$ compared to $\approx\SI{9e-6}{\per\kelvin}$ for soda-lime glass). When the traces heat up due to Joule heating, they tries to expand more than the glass underneath it, but since they are attached to the glass this mismatch in expansion create stresses at the interface between the trace and glass. The fixed edge constraints on left and right boundaries further restrict the glass from deforming freely, which amplify the stress near the trace endpoints at the edges. This is why peak von Mises stresses concentrates at the trace endpoints near the fixed boundary --- it is a conservative artifact of the fully fixed edge condition (in reality a rubber seal would provide some compliance). The glass bulk stress away from the traces remains very low, well below the \SI{120}{\mega\pascal} fracture strength of tempered glass \cite{ruhl2016}.
+The stress comes from the thermal expansion mismatch between the conductive traces and the soda-lime glass. Pd--Ag has a higher expansion coefficient than the glass, so when it heats up it tries to expand more and this loads the glass close to the trace ends. Because of the Form Union setup, the peak values in \Cref{tab:sim2c-stress-pdag,tab:sim2c-stress-nichrome} are treated as glass stresses and not only the traces.
+
+Using the tempered-glass limit of \SI{165}{\mega\pascal} \cite{astmc1048}, all Pd--Ag cases at \SI{12}{\volt} pass the structural criterion (\SIrange{120.1}{150.9}{\mega\pascal}), but every Pd--Ag case at \SI{14.5}{\volt} fails it (\SIrange{167.7}{212.6}{\mega\pascal}). Nichrome~V stays below the glass limit for all tested stress cases, but only the combinations listed in \Cref{tab:sim2c-pass-summary} are good overall because they also meets the thermal requirement too. So the higher \SI{14.5}{\volt} option is not acceptable anymore for the preferred Pd--Ag design then.
+
+The highest stresses appears at the left and right edges where the traces end and where the model is fully fixed. In real life these window edges are not perfectly fixed, there is rubber and sealant present, so the glass can move a little bit around. That means the predicted edge peak is likely conservative, but for design selection it is still better to keep the safer \SI{12}{\volt} cases anyway.
 
 
 % ------------------------------------------------------------
@@ -240,16 +301,27 @@ The overall defrost-time comparison for both materials is shown in \Cref{fig:def
 
 Pd--Ag alloy defrosts faster than Nichrome~V across the full sweep. At \SI{12}{\volt}, Pd--Ag reaches the dew point with as few as 14~traces, although slowly (\SI{41}{\minute}), and improves to \SI{12}{\minute} at 20~traces and \SI{10}{\minute} at 22~traces. Nichrome~V performs noticeably worse: it does not defrost at all below 20~traces at \SI{12}{\volt}, and even at \SI{14.5}{\volt} it only reaches the dew point in \SI{59}{\minute} for 16~traces. This confirms that Pd--Ag alloy provides the more practical operating window for battery-level voltage.
 
-Based on these results, \textbf{Pd--Ag alloy with $n_\text{traces} = 20$ at $V_\text{in} = \SI{12}{\volt}$ were selected as the recommended design}. The key reason for this are:
+% Based on these results, \textbf{Pd--Ag alloy with $n_\text{traces} = 20$ at $V_\text{in} = \SI{12}{\volt}$ were selected as the recommended design}. The key reason for this are:
+Based on these results, \textbf{Pd--Ag alloy with $n_\text{traces} = 20$ at $V_\text{in} = \SI{12}{\volt}$ was selected as the recommended design}. The key reasons for this was:
+
+% \begin{itemize}
+%     \item \textbf{Battery-only operation:} A nominal automotive 12\,V system operate directly from the battery without the engine running \cite{bosch2014}. This is critical for a rear defroster, which must function during a cold start before the engine---and therefore the alternator---are active. Voltages of \SI{13.5}{\volt} and \SI{14.5}{\volt} are only available when the alternator is charging, which require the engine to be running.
+%     \item \textbf{Acceptable defrost time:} At \SI{12}{\volt}, 20~traces defrosts the window in \SI{12}{\minute} --- which is well within a practical warm-up period.
+%     \item \textbf{Adequate thermal margin:} The steady-state $T_\text{min} = \SI{288.2}{\kelvin}$ are \SI{5.05}{\kelvin} above the dew point, which provide a comfortable margin against condensation re-forming.
+%     \item \textbf{Diminishing returns at 22~traces:} If you increase to 22~traces it only reduce defrost time by 2~minutes (10 vs.\ 12~min at \SI{12}{\volt}) at the cost of higher material use and also increased trace density.
+% \end{itemize}
+%
+% An alternative configuration of 22~traces at \SI{14.5}{\volt} can achieves defrost in \SI{8}{\minute} but it require the engine to be running and therefore it is only suitable as a secondary high-performance mode.
 
 \begin{itemize}
-    \item \textbf{Battery-only operation:} A nominal automotive 12\,V system operate directly from the battery without the engine running \cite{bosch2014}. This is critical for a rear defroster, which must function during a cold start before the engine---and therefore the alternator---are active. Voltages of \SI{13.5}{\volt} and \SI{14.5}{\volt} are only available when the alternator is charging, which require the engine to be running.
-    \item \textbf{Acceptable defrost time:} At \SI{12}{\volt}, 20~traces defrosts the window in \SI{12}{\minute} --- which is well within a practical warm-up period.
-    \item \textbf{Adequate thermal margin:} The steady-state $T_\text{min} = \SI{288.2}{\kelvin}$ are \SI{5.05}{\kelvin} above the dew point, which provide a comfortable margin against condensation re-forming.
-    \item \textbf{Diminishing returns at 22~traces:} If you increase to 22~traces it only reduce defrost time by 2~minutes (10 vs.\ 12~min at \SI{12}{\volt}) at the cost of higher material use and also increased trace density.
+    \item \textbf{Stress compliance:} The Pd--Ag cases at \SI{14.5}{\volt} all goes above the \SI{165}{\mega\pascal} glass limit in Sim~2c, so that higher-voltage option had to be removed even though it defrosts faster still.
+    \item \textbf{Battery-only operation:} A nominal automotive 12\,V system operates directly from the battery without the engine running \cite{bosch2014}. This matters for cold starts, where the rear defroster should already work before the alternator is active yet.
+    \item \textbf{Acceptable defrost time:} At \SI{12}{\volt}, 20~traces defrosts the window in \SI{12}{\minute}, which is practical enough for the intended use for this design.
+    \item \textbf{Adequate thermal margin:} The steady-state $T_\text{min} = \SI{288.2}{\kelvin}$ is \SI{5.05}{\kelvin} above the dew point, so there is still some margin against condensation coming back again.
+    \item \textbf{Better balance than 22~traces:} Going to 22~traces only saves 2~minutes at \SI{12}{\volt}, while using more material and also pushing the glass stress closer to the limit (\SI{150.9}{\mega\pascal} vs.\ \SI{141.2}{\mega\pascal}), which is not really worth it anymore.
 \end{itemize}
 
-An alternative configuration of 22~traces at \SI{14.5}{\volt} can achieves defrost in \SI{8}{\minute} but it require the engine to be running and therefore it is only suitable as a secondary high-performance mode.
+At first the \SI{14.5}{\volt} Pd--Ag cases looked attractive because they defrost quicker, but after re-reading the stress output they does not comply with the glass-stress criterion. For that reason they were not carried forward as an alternative design anymore.
 
 
 % ------------------------------------------------------------
@@ -410,7 +482,7 @@ All previous simulations used a fixed ambient condition: $T_\text{amb} = \SI{2}{
 
 \subsubsection{Weather Scenarios}
 
-The five scenarios were selected to cover the full range of conditions a vehicle might encounter in Northwestern Europe \cite{hozejowska2019}, from mild autumn fog to extreme winter frost. Each scenario defines a physically consistent set of $T_\text{amb}$, $T_\text{dew}$, and $h_\text{ext}$ values — the dew point is not fixed but varies with ambient temperature and relative humidity \cite{lawrence2005} — as summarised in \Cref{tab:sim6-scenarios}.
+The five scenarios were selected to cover the full range of conditions a vehicle might encounter in Northwestern Europe \cite{hozejowska2019}, from mild autumn fog to extreme winter frost. Each scenario defines a physically consistent set of $T_\text{amb}$, $T_\text{dew}$, and $h_\text{ext}$ values — the dew point is not fixed but varies with ambient temperature and relative humidity \cite{lawrence2005, ashrae2017} — as summarised in \Cref{tab:sim6-scenarios}.
 
 \begin{table}[H]
     \centering
