@@ -1,99 +1,11 @@
 % ============================================================
-\section{Results and Discussion}
+\chapter{Results and Discussion}
 \label{ch:results}
 % ============================================================
 
-% ------------------------------------------------------------
-\subsection{Results}
-\label{sec:results}
-% ------------------------------------------------------------
-
-% The iterative design study (Sim~1--Sim~6) converges on a single recommended configuration: 
-% \textbf{Pd--Ag alloy thick-film paste, 20~traces, Chebyshev spacing with $p = 1.3$, driven at the nominal battery voltage $V_\text{in} = \SI{12}{\volt}$.} This section summarises the key performance metrics leading to that design, the gain obtained from trace-pattern optimisation, and the robustness of the final configuration across real-world weather conditions.
-
-\subsubsection{Trace Pattern Optimisation}
-
-With material, trace count, and voltage fixed at the baseline optimum (Pd--Ag alloy, 20~traces, \SI{12}{\volt}), the trace pattern was optimised without adding any cost. Two strategies were compared: a zoned layout (Sim~4, 6/8/6 distribution) and a continuous Chebyshev distribution with variable exponent $p$ (Sim~5). 
-The zoned layout showed only a small improvement time (\SI{11}{\minute} defrost, $T_\text{min,SS} = \SI{289.3}{\kelvin}$). The Chebyshev approach, which changes the trace pattern for different values of $p$, proved more effective: sweeping $p$ identified an optimum at $p = 1.3$ and \Cref{tab:results-pattern} compares all four layouts.
-
-\begin{table}[H]
-    \centering
-    \caption{Trace-pattern comparison (Pd--Ag alloy, 20 traces, $V_\text{in} = \SI{12}{\volt}$).}
-    \label{tab:results-pattern}
-    \begin{tabular}{@{}lccc@{}}
-        \toprule
-        \textbf{Layout} & \textbf{Defrost time} & $T_\text{min,SS}$ \textbf{(K)} & \textbf{Gain vs.\ uniform} \\
-        \midrule
-        Uniform (baseline)           & 12\,min & 288.2 & --- \\
-        Zoned 6/8/6                  & 11\,min & 289.3 & $-$8\%, $+$\SI{1.1}{\kelvin} \\
-        Chebyshev $p = 1.0$          & 8\,min  & 292.6 & $-$33\%, $+$\SI{4.4}{\kelvin} \\
-        \textbf{Chebyshev $p = 1.3$} & \textbf{6\,min}  & \textbf{295.0} & $-$\textbf{50\%}, $+$\textbf{\SI{6.8}{\kelvin}} \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-The Chebyshev $p = 1.3$ spacing halves the defrost time and raises the steady-state minimum temperature by \SI{6.8}{\kelvin} relative to the base configuration,
- purely through geometric redistribution of the same 20~traces. The design also remains within the SAE~J216 visibility limit with \SI{4.25}{\percent} obscuration.
-Combining the material, electrical, and geometric optima gives the final design for the trace pattern. The \SI{14.5}{\volt} Pd--Ag cases was not carried further, because Sim~2c showed they go above the \SI{165}{\mega\pascal} glass limit and so it had to be removed. Sim~6 further confirmed that this configuration is robust 
- five weather scenarios ranging from \SIrange{-20}{10}{\celsius} ambient and \SIrange{10}{40}{\watt\per\metre\squared\per\kelvin} 
- for external convection. Every case reaches dew temperature within \SI{8}{\minute} and is able to keep a steady-state margin of at least 
- \SI{+5.4}{\kelvin} above its dew point. Therefore can be concluded that the final trace pattern configuration is the recommended outcome of this study.
-
-
-\iffalse
-% ------------------------------------------------------------
-\subsection{Transient Defrost Performance}
-\label{sec:defrost-results}
-% ------------------------------------------------------------
-
-The transient defrost times for all tested configurations are presented in \Cref{tab:defrost-pdag,tab:defrost-nichrome}. These results are from the fine-mesh simulation (189,192~domain elements).
-
-\begin{table}[H]
-    \centering
-    \caption{Defrost time (minutes) for Pd--Ag alloy ($\sigma = \SI{2.3e6}{\siemens\per\metre}$). Defrost is defined as the time for $T_\text{min}$ to reach \SI{283.15}{\kelvin}.}
-    \label{tab:defrost-pdag}
-    \begin{tabular}{@{}lcc@{}}
-        \toprule
-        $n_\text{traces}$ & \SI{12}{\volt} & \SI{14.5}{\volt} \\
-        \midrule
-        14 & 41 & 22 \\
-        16 & 22 & 16 \\
-        18 & 16 & 12 \\
-        20 & \textbf{12} & 10 \\
-        22 & 10 & \textbf{8} \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Defrost time (minutes) for Nichrome~V ($\sigma = \SI{9.3e5}{\siemens\per\metre}$). ``Never'' indicates that $T_\text{min}$ does not reach \SI{283.15}{\kelvin} within \SI{60}{\minute}.}
-    \label{tab:defrost-nichrome}
-    \begin{tabular}{@{}lcc@{}}
-        \toprule
-        $n_\text{traces}$ & \SI{12}{\volt} & \SI{14.5}{\volt} \\
-        \midrule
-        14 & Never & Never \\
-        16 & Never & 59 \\
-        18 & Never & 25 \\
-        20 & 28 & 18 \\
-        22 & 20 & 14 \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\textwidth]{fig_defrost_bar_comparison.png}
-    \caption{Defrost time comparison between Pd--Ag alloy and Nichrome~V at \SI{12}{\volt} and \SI{14.5}{\volt}. ``N'' indicates the configuration never reaches the dew point within \SI{60}{\minute}.}
-    \label{fig:defrost-comparison}
-\end{figure}
-
-Pd--Ag alloy consistently defrosts faster than Nichrome~V at the same trace count and voltage. Nichrome~V requires $\geq 20$~traces at \SI{12}{\volt} to defrost at all within 60~minutes, while Pd--Ag defrosts with as few as 14~traces (in 41~minutes).
-
 
 % ------------------------------------------------------------
-\subsection{Temperature Distribution}
+\section{Temperature Distribution}
 \label{sec:temp-distribution}
 % ------------------------------------------------------------
 
@@ -115,7 +27,7 @@ Pd--Ag alloy consistently defrosts faster than Nichrome~V at the same trace coun
 
 
 % ------------------------------------------------------------
-\subsection{Effect of Trace Material Conductivity}
+\section{Effect of Trace Material Conductivity}
 \label{sec:material-discussion}
 % ------------------------------------------------------------
 
@@ -143,7 +55,7 @@ where $\sigma_\text{eff}$ is the effective 2D conductivity from \Cref{eq:sigma-e
 
 
 % ------------------------------------------------------------
-\subsection{Trace Pattern Optimisation}
+\section{Trace Pattern Optimisation}
 \label{sec:pattern-results}
 % ------------------------------------------------------------
 
@@ -194,63 +106,45 @@ The Chebyshev approach (\Cref{eq:chebyshev}) is far more effective. With the opt
 The Chebyshev $p = 1.3$ spacing halves the defrost time compared to uniform spacing while raising $T_\text{min}$ by \SI{6.8}{\kelvin}. This is achieved without any change in material, voltage, or number of traces --- purely through optimised trace placement. The result demonstrates that \textbf{geometry optimisation} using COMSOL's parametric capabilities can be as impactful as material or electrical optimisation.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\fi
 % ------------------------------------------------------------
-\subsection{Discussion}
+\section{Discussion}
 \label{sec:discussion}
 % ------------------------------------------------------------
 
-\subsubsection{Strengths}
+\subsection{Strengths}
 
+\begin{itemize}
+    \item With Chebyshev spacing ($p = 1.3$), the final design (Pd--Ag alloy, 20~traces, \SI{12}{\volt}) achieves a steady-state $T_\text{min}$ of \SI{295.0}{\kelvin} --- \SI{12}{\kelvin} above the dew point --- and defrosts in only \SI{6}{\minute}. With uniform spacing, the same configuration takes \SI{12}{\minute}. The improvement comes purely from trace placement, at zero additional cost.
 
-\textcolor{red}{this whole chapter seems unnecessary}
+    \item The thermal stresses are within safe limits (safety factor $\sim 3.1 \times$) and the design operates at nominal \SI{12}{\volt} battery voltage, meaning it works even with the engine off.
 
-The optimized trace pattern is able to achieve improved perfomance solely base on trace placement, at zero additional cost. 
-% The thermal stresses stay within safe limits (safety factor $\sim 3.1 \times$) and the design operates at nominal \SI{12}{\volt} 
-The selected \SI{12}{\volt} Pd--Ag design stays below the \SI{165}{\mega\pascal} glass limit, while the \SI{14.5}{\volt} Pd--Ag cases do not. The highest stress is on the fixed side edges of the model, which is a bit conservative because in real life there is rubber around the glass and it can move a little bit too. The design operates at nominal \SI{12}{\volt} 
-battery voltage, meaning it works even with the engine off. The parametric approach (sweeping material, trace 
-count, voltage, and spacing exponent) provides a comprehensive design map that allows easy trade-off analysis 
-for different requirements, while the multiphysics coupling between Electric Currents, Heat Transfer, and Solid 
-Mechanics captures the essential physics of the defroster operation. The mesh convergence study confirms that 
-results are mesh-independent for the recommended configurations, and the boundary conditions ($h_\text{ext}$, 
-$h_\text{int}$) are supported by published experimental data \cite{hozejowska2019}. \textbf{The design is also 
-robust across real-world weather conditions (Sim~6)}: all five scenarios --- spanning ambient temperatures from 
-\SIrange{-20}{10}{\celsius}, external convection coefficients from \SIrange{10}{40}{\watt\per\metre\squared\per\kelvin}, 
-and physically realistic dew points --- were defrosted within \SI{8}{\minute}, with a minimum steady-state margin 
-of \SI{5.4}{\kelvin} above the dew point (freezing rain scenario). Finally, the sequential solve strategy for the 
+\end{itemize}
+
+The optimized trace pattern is able to achieve improved perfomance solely base on trace placement, at zero additional cost.
+% The thermal stresses stay within safe limits (safety factor $\sim 3.1 \times$) and the design operates at nominal \SI{12}{\volt}
+The selected \SI{12}{\volt} Pd--Ag design stays below the \SI{165}{\mega\pascal} glass limit, while the \SI{14.5}{\volt} Pd--Ag cases do not. The highest stress is on the fixed side edges of the model, which is a bit conservative because in real life there is rubber around the glass and it can move a little bit too. The design operates at nominal \SI{12}{\volt}
+battery voltage, meaning it works even with the engine off. The parametric approach (sweeping material, trace
+count, voltage, and spacing exponent) provides a comprehensive design map that allows easy trade-off analysis
+for different requirements, while the multiphysics coupling between Electric Currents, Heat Transfer, and Solid
+Mechanics captures the essential physics of the defroster operation. The mesh convergence study confirms that
+results are mesh-independent for the recommended configurations, and the boundary conditions ($h_\text{ext}$,
+$h_\text{int}$) are supported by published experimental data \cite{hozejowska2019}. \textbf{The design is also
+robust across real-world weather conditions (Sim~6)}: all five scenarios --- spanning ambient temperatures from
+\SIrange{-20}{10}{\celsius}, external convection coefficients from \SIrange{10}{40}{\watt\per\metre\squared\per\kelvin},
+and physically realistic dew points --- were defrosted within \SI{8}{\minute}, with a minimum steady-state margin
+of \SI{5.4}{\kelvin} above the dew point (freezing rain scenario). Finally, the sequential solve strategy for the
 stress analysis overcomes the COMSOL~6.2 spatial frame limitation while still capturing the thermal stress state.
 
+\subsection{Limitations, Future Work, and Broader Implications}
+
+The von Mises stress distribution for the optimised $p = 1.3$ design is shown in \Cref{fig:sim5-von-mises}.
+The sharp 90\textdegree{} trace corners act as mathematical stress singularities, so the \emph{Surface Maximum}
+($\sigma_\text{max} = \SI{2.7281e8}{\pascal}$) is mesh-dependent and not physically meaningful. The average
+von Mises stress, $\sigma_\text{avg} = \SI{5.3651e6}{\pascal}$, lies well below the \SI{165}{\mega\pascal} limit
+and confirms that the design is structurally safe.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-\subsubsection{Limitations, Future Work, and Broader Implications}
 
 \begin{itemize}
     \item \textbf{2D approximation:} The model uses a flat 2D geometry. A real rear window is curved, which affects heat flux distribution and stress concentrations. A 3D simulation with curved glass would be more realistic.
@@ -273,3 +167,6 @@ Furthermore, the observation that bulk-conductivity materials (Silver, Gold) ove
 \textbf{STILL DO: ELEMENT ORDER CONVERGENCE ANALYSIS} --- comparing linear vs.\ quadratic elements for the Joule heating/temperature solution to verify that the default element order is sufficient.
 
 \textbf{STILL DO: ADAPTIVE MESH REFINEMENT ANALYSIS} --- using COMSOL's adaptive mesh refinement to verify error control near the trace boundaries where temperature gradients are steepest.
+
+
+

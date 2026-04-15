@@ -1,8 +1,206 @@
 \appendix
 
+\section*{Appendix: Modeling of the Rear Window in COMSOL Multiphysics}
 
+The step by step tutorial of the rear window geometry is shown below:
 
+\subsection*{Rear window}
 
+From the File menu, choose New.
+
+\textbf{New}
+
+In the New window, click Model Wizard.
+
+\textbf{Model Wizard}
+
+1. In the Model Wizard window, click 2D.\\
+2. In the select Physics tree, select AC/DC - Electric Fields and Currents, Electric Currents. Click Add.\\
+3. In the select Physics tree, select Heat Transfer - Heat Transfer in Solids. Click Add.\\
+4. Click Study.\\
+5. In select Study tree, select General studies - Stationary.\\
+6. Click Done.
+
+\textbf{Global Definitions}
+
+1. In the Model Builder window, under Global Definitions click Parameters 1.\\
+2. In the Settings window for Parameters, locate the Parameters section.\\
+3. In the table, enter the following settings:
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Name & Expression & Description \\
+\midrule
+V\_in        & 12[V]              & Applied voltage \\
+L\_glass     & 1.5[m]             & Window width \\
+H\_glass     & 0.8[m]             & Window height \\
+t\_glass     & 5[mm]              & Glass thickness \\
+w\_trace     & 1.7[mm]            & Trace width \\
+t\_trace     & 0.11[mm]           & Trace thickness \\
+n\_traces    & 12                 & Number of traces \\
+s\_trace     & H\_glass/(n\_traces+1) & Trace spacing \\
+sigma\_trace & 2e6[S/m]           & Trace conductivity \\
+sigma\_eff   & sigma\_trace*t\_trace/t\_glass & Effective 2D conductivity \\
+T\_amb       & 275.15[K]          & Outside air \\
+T\_cabin     & 293.15[K]          & Cabin air \\
+T\_init      & 278.15[K]          & Initial glass temperature \\
+h\_ext       & 15[W/(m\^{}2*K)]    & Exterior convection \\
+h\_int       & 7[W/(m\^{}2*K)]     & Interior convection \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Geometry}
+
+The following geometry will be created on the 2D work plane.
+\\
+\textit{Rectangle 1 (Glass)}
+
+1. In the Geometry toolbar, click Rectangle.\\
+2. In the Settings window for Rectangle, locate the Size and Shape section.\\
+3. In the Width text field, type L\_glass.\\
+4. In the Height text field, type H\_glass.\\
+5. In the Settings window for Rectangle, locate the Position section.\\
+6. Set Base: Corner.\\
+7. Write 0 on x and 0 on yw.\\
+8. Click Build Selected.
+\\
+\textit{Rectangle 2 (Trace)}
+
+1. In the Geometry toolbar, click Rectangle.\\
+2. In the Settings window for Rectangle, locate the Size and Shape section.\\
+3. In the Width text field, type L\_glass.\\
+4. In the Height text field, type w\_trace.\\
+5. In the Settings window for Rectangle, locate the Position section.\\
+6. Set Base: Corner.\\
+7. Write 0 on x and s\_trace - w\_trace/2 on y.\\
+8. Click Build Selected.
+\\
+\textit{Array 1 (Trace pattern)}
+
+1. In the Geometry toolbar, click Transforms - Array.\\
+2. In the Settings window for Array, select Rectangle 2 as Input Object.\\
+3. Put as Array type: Linear and Size: n\_traces.\\
+4. On Displacement keep x as 0 and y as s\_trace.\\
+5. Click Build Selected.
+
+\textit{Rectangle 3 (Left bus bar)}
+\\
+1. In the Geometry toolbar, click Rectangle.\\
+2. In the Settings window for Rectangle, locate the Size and Shape section.\\
+3. In the Width text field, type 2e-3.\\
+4. In the Height text field, type H\_glass.\\
+5. In the Settings window for Rectangle, locate the Position section.\\
+6. Set Base: Corner.\\
+7. Write -2e-3 on x and 0 on y.\\
+8. Click Build Selected.
+\\
+\textit{Rectangle 4 (Right bus bar)}
+
+1. In the Geometry toolbar, click Rectangle.\\
+2. In the Settings window for Rectangle, locate the Size and Shape section.\\
+3. In the Width text field, 2e-3.\\
+4. In the Height text field, type H\_glass.\\
+5. In the Settings window for Rectangle, locate the Position section.\\
+6. Set Base: Corner.\\
+7. Write L\_glass on x and 0 on y.\\
+8. Click Build Selected.
+\\
+\textit{Form Union}
+
+In the Model Builder window, under Geometry click Form Union and click Build Selected to merge the glass, traces, and bus bars into a single connected geometry with shared boundaries.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Geometry.png}
+        \caption{Geometry}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{appendix geometry.png}
+        \caption{Appendix geometry}
+    \end{subfigure}
+    \caption{Rear window geometry settings: glass domain with horizontal silver traces and left/right bus bars.}
+\end{figure}
+
+\textbf{Materials}
+
+\textit{Materials}
+
+1. In the Model Builder window, under Component 1 (comp1) right-click Materials and build the material. The parameters have been changed according to the material needed for the respective simulation.\\
+\\
+\textbf{Electric Currents (ec)}
+
+1. Under Electric Currents, set the Out-of-Plane thickness to t\_glass.\\
+2. Click Current Conservation 1.\\
+3. Set Material Type to Nonsolid.\\
+4. Set Coordinate System to Global coordinate system.\\
+5. In Constitutive Relation Jc--E, set Conduction model to Electrical conductivity and $\sigma$ to From material.\\
+6. In Constitutive Relation D--E, set Dielectric model to Relative permittivity and $\varepsilon_r$ to From material.\\
+7. Keep the default Electric Insulation 1 on all external boundaries.\\
+8. Click Initial Values 1 and keep Electric potential $V$ at 0 V.\\
+9. On the physics bar click Boundaries - Electric Potential.\\
+10. Select the left boundary of the left bus bar and set Electric Potential to V\_in.\\
+11. On the physics bar click Boundaries - Ground.\\
+12. Select the right boundary of the right bus bar.
+\\
+\textbf{Heat Transfer in Solids (ht)}
+
+1. Under Heat Transfer in Solids, set the Out-of-Plane Thickness to t\_glass.\\
+2. Click Solid 1 and set Coordinate System to Global coordinate system.\\
+3. In Heat Conduction, Solid, set Deformation model to Standard and $k$ to From material.\\
+4. In Thermodynamics, Solid, set $\rho$ and $C_p$ to From material.\\
+5. Click Initial Values 1 and set Temperature $T$ to T\_init on all domains.\\
+6. Keep the default Thermal Insulation 1 on all external boundaries.\\
+7. Keep Heat Flux 1 disabled.\\
+8. On the physics bar click Domains - Out-of-Plane Heat Flux and select all domains.\\
+9. Under Upside Inward Heat Flux, set Flux type to Convective heat flux, $h_u$ to h\_ext and $T_{ext,u}$ to T\_amb.\\
+10. Under Downside Inward Heat Flux, set Flux type to Convective heat flux, $h_d$ to h\_int and $T_{ext,d}$ to T\_cabin.
+\\
+\textbf{Solid Mechanics (solid)}
+
+1. Under Solid Mechanics, click Linear Elastic Material 1.\\
+2. Set Coordinate System to Global coordinate system.\\
+3. Set Material symmetry to Isotropic and Specify to Young's modulus and Poisson's ratio, both From material.\\
+4. Set Density $\rho$ to From material.\\
+5. Set Geometric Nonlinearity to None.\\
+6. Keep the default Free 1 on all external boundaries.\\
+7. Click Initial Values 1 and set Coordinate System to Global coordinate system.\\
+8. Keep Displacement field and Structural velocity field at 0.\\
+9. On the physics bar click Boundaries - Fixed Constraint.\\
+10. Select the outer boundaries of the glass domain.
+\\
+\textbf{Multiphysics}
+
+1. In the Physics toolbar, click Multiphysics Couplings - Domain - Electromagnetic Heating.\\
+2. Select all trace and bus bar domains.\\
+3. Under Coupled Interfaces, set Electric Currents to ec and Heat Transfer in Solids to ht.\\
+4. In the Physics toolbar, click Multiphysics Couplings - Domain - Thermal Expansion.\\
+5. Select all domains.\\
+6. Under Coupled Interfaces, set Heat transfer to Heat Transfer in Solids (ht) and Structure to Solid Mechanics (solid).\\
+7. Set Model input to Common model input.\\
+8. In Thermal Expansion Properties, set Coefficient of thermal expansion to Secant coefficient of thermal expansion, From material.
+\\
+\textbf{Mesh 1}
+
+1. Under Mesh 1, click Size and set Element size to Fine.\\
+2. In the Mesh toolbar, click Free Triangular.\\
+3. Select all domains.\\
+4. Click Build All.
+\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{appendixphysics.PNG}
+    \caption{Model Builder tree showing the Electric Currents, Heat Transfer in Solids, Solid Mechanics, Multiphysics, and Mesh nodes used in the simulation.}
+\end{figure}
+
+\textbf{Study}
+
+1. In the Model Builder window, right-click Study 1 and choose Compute if needed add a parameter sweep or transient study.
 
 
 
