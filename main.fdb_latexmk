@@ -1,19 +1,19 @@
 # Fdb version 4
-["bibtex main"] 1776187208.51209 "main.aux" "main.bbl" "main" 1776187215.98297 0
+["bibtex main"] 1776251118.20706 "main.aux" "main.bbl" "main" 1776251123.88778 0
   "./ref.bib" 1776175174 3050 025b9f5278f238a3f4c52d692e127105 ""
   "C:/Users/Irian/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/unsrt.bst" 1291864736 18030 1376b4b231b50c66211e47e42eda2875 ""
-  "main.aux" 1776187214 28424 b417557b7259bcad55a689427674054a "pdflatex"
+  "main.aux" 1776251122 29575 cb766e6063de421b92271cd4aed3f8b2 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1776187208.96058 "c:/Users/Irian/Desktop/Irian/Irian/Irian Claude/Scorro/Master/Jaar 2/Comsol/Final report/main.tex" "main.pdf" "main" 1776187215.98403 0
-  "1.tex" 1776178996 15046 82b691d6e690f104cc47019e6285cd0f ""
-  "2.tex" 1776180146 35132 a970ae4c80deb28bb8b16c375cb3b52d ""
+["pdflatex"] 1776251118.54866 "c:/Users/Irian/Desktop/Irian/Irian/Irian Claude/Scorro/Master/Jaar 2/Comsol/Final report/main.tex" "main.pdf" "main" 1776251123.88856 0
+  "1.tex" 1776207620 15113 6c4f89673d2d3fefe47dde980d081615 ""
+  "2.tex" 1776251111 36511 27d9335a73251ecd066a8fc8967d012b ""
   "3.tex" 1776179004 9987 ea1773c71f43a46dbea76574fbdf4737 ""
-  "4.tex" 1776182578 17203 094deb462f4736816888bb8ea06b55b7 ""
+  "4.tex" 1776207700 17714 0e4f36440ecb97ad759458adf1b475ce ""
   "5.tex" 1776187206 4675 3f0630b486fd524b413a3b001230543f ""
-  "Appendix.tex" 1775465251 2479 b8645c2b151ade7f599c4c5962d1ec01 ""
+  "Appendix.tex" 1776250429 11142 20c4593c52f03eed01e6900322f0e92c ""
   "C:/Users/Irian/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1775465155 339594 a5b5065d5ac438332843a98ceeded6df ""
   "C:/Users/Irian/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ectt1000.pk" 1775465158 20028 ef366635c220758118d4d0d9ea196a67 ""
   "C:/Users/Irian/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1772983067 13333486 94edccf15e4fa7d24b23aa391baeefab ""
@@ -240,6 +240,7 @@
   "images/COMSOL — Geometry view showing glass (grey), traces (orange), bus.png" 1775466575 2843 0 ""
   "images/Chebyshev p = 1.3 t = 3600s.png" 1775936447 143155 e654aa65e21fd77642a319d4a668dcfa ""
   "images/Chebyshev p = 1.3 t = 360s.png" 1776156867 169377 00ac44f177c1577e6df89b0719a61d9a ""
+  "images/Geometry.png" 1776250149 13136 36cd9cde9fabc267e83dba7fab100cbf ""
   "images/Line plot — Tmin vs ntraces at Vin = 12V with dew point line.png" 1775471808 27935 0 ""
   "images/Plot of defrost time vs p, minimum at p = 1.3.png" 1775485154 165857 409819d56caf32dcd807150859bc4f35 ""
   "images/Plot of steady-state Tmin vs p, peak at p = 1.3.png" 1775484404 186141 035fb83066adbd5fd26618d47ad6bf74 ""
@@ -250,15 +251,18 @@
   "images/Sim5 geometry — Chebyshev p = 0.7.png" 1775481607 3191 0 ""
   "images/Sim5 geometry — Chebyshev p = 1.3.png" 1775472488 3285 0 ""
   "images/TU_delft_logo.jpg" 1775463961 223574 0e88875469a96842b9de20ff3fb2e2e9 ""
+  "images/appendix geometry.png" 1776249745 36842 3376910109394262656c26b62a6e0602 ""
+  "images/appendixphysics.PNG" 1776248250 33199 6b1bb79dc7f1ddf59ecbfca63226354c ""
   "images/fig_sim2b_material_comparison.png" 1775937439 101868 c26a791ccc501b59eb3356bc3c3033bb ""
   "images/fig_sim3_transient_pdag_12V.png" 1775937439 110895 9b68c1e7597e8774fb47ba9eee73e325 ""
   "images/fig_sim6_weather_sweep.png" 1775937439 108203 a56ca571ba41368ab82f085a02cfb4e2 ""
+  "images/p=13von Mises stress.png" 1776203894 50955 8acdc422daa4e8b5b6bdf7a0303da529 ""
   "images/physics_coupling_diagram.png" 1776155367 149332 7f49d1443553178aebfa8eb1ee1c6c9a ""
   "images/sim2c_stress_nichrome_20traces_12V.png" 1776155367 98486 c9d64b1bd702400bde995813bcbf5323 ""
   "images/sim2c_stress_pdag_20traces_12V.png" 1776155367 130312 420e0158d106867c0f84ffb3e3e0207e ""
-  "main.aux" 1776187214 28424 b417557b7259bcad55a689427674054a "pdflatex"
-  "main.bbl" 1776187208 2042 9241961c157637697746570e2f9bbdc5 "bibtex main"
-  "main.out" 1776187214 5154 8680458dde228e69078ea2a74526059b "pdflatex"
+  "main.aux" 1776251122 29575 cb766e6063de421b92271cd4aed3f8b2 "pdflatex"
+  "main.bbl" 1776251118 2042 9241961c157637697746570e2f9bbdc5 "bibtex main"
+  "main.out" 1776251122 5154 8680458dde228e69078ea2a74526059b "pdflatex"
   "main.tex" 1776179175 3455 d9d6d3ab3939aad875a8485fd37df741 ""
   "titlepage.tex" 1775937439 2999 7e30c5c576564a2b9b22d3fa73c6810f ""
   (generated)

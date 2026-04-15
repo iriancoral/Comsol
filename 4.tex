@@ -251,6 +251,15 @@ stress analysis overcomes the COMSOL~6.2 spatial frame limitation while still ca
 
 \subsubsection{Limitations, Future Work, and Broader Implications}
 
+The von Mises stress distribution for the optimised $p = 1.3$ design is shown in \Cref{fig:sim5-von-mises}.
+The sharp 90\textdegree{} trace corners act as mathematical stress singularities, so the \emph{Surface Maximum}
+($\sigma_\text{max} = \SI{2.7281e8}{\pascal}$) is mesh-dependent and not physically meaningful. The average
+von Mises stress, $\sigma_\text{avg} = \SI{5.3651e6}{\pascal}$, lies well below the \SI{165}{\mega\pascal} limit
+and confirms that the design is structurally safe.
+
+
+
+
 \begin{itemize}
     \item \textbf{2D approximation:} The model uses a flat 2D geometry. A real rear window is curved, which affects heat flux distribution and stress concentrations. A 3D simulation with curved glass would be more realistic.
 
@@ -272,3 +281,6 @@ Furthermore, the observation that bulk-conductivity materials (Silver, Gold) ove
 \textbf{STILL DO: ELEMENT ORDER CONVERGENCE ANALYSIS} --- comparing linear vs.\ quadratic elements for the Joule heating/temperature solution to verify that the default element order is sufficient.
 
 \textbf{STILL DO: ADAPTIVE MESH REFINEMENT ANALYSIS} --- using COMSOL's adaptive mesh refinement to verify error control near the trace boundaries where temperature gradients are steepest.
+
+
+

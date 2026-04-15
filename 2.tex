@@ -415,9 +415,24 @@ The results are plotted in \Cref{fig:sim5-p-sweep}. %presented in \Cref{tab:sim5
     \label{fig:sim5-p-sweep}
 \end{figure}
 
-The optimum is clearly at $p = 1.3$: it achieves the highest minimum temperature at the 6-minute mark (\SI{283.20}{\kelvin}) and the highest steady-state $T_\text{min}$ (\SI{295.0}{\kelvin}). The actual temperature 
-distribution can be visualised in \Cref{fig:sim5-temp-distribution}, showing a much more uniform temperature across the glass with no cold spots at the edgesor the middle. 
-\textcolor{red}{Hier kan ik gecommente info nog erbij zetten}
+The optimum is clearly at $p = 1.3$: it achieves the highest minimum temperature at the 6-minute mark (\SI{283.20}{\kelvin}) and the highest steady-state $T_\text{min}$ (\SI{295.0}{\kelvin}). The actual temperature
+distribution can be visualised in \Cref{fig:sim5-temp-distribution}, showing a much more uniform temperature across the glass with no cold spots at the edgesor the middle.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{p=13von Mises stress.png}
+    \caption{Von Mises stress distribution for the Chebyshev $p = 1.3$ design (Pd--Ag alloy, 20 traces, \SI{12}{\volt}). The peak value is localised at the sharp 90\textdegree{} corners of the traces.}
+    \label{fig:sim5-von-mises}
+\end{figure}
+
+The von Mises stress distribution for the optimized $p = 1.3$ design is shown in \Cref{fig:sim5-von-mises}. 
+A  90\textdegree{} corner in a 2D FEM model creates a stress singularity, meaning the stress at that point becomes artificially very large and approaches infinity due to the stress singularity. 
+As the mesh is refined, this peak stress keeps increasing, so the \emph{Surface Maximum} is dominated by the corner and not by the real physics. 
+
+The reported maximum stress is $\sigma_\text{max} = \SI{2.7281e8}{\pascal}$, which exceeds the allowable limit of \SI{165}{\mega\pascal}. 
+However, this value is not physically meaningful because it is caused by the singularity. 
+
+Therefore a different measure is chosen: the average von Mises stress, $\sigma_\text{avg} = \SI{5.3651e6}{\pascal}$, which gives an indication of the overall stress in the glass. This shows that the average is way below the maximum which indicates that the model is safe. The model has been checked thoroughly and the only places where the stresses are exceeded is at the 90\textdegree{} corners.
 % The physical interpretation is:
 
 % \begin{itemize}
